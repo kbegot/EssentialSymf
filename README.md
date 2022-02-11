@@ -3,7 +3,7 @@
 
 
 
-###Installer notre projet depuis un Ordinateur:
+### Installer notre projet depuis un Ordinateur:
   -Installer composer: https://getcomposer.org/download/
   -Installer wampServer: https://www.wampserver.com/
   -Version PHP: 7.2.34 (avec composer)
@@ -12,7 +12,7 @@
   
   
   
-###Commande utiles:
+### Commande utiles:
   -Commande pour lancer le serveur: php bin/console server:run
   -Commande pour crée un controller: php bin/console make:controller    (puis rentrer le nom du controller)
   -Commande pour crée le fixtures: composer require orm-fixtures --dev
