@@ -3,7 +3,7 @@
 
 
 
-### Installer notre projet depuis un Ordinateur:\n
+### Installer notre projet depuis un Ordinateur:
    -Installer composer: https://getcomposer.org/download/
   -Installer wampServer: https://www.wampserver.com/
   -Version PHP: 7.2.34 (avec composer)
