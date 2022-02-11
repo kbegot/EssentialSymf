@@ -14,5 +14,5 @@
   
 ###Commande utiles:
   -Commande pour lancer le serveur: php bin/console server:run
-  -Commande pour crée 
+  -Commande pour crée un controller: php bin/console make:controller    (puis rentrer le nom du controller)
   -Commande pour crée le fixtures: composer require orm-fixtures --dev
