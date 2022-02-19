@@ -1,0 +1,220 @@
+body{
+  overflow: hidden;
+}
+
+
+
+.container {
+    width: 1920px;
+    height: 1080px;
+    margin-left: 130px;
+    padding: 7px 22.5px 21px 13px;
+    background-color: #fff;
+  }
+
+
+
+.Menu
+{
+    position: fixed;
+    background: #f3f3f7;;
+    width: 98px;
+    height: 1050px;
+    top: 10px;
+    left: 25px;
+    float: left;
+    text-align: center;
+    border-radius: 55px;
+
+    /*margin: 0 49px 0 0;
+    padding: 49px 31.5px 35px 30.5px;
+    border-radius: 55px;
+    background-color: #f3f3f7;*/
+}
+
+.lottiefiles-alt {
+  width: 35px;
+  height: 35px;
+  margin: 50px 0 0 30px;
+}
+
+.estate {
+  width: 35px;
+  height: 38.9px;
+  margin: 282.5px 0 0 30px;
+}
+
+.search {
+  width: 35px;
+  height: 35px;
+  margin: 50px 0 0 30px;
+}
+
+.folder-open {
+  width: 35px;
+  height: 28.6px;
+  margin: 50px 0 0 30px;
+}
+
+.setting {
+  width: 35px;
+  height: 35.6px;
+  margin: 50px 0 0 30px;
+}
+
+.user-circle-menu {
+  width: 35px;
+  height: 35px;
+  margin: 300px 0 0 30px;
+}
+
+
+
+.bell {
+  width: 35px;
+  height: 43.6px;
+  margin: 5.4px 0 0 1975px;
+  z-index: 4;
+}
+
+
+
+.user-circle-up {
+  width: 40px;
+  height: 40px;
+  margin: -45px 0 0 2025px;
+  z-index: 3;
+}
+
+
+
+.Nom-Prenom {
+  width: 147px;
+  height: 30px;
+  margin: -55px 0 0 2075px;
+  font-family: Arial;
+  font-size: 21px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  text-align: left;
+  color: #213350;
+  z-index: 2;
+}
+
+
+
+.angle-down {
+  width: 55px;
+  height: 34.8px;
+  margin: -42.5px 0 0 2225px;
+  z-index: 1;
+}
+
+
+
+.EdT {
+    width: 344px;
+    height: 55px;
+    margin: 50px 0 0 20px;
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    color: #213350;
+    z-index: 0;
+  }
+
+.CaseEdT{
+    width: 914px;
+    height: 908px;
+    margin-left: 20px;
+    border-radius: 21px;
+    background-color: #f3f3f7;
+    z-index: 0;
+  }
+
+
+
+.Actus {
+    width: 371px;
+    height: 55px;
+    margin: -52px 0 0 995px;
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    color: #213350;
+    z-index: -1;
+  }
+
+.CaseActus {
+    width: 1125px;
+    height: 404px;
+    margin: -907px 0 0 995px;
+    border-radius: 21px;
+    background-color: #f3f3f7;
+    z-index: -1;
+  }
+
+
+
+.CreateRecents {
+    width: 525px;
+    height: 55px;
+    margin: 10px 0 0 995px;
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    color: #213350;
+    z-index: 0;
+  }
+
+.CaseCreateRecents {
+    width: 537.5px;
+    height: 434px;
+    margin: 0 0 0 995px;
+    border-radius: 21px;
+    background-color: #f3f3f7;
+    z-index: 0;
+  }
+
+
+
+.OpenRecents {
+    width: 525px;
+    height: 55px;
+    margin: -55px 0 0 1580px;
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    color: #213350;
+    z-index: -1;
+  }
+
+.CaseOpenRecents {
+    width: 537.5px;
+    height: 434px;
+    margin: -435px 0 0 1580px;
+    border-radius: 21px;
+    background-color: #f3f3f7;
+    z-index: -1;
+  }
