@@ -1,7 +1,7 @@
 # EssentialSup
 ## Projet EssentialSup basé sur symphony
 ## Installation du projet
-### Installer composer et les dépendances en local
+## Installer composer et les dépendances en local
 https://getcomposer.org/download/
 ### Installer wampServer
 https://www.wampserver.com/
