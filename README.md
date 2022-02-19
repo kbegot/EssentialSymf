@@ -8,7 +8,7 @@ Version PHP: 7.2.34
 ### Installer composer
 https://getcomposer.org/download
 ## Dans un invite de commande (cmd ou powershell)
-```composer update```
+``composer update``
 ### (Optionnel) Installer le module de fixture
 ```composer require orm-fixtures --dev```
 ### Crée la base de donnée en local
