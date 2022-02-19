@@ -2,9 +2,10 @@
 ## Projet EssentialSup basé sur symphony
 # Installation du projet
 ## Installer composer et les dépendances en local
-https://getcomposer.org/download/
 ### Installer wampServer
 https://www.wampserver.com
+### Installer composer
+https://getcomposer.org/download/
 Version PHP: 7.2.34 (avec composer)
 ## Dans un invite de commande (cmd ou powershell)
 ```composer update```
