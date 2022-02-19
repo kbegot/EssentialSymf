@@ -27,6 +27,10 @@ php bin/console doctrine:migrations:migrate
 ```
 php bin/console server:run
 ```
+### Accéder à l'adresse local sur le port 8000
+http://127.0.0.1:8000
+
+
 ## Commande utiles au développement
 ### Lancer le serveur de développement
 ```
