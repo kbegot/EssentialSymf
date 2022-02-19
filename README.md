@@ -33,5 +33,5 @@ Version PHP: 7.2.34 (avec composer)
 ```php bin/console doctrine:fixtures:load```
 ### Crée un nouveau formulaire (Register)
 ```php bin/console make:registration-form```
-### Crée l'aauthentification
+### Crée l'authentification
 ```php bin/console make:auth```
