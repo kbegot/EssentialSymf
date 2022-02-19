@@ -31,7 +31,7 @@ php bin/console server:run
 http://127.0.0.1:8000
 
 
-## Commande utiles au développement
+# Commande utiles au développement
 ### Lancer le serveur de développement
 ```
 php bin/console server:run
