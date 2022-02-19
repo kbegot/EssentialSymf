@@ -4,9 +4,9 @@
 ## Installer composer et les dépendances en local
 ### Installer wampServer
 https://www.wampserver.com
+Version PHP: 7.2.34
 ### Installer composer
-https://getcomposer.org/download/
-Version PHP: 7.2.34 (avec composer)
+https://getcomposer.org/download
 ## Dans un invite de commande (cmd ou powershell)
 ```composer update```
 ### (Optionnel) Installer le module de fixture
