@@ -4,7 +4,7 @@
 ## Installer composer et les dépendances en local
 https://getcomposer.org/download/
 ### Installer wampServer
-https://www.wampserver.com/
+https://www.wampserver.com
 Version PHP: 7.2.34 (avec composer)
 ## Dans un invite de commande (cmd ou powershell)
 ```composer update```
@@ -20,7 +20,7 @@ Version PHP: 7.2.34 (avec composer)
 ### Lancer le serveur de développement
 ```php bin/console server:run```
 ### Crée un controller
-``` php bin/console make:controller    (puis rentrer le nom du controller)```
+``` php bin/console make:controller```    (puis rentrer le nom du controller)
 ### Crée une nouvelle entité
 ```php bin/console make:entity```
 ### Crée une migration
