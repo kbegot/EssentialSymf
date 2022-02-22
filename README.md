@@ -12,6 +12,10 @@ https://getcomposer.org/download
 ```
 composer update
 ```
+### Installer le serveur de développement
+```
+composer require server --dev "^4.4.2"
+```
 ### (Optionnel) Installer le module de fixture
 ```
 composer require orm-fixtures --dev
@@ -23,10 +27,6 @@ php bin/console doctrine:database:create
 ### Effectuer les migrations
 ```
 php bin/console doctrine:migrations:migrate
-```
-### Installer le serveur de développement
-```
-composer require server --dev "^4.4.2"
 ```
 ### Lancer le serveur de développement
 ```
