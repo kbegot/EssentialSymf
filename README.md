@@ -23,6 +23,10 @@ php bin/console doctrine:database:create
 ```
 php bin/console doctrine:migrations:migrate
 ```
+### Installer le serveur de développement
+```
+composer require server --dev "^4.4.2"
+```
 ### Lancer le serveur de développement
 ```
 php bin/console server:run
