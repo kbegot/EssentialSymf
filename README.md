@@ -8,6 +8,7 @@ Version PHP: 7.2.34
 ### Installer composer
 https://getcomposer.org/download
 ## Dans un invite de commande (cmd ou powershell)
+### Mettre à jours les dépendances avec composer
 ```
 composer update
 ```
