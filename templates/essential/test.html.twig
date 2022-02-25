@@ -4,6 +4,8 @@
 
 {% if user %}
     <h1>Si vous voyez ceci c'est que vous êtes authentifié en tant que {{user.email}}</h1>
+    {{dump(user)}}
+    {{dump(user.roles)}}
 {% endif %}
 
 
