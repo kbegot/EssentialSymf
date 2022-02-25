@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+
 
 class EssentialController extends AbstractController
 {
@@ -25,4 +28,26 @@ class EssentialController extends AbstractController
     {
         return $this->render('essential/home.html.twig');
     }
+
+
+    /**
+    * @route("/testauth", name = "test")
+    */
+    public function testauth()
+    {
+        $user = $this->getUser();
+
+        if ($user)
+        {
+            return $this->render('essential/test.html.twig',['user'=>$user]);
+        }
+
+        else
+        {
+            return $this->redirectToRoute('app_login');
+        }
+
+    }
+
+
 }
