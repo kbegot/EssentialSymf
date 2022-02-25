@@ -28,8 +28,6 @@
                             {% endif %}
                         {% endfor %}
                     </td>
-                    <td>{{ user.articles|length }}</td>
-                    <td><a href="{{ path('admin_modifier_utilisateur', {'id': user.id}) }}">Modifier</a></td>
                 </tr>
                 
             {% else %}
