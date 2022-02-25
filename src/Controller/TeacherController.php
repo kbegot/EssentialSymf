@@ -17,4 +17,15 @@ class TeacherController extends AbstractController
             'controller_name' => 'TeacherController',
         ]);
     }
+
+
+    /**
+     * @Route("/teacher/upload",name = "upload")
+     */
+    public function upload()
+    {
+        return $this->render('teacher/upload.html.twig');
+    }
+
+
 }
