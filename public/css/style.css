@@ -45,6 +45,7 @@ body{
 
 .MenuHaut {
   position: fixed;
+  display: flex;
   width: 30%;
   height: 6%;
   top: 1%;
@@ -77,6 +78,24 @@ body{
   margin-left: -51%;
 }
 
+#menu path{
+  transition: fill 0.3s;
+}
+
+#menu:hover path{
+  fill: tomato;
+}
+
+#login {
+  text-decoration: none;
+  color: #213350;
+  transition: color 0.3s;
+}
+
+#login:hover {
+  color: tomato;
+}
+
 /*.angle-down {
   transform: rotate(180deg) 0.5s;
 }
@@ -86,6 +105,8 @@ body{
 }*/
 
 
+
+/* Page Home */
 
 .EdT, .CaseEdT, .Actus, .CaseActus {
   width: 125%;
@@ -203,3 +224,7 @@ body{
     background-color: #f3f3f7;
     z-index: 0;
   }
+
+
+
+/* Page de Login */
