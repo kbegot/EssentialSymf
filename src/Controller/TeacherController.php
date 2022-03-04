@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Entity\Ressource;
 use App\Form\UploadType;
 
@@ -25,19 +26,28 @@ class TeacherController extends AbstractController
     /**
      * @Route("/teacher/upload",name = "upload")
      */
-    public function upload(Request $request)
+    public function upload(Request $request, SluggerInterface $slugger)
     {
-        $upload = new Ressource();
-        $form = $this->createForm(UploadType::class, $upload);
-
+        $ressource = new Ressource();
+        $form = $this->createForm(UploadType::class, $ressource);
         $form->handleRequest($request);
-        if ($form->issubmitted() && $form->isValid()){
-            $file = $upload->getName();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getParameter('upload_directory'), $fileName);
-            $upload->setName($fileName);
 
-            return $this->redirectToRoute('home');
+        if ($form->issubmitted() && $form->isValid()){
+            $ressourcefile = $form->get('upload')->getData();
+
+            if ($ressourcefile){
+
+                $originalFilename = pathinfo($ressourcefile->getClientOriginalName(), PATHINFO_FILENAME);
+                //$file = $upload->getName();
+                var_dump($originalFilename);
+                //var_dump($file->guessExtension());
+                /*
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('upload_directory'), $fileName);
+                $upload->setName($fileName);*/
+            }
+
+            //return $this->redirectToRoute('home');
         }
 
         /*if ($form->isSubmitted() && $form->isValdie())
