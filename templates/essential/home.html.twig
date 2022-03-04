@@ -1,18 +1,41 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    <link rel="stylesheet" href="css/style.css">
+    <div class="d-flex justify-content-around">
+        
+        <div class="w-50">
+            <h1 class="EdT">Emploi du temps</h1>
+            <div class="CaseEdT">
 
-    <h1 class="EdT">Emploi du temps</h1>
-    <h1 class="Actus">Nos actualités</h1>
-    
-    <div class="CaseEdT"></div>
-    <div class="CaseActus"></div>
+            </div>
+        </div>
 
-    <h1 class="CreateRecents">Déposés récemment</h1>
-    <h1 class="OpenRecents">Ouverts récemment</h1>
+        <div class="w-50">
+            <h1 class="Actus">Nos actualités</h1>
+            <div class="CaseActus">
+                
+        </div>
 
-    <div class="CaseCreateRecents"></div>
-    <div class="CaseOpenRecents"></div>
+            <div>
+                <div class="d-flex justify-content-around">
+                    <div class="w-50">
+                        <h1 class="CreateRecents">Déposés récemment</h1>
+                        <div class="CaseCreateRecents">
+                            
+                        </div>
+                    </div>
+
+                    <div class="w-50">
+                        <h1 class="OpenRecents">Ouverts récemment</h1>
+                        <div class="CaseOpenRecents">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
 
 {% endblock %}

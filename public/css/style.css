@@ -5,118 +5,90 @@ body{
 
 
 .container {
-    width: 1920px;
-    height: 1080px;
-    margin-left: 130px;
-    padding: 7px 22.5px 21px 13px;
-    background-color: #fff;
-  }
+  width: 95%;
+  height: 95%;
+  margin-top: -1%;
+  background-color: white;
+}
 
 
 
-.Menu
-{
-    position: fixed;
-    background: #f3f3f7;;
-    width: 98px;
-    height: 1050px;
-    top: 10px;
-    left: 25px;
-    float: left;
-    text-align: center;
-    border-radius: 55px;
+.MenuGauche {
+  position: fixed;
+  background: #f3f3f7;
+  width: 4%;
+  height: 97.5%;
+  top: 1%;
+  left: 1%;
+  float: left;
+  text-align: center;
+  border-radius: 55px;
+}
 
-    /*margin: 0 49px 0 0;
-    padding: 49px 31.5px 35px 30.5px;
-    border-radius: 55px;
-    background-color: #f3f3f7;*/
+.lottiefiles-alt, .estate, .search, .folder-open, .setting, .user-circle-menu {
+  display: inline-block;
+  width: 45%;
+  height: auto;
 }
 
 .lottiefiles-alt {
-  width: 35px;
-  height: 35px;
-  margin: 50px 0 0 30px;
+  margin-top: 40%;
 }
 
-.estate {
-  width: 35px;
-  height: 38.9px;
-  margin: 282.5px 0 0 30px;
+.estate, .user-circle-menu {
+  margin-top: 320%;
 }
 
-.search {
-  width: 35px;
-  height: 35px;
-  margin: 50px 0 0 30px;
+.search, .folder-open, .setting {
+  margin-top: 45%;
 }
 
-.folder-open {
-  width: 35px;
-  height: 28.6px;
-  margin: 50px 0 0 30px;
+.MenuHaut {
+  position: fixed;
+  width: 30%;
+  height: 6%;
+  top: 1%;
+  left: 93%;
+  float: left;
 }
 
-.setting {
-  width: 35px;
-  height: 35.6px;
-  margin: 50px 0 0 30px;
+.bell, .user-circle-up, .angle-down {
+  width: 6.5%;
+  height: auto;
 }
 
-.user-circle-menu {
-  width: 35px;
-  height: 35px;
-  margin: 300px 0 0 30px;
-}
-
-
-
-.bell {
-  width: 35px;
-  height: 43.6px;
-  margin: 5.4px 0 0 1975px;
-  z-index: 4;
-}
-
-
-
-.user-circle-up {
-  width: 40px;
-  height: 40px;
-  margin: -45px 0 0 2025px;
-  z-index: 3;
-}
-
-
-
-.Nom-Prenom {
-  width: 147px;
-  height: 30px;
-  margin: -55px 0 0 2075px;
-  font-family: Arial;
-  font-size: 21px;
-  font-weight: 900;
-  font-stretch: normal;
-  font-style: normal;
-  text-align: left;
-  color: #213350;
-  z-index: 2;
-}
-
-
-
-.angle-down {
-  width: 55px;
-  height: 34.8px;
-  margin: -42.5px 0 0 2225px;
+.bell, .user-circle-up, .Nom-Prenom, .angle-down {
+  display: inline-block;
+  text-align: right;
   z-index: 1;
 }
 
+.Nom-Prenom {
+  position: fixed;
+  width: 50%;
+  height: auto;
+  float: right;
+  font-family: Arial;
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  color: #213350;
+  margin-top: -0.75%;
+  margin-left: -51%;
+}
 
+.EdT, .CaseEdT, .Actus, .CaseActus {
+  width: 125%;
+  margin-top: -1%;
+}
+
+.EdT, .CaseEdT {
+  margin-left: -20%;
+}
 
 .EdT {
-    width: 344px;
-    height: 55px;
-    margin: 50px 0 0 20px;
+    height: auto;
     font-family: Arial;
     font-size: 40px;
     font-weight: bold;
@@ -130,20 +102,18 @@ body{
   }
 
 .CaseEdT{
-    width: 914px;
-    height: 908px;
-    margin-left: 20px;
-    border-radius: 21px;
+    height: 40vw;
+    border-radius: 2.5%;
     background-color: #f3f3f7;
     z-index: 0;
   }
 
-
+.Actus, .CaseActus {
+  margin-left: 10%;
+}
 
 .Actus {
-    width: 371px;
-    height: 55px;
-    margin: -52px 0 0 995px;
+    height: auto;
     font-family: Arial;
     font-size: 40px;
     font-weight: bold;
@@ -153,24 +123,39 @@ body{
     letter-spacing: normal;
     text-align: left;
     color: #213350;
-    z-index: -1;
+    z-index: 0;
   }
 
 .CaseActus {
-    width: 1125px;
-    height: 404px;
-    margin: -907px 0 0 995px;
-    border-radius: 21px;
+    height: 17vw;
+    border-radius: 1vw;
     background-color: #f3f3f7;
-    z-index: -1;
+    z-index: 0;
   }
 
 
 
+.CreateRecents, .CaseCreateRecents {
+  margin-top: -1%;
+  margin-left: 20%;
+}
+
+.OpenRecents, .CaseOpenRecents {
+  margin-top: -1%;
+  margin-left: 50%;
+}
+
+.CreateRecents, .CaseCreateRecents {
+  height: auto;
+}
+
+.CaseCreateRecents, .CaseOpenRecents {
+  width: 118.75%;
+  height: 17vw;
+}
+
+
 .CreateRecents {
-    width: 525px;
-    height: 55px;
-    margin: 10px 0 0 995px;
     font-family: Arial;
     font-size: 40px;
     font-weight: bold;
@@ -184,9 +169,6 @@ body{
   }
 
 .CaseCreateRecents {
-    width: 537.5px;
-    height: 434px;
-    margin: 0 0 0 995px;
     border-radius: 21px;
     background-color: #f3f3f7;
     z-index: 0;
@@ -195,9 +177,6 @@ body{
 
 
 .OpenRecents {
-    width: 525px;
-    height: 55px;
-    margin: -55px 0 0 1580px;
     font-family: Arial;
     font-size: 40px;
     font-weight: bold;
@@ -207,14 +186,11 @@ body{
     letter-spacing: normal;
     text-align: left;
     color: #213350;
-    z-index: -1;
+    z-index: 0;
   }
 
 .CaseOpenRecents {
-    width: 537.5px;
-    height: 434px;
-    margin: -435px 0 0 1580px;
     border-radius: 21px;
     background-color: #f3f3f7;
-    z-index: -1;
+    z-index: 0;
   }
