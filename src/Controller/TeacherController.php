@@ -15,7 +15,7 @@ use App\Form\UploadType;
 class TeacherController extends AbstractController
 {
     /**
-     * @Route("/teacher", name="app_teacher")
+     * @Route("/teacher", name="teacher_home")
      */
     public function index(): Response
     {
@@ -26,7 +26,7 @@ class TeacherController extends AbstractController
 
 
     /**
-     * @Route("/teacher/upload",name = "upload")
+     * @Route("/teacher/upload",name = "teacher_upload")
      */
     public function upload(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager)
     {
