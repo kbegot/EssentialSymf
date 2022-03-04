@@ -25,7 +25,7 @@ class Classe
     private $libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity=eleve::class, mappedBy="classe")
+     * @ORM\OneToMany(targetEntity=Eleve::class, mappedBy="classe")
      */
     private $eleve;
 
@@ -64,14 +64,14 @@ class Classe
     }
 
     /**
-     * @return Collection<int, eleve>
+     * @return Collection<int, Eleve>
      */
     public function getEleve(): Collection
     {
         return $this->eleve;
     }
 
-    public function addEleve(eleve $eleve): self
+    public function addEleve(Eleve $eleve): self
     {
         if (!$this->eleve->contains($eleve)) {
             $this->eleve[] = $eleve;
@@ -81,7 +81,7 @@ class Classe
         return $this;
     }
 
-    public function removeEleve(eleve $eleve): self
+    public function removeEleve(Eleve $eleve): self
     {
         if ($this->eleve->removeElement($eleve)) {
             // set the owning side to null (unless already changed)

@@ -100,7 +100,7 @@ class Ressource
         return $this->$path;
     }
 
-    public function setPath()
+    public function setPath($path)
     {
         $this->path = $path;
 
