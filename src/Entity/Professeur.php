@@ -20,7 +20,7 @@ class Professeur
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=matiere::class, mappedBy="professeur")
+     * @ORM\OneToMany(targetEntity=matiere::class, mappedBy="Professeur")
      */
     private $matiere;
 
@@ -52,14 +52,14 @@ class Professeur
     }
 
     /**
-     * @return Collection<int, matiere>
+     * @return Collection<int, Matiere>
      */
     public function getMatiere(): Collection
     {
         return $this->matiere;
     }
 
-    public function addMatiere(matiere $matiere): self
+    public function addMatiere(Matiere $matiere): self
     {
         if (!$this->matiere->contains($matiere)) {
             $this->matiere[] = $matiere;
@@ -69,7 +69,7 @@ class Professeur
         return $this;
     }
 
-    public function removeMatiere(matiere $matiere): self
+    public function removeMatiere(Matiere $matiere): self
     {
         if ($this->matiere->removeElement($matiere)) {
             // set the owning side to null (unless already changed)

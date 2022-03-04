@@ -28,7 +28,7 @@ class Ressource
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Matiere::class, inversedBy="ressource")
+     * @ORM\ManyToOne(targetEntity=Matiere::class, inversedBy="Ressource")
      */
     private $matiere;
 
