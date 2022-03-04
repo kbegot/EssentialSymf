@@ -40,7 +40,7 @@ class TeacherController extends AbstractController
             if ($ressourcefile){
 
                 // liste d'extension autorisé
-                $allowed_extension = ["pdf","jpg","png","txt","docx","xlsx","ppt","csv","odt","ods","odp","odg"];
+                $allowed_extension = ["pdf","jpg","png","txt","docx","xlsx","ppt","csv","odt","ods","odp","odg","mp3","mp4"];
                 $originalFilename = pathinfo($ressourcefile->getClientOriginalName(), PATHINFO_FILENAME);
                 //$file = $upload->getName();
                 var_dump($originalFilename);
@@ -73,22 +73,12 @@ class TeacherController extends AbstractController
 
                 $entityManager->persist($ressource);
                 $entityManager->flush();
-
-
-
-
-               
+    
 
             }
 
             return $this->redirectToRoute('home');
         }
-
-        /*if ($form->isSubmitted() && $form->isValdie())
-        {
-                $file->
-
-        }*/
 
         return $this->render('teacher/upload.html.twig', array(
             'form' => $form->createView(),

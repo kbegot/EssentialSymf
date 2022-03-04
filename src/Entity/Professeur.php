@@ -20,12 +20,12 @@ class Professeur
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=matiere::class, mappedBy="Professeur")
+     * @ORM\OneToMany(targetEntity=Matiere::class, mappedBy="Professeur")
      */
     private $matiere;
 
     /**
-     * @ORM\OneToOne(targetEntity=user::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

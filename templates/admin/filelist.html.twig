@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Liste de toute les ressources</h1>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Extension</th>
+            <th>chemin d'accès</th>
+            <th>ID matière</th>
+            <th>Date de mise en ligne</th>
+        </thead>
+        <tbody>
+            
+            {% for ressource in ressources %}
+                <tr>
+                    <td>{{ ressource.id }}</td>
+                    <td>{{ ressource.name }}</td>
+                    <td>{{ ressource.extension }}</td>
+                    <td>{{ ressource.path }}</td>
+                    {% if ressource.matiere_id %}
+                        <td>{{ ressource.matiere_id }}</td>
+                    {% else %}
+                        <td>non défini</td>
+                    {% endif %}
+                    <td>{{ ressource.date }}</td>
+                </tr>
+            
+            {% else %}
+                <p>Aucune ressource n'a été mise en ligne pour le moment</p>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+{% endblock %}
