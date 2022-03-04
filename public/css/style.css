@@ -1,0 +1,205 @@
+body{
+  overflow: hidden;
+}
+
+
+
+.container {
+  width: 95%;
+  height: 95%;
+  margin-top: -1%;
+  background-color: white;
+}
+
+
+
+.MenuGauche {
+  position: fixed;
+  background: #f3f3f7;
+  width: 4%;
+  height: 97.5%;
+  top: 1%;
+  left: 1%;
+  float: left;
+  text-align: center;
+  border-radius: 55px;
+}
+
+.lottiefiles-alt, .estate, .search, .folder-open, .setting, .user-circle-menu {
+  display: inline-block;
+  width: 45%;
+  height: auto;
+}
+
+.lottiefiles-alt {
+  margin-top: 40%;
+}
+
+.estate, .user-circle-menu {
+  margin-top: 320%;
+}
+
+.search, .folder-open, .setting {
+  margin-top: 45%;
+}
+
+.MenuHaut {
+  position: fixed;
+  width: 30%;
+  height: 6%;
+  top: 1%;
+  left: 93%;
+  float: left;
+}
+
+.bell, .user-circle-up, .angle-down {
+  width: 6.5%;
+  height: auto;
+}
+
+.bell, .user-circle-up, .Nom-Prenom, .angle-down {
+  display: inline-block;
+  text-align: right;
+  z-index: 1;
+}
+
+.Nom-Prenom {
+  position: fixed;
+  width: 50%;
+  height: auto;
+  float: right;
+  font-family: Arial;
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  color: #213350;
+  margin-left: -51%;
+}
+
+/*.angle-down {
+  transform: rotate(180deg) 0.5s;
+}
+
+.angle-down:hover {
+  color: tomato;
+}*/
+
+
+
+.EdT, .CaseEdT, .Actus, .CaseActus {
+  width: 125%;
+  margin-top: -1%;
+}
+
+.EdT, .CaseEdT {
+  margin-left: -20%;
+}
+
+.EdT {
+    height: auto;
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    color: #213350;
+    z-index: 0;
+  }
+
+.CaseEdT{
+    height: 40vw;
+    border-radius: 2.5%;
+    background-color: #f3f3f7;
+    z-index: 0;
+  }
+
+.Actus, .CaseActus {
+  margin-left: 10%;
+}
+
+.Actus {
+    height: auto;
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    color: #213350;
+    z-index: 0;
+  }
+
+.CaseActus {
+    height: 17vw;
+    border-radius: 1vw;
+    background-color: #f3f3f7;
+    z-index: 0;
+  }
+
+
+
+.CreateRecents, .CaseCreateRecents {
+  margin-top: -1%;
+  margin-left: 20%;
+}
+
+.OpenRecents, .CaseOpenRecents {
+  margin-top: -1%;
+  margin-left: 50%;
+}
+
+.CreateRecents, .CaseCreateRecents {
+  height: auto;
+}
+
+.CaseCreateRecents, .CaseOpenRecents {
+  width: 118.75%;
+  height: 17vw;
+}
+
+
+.CreateRecents {
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    color: #213350;
+    z-index: 0;
+  }
+
+.CaseCreateRecents {
+    border-radius: 21px;
+    background-color: #f3f3f7;
+    z-index: 0;
+  }
+
+
+
+.OpenRecents {
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    color: #213350;
+    z-index: 0;
+  }
+
+.CaseOpenRecents {
+    border-radius: 21px;
+    background-color: #f3f3f7;
+    z-index: 0;
+  }
