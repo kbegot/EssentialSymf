@@ -1,18 +1,72 @@
 # EssentialSup
 ## Projet EssentialSup basé sur symphony
+# Installation du projet
+## Installer composer et les dépendances en local
+### Installer wampServer
+https://www.wampserver.com
+Version PHP: 7.2.34
+### Installer composer
+https://getcomposer.org/download
+## Dans un invite de commande (cmd ou powershell)
+### Mettre à jours les dépendances avec composer
+```
+composer update
+```
+### (Optionnel) Installer le module de fixture
+```
+composer require orm-fixtures --dev
+```
+### Crée la base de donnée en local
+```
+php bin/console doctrine:database:create
+```
+### Effectuer les migrations
+```
+php bin/console doctrine:migrations:migrate
+```
+### Lancer le serveur de développement
+```
+php bin/console server:run
+```
+### Accéder à l'adresse local sur le port 8000
+http://127.0.0.1:8000
 
 
-
-### Installer notre projet depuis un Ordinateur:  
-  -Installer composer: https://getcomposer.org/download/  
-  -Installer wampServer: https://www.wampserver.com/  
-  -Version PHP: 7.2.34 (avec composer)  
-  -Commande à rentrer dans le terminal (VS): composer update  
-  -Commande à rentrer dans le terminal (VS): composer require server --dev "^4.4.2"  
-  
-  
-  
-### Commande utiles:  
-  -Commande pour lancer le serveur: php bin/console server:run  
-  -Commande pour crée un controller: php bin/console make:controller    (puis rentrer le nom du controller)  
-  -Commande pour installer le fixtures: composer require orm-fixtures --dev  
+# Commande utiles au développement
+### Lancer le serveur de développement
+```
+php bin/console server:run
+```
+### Crée un controller
+```
+php bin/console make:controller
+```
+(puis rentrer le nom du controller)
+### Crée une nouvelle entité
+```
+php bin/console make:entity
+```
+### Crée une migration
+```
+php bin/console make:migration
+```
+### Effectuer les migrations
+```
+php bin/console doctrine:migrations:migrate
+```
+### Crée une nouvelle fixture
+```
+php bin/console make:fixtures
+```
+### Charger les fixtures existante
+```
+php bin/console doctrine:fixtures:load
+```
+### Crée un nouveau formulaire (Register)
+```
+php bin/console make:registration-form
+```
+### Crée l'authentification
+```
+php bin/console make:auth
+```
