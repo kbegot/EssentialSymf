@@ -78,6 +78,14 @@ body{
   margin-left: -51%;
 }
 
+/*.angle-down {
+  transform: rotate(180deg) 0.5s;
+}
+
+.angle-down:hover {
+  color: tomato;
+}*/
+
 
 
 .EdT, .CaseEdT, .Actus, .CaseActus {

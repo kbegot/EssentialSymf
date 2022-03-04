@@ -64,7 +64,11 @@
 
         <div class="MenuHaut">
             <div class="Nom-Prenom">
-                <p>Nom Prénom</p>
+            {% if app.user %}
+                <p>{{app.user.nom}} {{app.user.prenom}}</p>
+            {% else %}
+                <p><a href="{{path("app_login")}}">Se connecter</a></p>
+            {% endif %}
             </div>
 
             <div class="bell">
