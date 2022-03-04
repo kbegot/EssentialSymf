@@ -32,5 +32,9 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/filelist", name ="admin_filelist")
      */
+    public function filelist(RessourceRepository $ressources)
+    {
+        return $this->render('admin/filelist.html.twig',['ressources'=>$ressources->findAll()]);
+    }
 
 }
