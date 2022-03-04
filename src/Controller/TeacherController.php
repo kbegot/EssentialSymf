@@ -37,9 +37,31 @@ class TeacherController extends AbstractController
 
             if ($ressourcefile){
 
+                // liste d'extension autorisé
+                $allowed_extension = ["pdf","jpg","png","txt","docx","ppt","csv","odt","ods","odp","odg"];
                 $originalFilename = pathinfo($ressourcefile->getClientOriginalName(), PATHINFO_FILENAME);
                 //$file = $upload->getName();
+                var_dump($ressourcefile);
                 var_dump($originalFilename);
+                //var_dump($ressourcefile->guessExtension());
+
+                if (in_array($ressourcefile->guessExtension(), $allowed_extension)){
+                    echo "fichier accepté";
+                }
+
+                else{
+                    echo "Type de fichier Refusé\nLes fichiers accepté sont :\n";
+                    echo '</br>';
+                    foreach($allowed_extension as $extension)
+                    {
+                        echo "$extension </br>";
+                    }
+                    
+                    exit();
+                }
+
+                
+
                 //var_dump($file->guessExtension());
                 /*
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
