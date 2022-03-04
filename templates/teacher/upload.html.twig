@@ -1,7 +1,12 @@
-{% extends 'base.html.twig' %}
+{# % extends 'base.html.twig' %#}
 
-{% block body %}
+{#% block body %#}
 
-{{ form(form)}}
 
-{% endblock %}
+{{ form_start(form) }}
+    {# ... #}
+
+    {{ form_row(form.upload) }}
+{{ form_end(form) }}
+
+{#% endblock %#}

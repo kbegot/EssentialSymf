@@ -25,17 +25,17 @@ class Classe
     private $libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity=eleve::class, mappedBy="classe")
+     * @ORM\OneToMany(targetEntity=Eleve::class, mappedBy="classe")
      */
     private $eleve;
 
     /**
-     * @ORM\OneToMany(targetEntity=matiere::class, mappedBy="classe")
+     * @ORM\OneToMany(targetEntity=Matiere::class, mappedBy="classe")
      */
     private $matiere;
 
     /**
-     * @ORM\ManyToMany(targetEntity=professeur::class, inversedBy="classes")
+     * @ORM\ManyToMany(targetEntity=Professeur::class, inversedBy="classes")
      */
     private $Professeur;
 
@@ -64,14 +64,14 @@ class Classe
     }
 
     /**
-     * @return Collection<int, eleve>
+     * @return Collection<int, Eleve>
      */
     public function getEleve(): Collection
     {
         return $this->eleve;
     }
 
-    public function addEleve(eleve $eleve): self
+    public function addEleve(Eleve $eleve): self
     {
         if (!$this->eleve->contains($eleve)) {
             $this->eleve[] = $eleve;
@@ -81,7 +81,7 @@ class Classe
         return $this;
     }
 
-    public function removeEleve(eleve $eleve): self
+    public function removeEleve(Eleve $eleve): self
     {
         if ($this->eleve->removeElement($eleve)) {
             // set the owning side to null (unless already changed)
@@ -94,14 +94,14 @@ class Classe
     }
 
     /**
-     * @return Collection<int, matiere>
+     * @return Collection<int, Matiere>
      */
     public function getMatiere(): Collection
     {
         return $this->matiere;
     }
 
-    public function addMatiere(matiere $matiere): self
+    public function addMatiere(Matiere $matiere): self
     {
         if (!$this->matiere->contains($matiere)) {
             $this->matiere[] = $matiere;
@@ -111,7 +111,7 @@ class Classe
         return $this;
     }
 
-    public function removeMatiere(matiere $matiere): self
+    public function removeMatiere(Matiere $matiere): self
     {
         if ($this->matiere->removeElement($matiere)) {
             // set the owning side to null (unless already changed)
@@ -124,14 +124,14 @@ class Classe
     }
 
     /**
-     * @return Collection<int, professeur>
+     * @return Collection<int, Professeur>
      */
     public function getProfesseur(): Collection
     {
         return $this->Professeur;
     }
 
-    public function addProfesseur(professeur $professeur): self
+    public function addProfesseur(Professeur $professeur): self
     {
         if (!$this->Professeur->contains($professeur)) {
             $this->Professeur[] = $professeur;
@@ -140,7 +140,7 @@ class Classe
         return $this;
     }
 
-    public function removeProfesseur(professeur $professeur): self
+    public function removeProfesseur(Professeur $professeur): self
     {
         $this->Professeur->removeElement($professeur);
 

@@ -24,7 +24,7 @@ class Eleve
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleve")
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="Eleve")
      */
     private $classe;
 

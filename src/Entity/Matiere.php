@@ -25,17 +25,17 @@ class Matiere
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=ressource::class, mappedBy="matiere")
+     * @ORM\OneToMany(targetEntity=Ressource::class, mappedBy="Matiere")
      */
     private $ressource;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Professeur::class, inversedBy="matiere")
+     * @ORM\ManyToOne(targetEntity=Professeur::class, inversedBy="Matiere")
      */
     private $professeur;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="matiere")
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="Matiere")
      */
     private $classe;
 
@@ -62,14 +62,14 @@ class Matiere
     }
 
     /**
-     * @return Collection<int, ressource>
+     * @return Collection<int, Ressource>
      */
     public function getRessource(): Collection
     {
         return $this->ressource;
     }
 
-    public function addRessource(ressource $ressource): self
+    public function addRessource(Ressource $ressource): self
     {
         if (!$this->ressource->contains($ressource)) {
             $this->ressource[] = $ressource;
@@ -79,7 +79,7 @@ class Matiere
         return $this;
     }
 
-    public function removeRessource(ressource $ressource): self
+    public function removeRessource(Ressource $ressource): self
     {
         if ($this->ressource->removeElement($ressource)) {
             // set the owning side to null (unless already changed)

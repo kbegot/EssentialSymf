@@ -28,7 +28,7 @@ class Ressource
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Matiere::class, inversedBy="ressource")
+     * @ORM\ManyToOne(targetEntity=Matiere::class, inversedBy="Ressource")
      */
     private $matiere;
 
@@ -100,7 +100,7 @@ class Ressource
         return $this->$path;
     }
 
-    public function setPath()
+    public function setPath($path)
     {
         $this->path = $path;
 
