@@ -229,10 +229,14 @@ body{
 
 /* Page de Login */
 
-.connect, .txt_field {
+.connect, .txt_field, .signup_link {
   font-family: Arial;
   font-weight: 900;
   color: #213350;
+}
+
+.connect, .signup_link {
+  text-align: center;
 }
 
 .connect {
@@ -308,4 +312,21 @@ form .txt_field {
 
 .pass:hover {
 	text-decoration: underline;
+}
+
+.center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.signup_link #login {
+  text-decoration: none;
+  color: #a6a6a6;
+  transition: color 0.3s;
+}
+
+.signup_link #login:hover {
+color: tomato;
 }
