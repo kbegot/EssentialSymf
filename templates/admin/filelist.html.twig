@@ -20,12 +20,12 @@
                     <td>{{ ressource.name }}</td>
                     <td>{{ ressource.extension }}</td>
                     <td>{{ ressource.path }}</td>
-                    {% if ressource.matiere_id %}
-                        <td>{{ ressource.matiere_id }}</td>
+                    {% if ressource.matiere %}
+                        <td>{{ ressource.matiere }}</td>
                     {% else %}
                         <td>non défini</td>
                     {% endif %}
-                    <td>{{ ressource.date }}</td>
+                    <td>{{ ressource.date | format_datetime('short', 'short', locale='fr') }}</td>
                 </tr>
             
             {% else %}
