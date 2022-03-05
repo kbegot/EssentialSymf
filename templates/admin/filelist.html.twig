@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<!--
 <h1>Liste de toute les ressources</h1>
     <table>
         <thead>
@@ -33,6 +33,28 @@
             {% endfor %}
         </tbody>
     </table>
+-->
+
+    {% for ressource in ressources %}
+        <div style = "border: solid;">
+            <p>Id : {{ ressource.id }}</p>
+            <p>Nom : {{ ressource.name }}</p>
+            <p>Extension : {{ ressource.extension }}</p>
+            <p>Chemin d'accès : {{ ressource.path }}</p>
+            <p>Matière : 
+            {% if ressource.matiere %}
+                {{ ressource.matiere }}
+            {% else %}
+                non défini
+            {% endif %}
+            </p>
+            <p>Date de mise en ligne {{ ressource.date | format_datetime('short', 'short', locale='fr') }}</p>
+        </div>
+    {% endfor %}
+
+
+
+
 
 
 
