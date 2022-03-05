@@ -49,6 +49,7 @@
             {% endif %}
             </p>
             <p>Date de mise en ligne {{ ressource.date | format_datetime('short', 'short', locale='fr') }}</p>
+            <p><a href ="{{ path("admin_filelist_remove", {'id': ressource.id}) }}">Supprimer</a></p>
         </div>
     {% endfor %}
 
