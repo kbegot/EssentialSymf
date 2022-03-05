@@ -38,4 +38,22 @@ class AdminController extends AbstractController
         return $this->render('admin/filelist.html.twig',['ressources'=>$ressources->findAll()]);
     }
 
+    /**
+     * @Route("admin/filelist/remove/{id}", name = "admin_filelist_remove")
+     */
+    public function filelistremove($id,RessourceRepository $ressources)
+    {
+        $ressource = $ressources->find($id);
+
+        $filename = $this->getParameter('upload_directory') . "/" . $ressource->getPath();
+        $ressourcename = $ressource->getName() . "." . $ressource->getExtension();
+
+        unlink($filename);
+        $ressources->remove($ressource, true);
+        
+        return new Response("<html><body><h1>La ressource $ressourcename été supprimé ✔");
+
+    }
+
+
 }

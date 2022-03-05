@@ -43,7 +43,6 @@ class TeacherController extends AbstractController
                 $allowed_extension = ["pdf","jpg","png","txt","docx","xlsx","ppt","csv","odt","ods","odp","odg","mp3","mp4"];
                 $originalFilename = pathinfo($ressourcefile->getClientOriginalName(), PATHINFO_FILENAME);
                 //$file = $upload->getName();
-                var_dump($originalFilename);
                 //var_dump($ressourcefile->guessExtension());
 
                 if (in_array($ressourcefile->guessExtension(), $allowed_extension)){
