@@ -3,17 +3,47 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1 class="connect">Inscription</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="txt_field">
+            <i name="email" id="inputEmail" class="form-row" autocomplete="email" required autofocus></i>
+            <span></span>
+            {{ form_row(registrationForm.email) }}
+        </div>
 
-        <button type="submit" class="btn">Register</button>
+        <div class="txt_field">
+            <i name="nom" id="inputEmail" class="form-row" required autofocus></i>
+            <span></span>
+            {{ form_row(registrationForm.nom) }}
+        </div>
+
+        <div class="txt_field">
+            <i name="prenom" id="inputEmail" class="form-row" required autofocus></i>
+            <span></span>
+            {{ form_row(registrationForm.prenom) }}
+        </div>
+
+        <div class="txt_field">
+            <i type="password" name="password" id="inputPassword" class="form-row" autocomplete="current-password" required></i>
+            <span></span>
+            {{ form_row(registrationForm.plainPassword, {label: 'Password' }) }}
+        </div>
+
+        <div class="agree">
+            <i name="email" id="inputEmail" class="form-row" autocomplete="email" required autofocus></i>
+            <span></span>
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
+
+        <div class="btn_register">
+            <button class="btn btn-lg btn-primary" type="submit">
+                Se connecter
+            </button>
+        </div>
+
+        <!--<button type="submit" class="btn">Register</button>-->
+        
     {{ form_end(registrationForm) }}
+    
 {% endblock %}

@@ -229,21 +229,27 @@ body{
 
 /* Page de Login */
 
-.connect, .txt_field, .signup_link {
+.connect, .txt_field, .signup_link, .agree {
   font-family: Arial;
-  font-weight: 900;
   color: #213350;
 }
 
-.connect, .signup_link {
+.connect, .txt_field, .signup_link {
+  font-weight: 900;
+}
+
+.connect, .signup_link, .agree {
   text-align: center;
 }
 
 .connect {
-  text-align: center;
   font-size: 2rem;
   border-bottom: 1px solid silver;
   padding: 0 0 20px 0;
+}
+
+.agree {
+  font-weight: 700;
 }
 
 #inputEmail, #inputPassword {
@@ -314,11 +320,21 @@ form .txt_field {
 	text-decoration: underline;
 }
 
-.center {
-	position: absolute;
-	top: 50%;
-	left: 50%;
+.btn_login, .btn_register {
+	position: relative;
 	transform: translate(-50%);
+}
+
+.center {
+  vertical-align: middle;
+}
+
+.btn_login {
+  left: 92.5%;
+}
+
+.btn_register {
+  left: 93.75%;
 }
 
 .signup_link #login {
