@@ -1,12 +1,306 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Essential Admin</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
+</head>
+<body>
 
-{% block title %}Hello AdminController!{% endblock %}
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="uil uil-graduation-cap"></span> <span>EssentialSup</span></h2>
+        </div>
 
-{% block body %}
-<h1>Vous êtes connecté en tant qu'administrateur</h1>
-<h3><a href="{{ path("admin_userlist") }}">Liste des utilisateurs</h3>
-<h3><a href="{{ path("admin_filelist") }}">Liste des ressources</h3>
-<h3><a href="{{ path("teacher_upload") }}">Page de mise en ligne</h3>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="{{path("admin_home")}}" class="active"><span class="uil uil-home"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="{{path("admin_userlist")}}" class=""><span class="uil uil-user"></span>
+                        <span>Utilisateurs</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-books"></span>
+                        <span>Classe</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-folder-open"></span>
+                        <span>Ressource</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                        <span>test1</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                    <span>test2</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                <span class="uil uil-align-justify"></span>
+                </label>
 
-{% endblock %}
+                Dashboard
+            </h2>
+            <div class="search-wrapper">
+                <span class="uil uil-search"></span>
+                <input type="search" placeholder="Rechercher">
+            </div>
+
+            <div class="user-wrapper">
+                <img src="fbi.png" width="40px" height="40px" alt="">
+                <div>
+                    <h4>John</h4>
+                    <small>Super admin</small>
+                </div>
+
+            </div>
+        </header>
+
+        <main>
+            <div class="cards">
+                <div class="card-single">
+                    <div>
+                        <h1>54</h1>
+                        <span>custom</span>
+                    </div>
+                    <div>
+                        <span class="uil uil-folder-open"></span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h1>54</h1>
+                        <span>custom</span>
+                    </div>
+                    <div>
+                        <span class="uil uil-folder-open"></span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h1>54</h1>
+                        <span>custom</span>
+                    </div>
+                    <div>
+                        <span class="uil uil-folder-open"></span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h1>54</h1>
+                        <span>custom</span>
+                    </div>
+                    <div>
+                        <span class="uil uil-folder-open"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Projects</h3>
+
+                            <button>See all <span class="uil uil-folder-open"></span></button>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>Project Title</td>
+                                            <td>Departement</td>
+                                            <td>Status</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>UI/UX</td>
+                                            <td>Web developer</td>
+                                            <td><span class="status purple"></span>
+                                                review
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Web encore</td>
+                                            <td>web toujours</td>
+                                            <td><span class="status pink"></span>
+                                                in progress
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>ahahah test</td>
+                                            <td>Fronted</td>
+                                            <td><span class="status orange"></span>
+                                                pending
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>UI/UX</td>
+                                            <td>Web developer</td>
+                                            <td><span class="status purple"></span>
+                                                review
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Web encore</td>
+                                            <td>web toujours</td>
+                                            <td><span class="status pink"></span>
+                                                in progress
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>ahahah test</td>
+                                            <td>Fronted</td>
+                                            <td><span class="status orange"></span>
+                                                pending
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>UI/UX</td>
+                                            <td>Web developer</td>
+                                            <td><span class="status purple"></span>
+                                                review
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Web encore</td>
+                                            <td>web toujours</td>
+                                            <td><span class="status pink"></span>
+                                                in progress
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>ahahah test</td>
+                                            <td>Fronted</td>
+                                            <td><span class="status orange"></span>
+                                                pending
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cutomers">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Projects</h3>
+
+                            <button>See all <span class="uil uil-folder-open"></span></button>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="customer">
+                                <div class="info">
+                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <div>
+                                        <h4>LEwis strauss</h4>
+                                        <small>CEO Expert</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <span class="uil uil-trash-alt"></span>
+                                    <span class="uil uil-edit"></span>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <div>
+                                        <h4>LEwis strauss</h4>
+                                        <small>CEO Expert</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <div>
+                                        <h4>LEwis strauss</h4>
+                                        <small>CEO Expert</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <div>
+                                        <h4>LEwis strauss</h4>
+                                        <small>CEO Expert</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <div>
+                                        <h4>LEwis strauss</h4>
+                                        <small>CEO Expert</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <div>
+                                        <h4>LEwis strauss</h4>
+                                        <small>CEO Expert</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                    <span class="uil uil-folder-open"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    
+</body>
+</html>

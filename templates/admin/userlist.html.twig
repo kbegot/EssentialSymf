@@ -1,44 +1,127 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Essential Admin</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
+</head>
+<body>
 
-{% block body %}
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="uil uil-graduation-cap"></span> <span>EssentialSup</span></h2>
+        </div>
 
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="{{path("admin_home")}}" class=""><span class="uil uil-home"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="{{path("admin_userlist")}}" class="active"><span class="uil uil-user"></span>
+                        <span>Utilisateurs</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-books"></span>
+                        <span>Classe</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-folder-open"></span>
+                        <span>Ressource</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                        <span>test1</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                    <span>test2</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-<h1>Liste des utilisateurs</h1>
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Rôles</th>
-        </thead>
-        <tbody>
-            {# On boucle sur les utilisateurs #}
-            {% for user in users %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                        {# On boucle sur les rôles #}
-                        {% for role in user.roles %}
-                            {% if role == "ROLE_USER" %}
-                                Utilisateur
-                            {% elseif role == "ROLE_ADMIN" %}
-                                Administrateur
-                            {% elseif role == "ROLE_TEACHER" %}
-                                Professeur
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                </tr>
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                <span class="uil uil-align-justify"></span>
+                </label>
 
-            {% else %}
-                <p>Aucun utilisateur inscrit</p>
-            {% endfor %}
-        </tbody>
-    </table>
+                Gestion des Utilisateurs
+            </h2>
+            <div class="search-wrapper">
+                <span class="uil uil-search"></span>
+                <input type="search" placeholder="Rechercher">
+            </div>
 
+            <div class="user-wrapper">
+                <img src="fbi.png" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{app.user.nom}} {{app.user.prenom}}</h4>
+                    <small>Administrateur</small>
+                </div>
 
+            </div>
+        </header>
 
+        <main>
 
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Liste des Utilisateurs </h3>
+                        </div>
 
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Email</td>
+                                            <td>Rôle</td>
+                                            <td>Modifier</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for user in users %}
+                                        <tr>
+                                            <td>{{ user.id }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td>
+                                                {% for role in user.roles %}
+                                                    {% if role == "ROLE_USER" %}
+                                                        Utilisateur <span class="status orange"></span>
+                                                    {% elseif role == "ROLE_ADMIN" %}
+                                                        Administrateur <span class="status pink"></span>
+                                                    {% elseif role == "ROLE_TEACHER" %}
+                                                        Professeur <span class="status purple"></span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+                                            <td>
+                                                <div class="contact">
+                                                    <span class="uil uil-trash-alt"></span>
+                                                    <span class="uil uil-edit"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-{% endblock %} 
+        </main>
+    </div>
+    
+</body>
+</html>
