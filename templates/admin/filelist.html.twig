@@ -2,10 +2,16 @@
 
 {% block body %}
 
+    {% if deletedid is defined %}
+        <h3>La ressource n°{{deletedid}} a bien été supprimé</h3>
+    {% endif %}
+
     {% if ressources is empty %}
         <h3>Aucune ressource disponible</h3>
-        <h3><a href = "{{ path('teacher_upload') }}">Ajouter en ici</h3>
+        <h3><a href = "{{ path('teacher_upload') }}">Ajouter en ici</a></h3>
     {% endif %}
+
+
 
     {% for ressource in ressources %}
         <div style = "border: solid;">
