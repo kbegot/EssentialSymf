@@ -51,9 +51,27 @@ class AdminController extends AbstractController
         unlink($filename);
         $ressources->remove($ressource, true);
         
-        return new Response("<html><body><h1>La ressource $ressourcename été supprimé ✔");
+        return $this->redirectToRoute('admin_filelist');
+        
+        //return new Response("<html><body><h3>La ressource $ressourcename été supprimé ✔");
 
     }
+
+    /**
+     * @Route("admin/filelist/edit/{id}", name = "admin_filelist_edit")
+     */
+    public function filelistedit(RessourceRepository $ressources)
+    {
+        $ressource = $ressources->find($id);
+
+
+
+
+
+    }
+
+
+
 
 
 }

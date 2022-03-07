@@ -1,39 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<!--
-<h1>Liste de toute les ressources</h1>
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Extension</th>
-            <th>chemin d'accès</th>
-            <th>ID matière</th>
-            <th>Date de mise en ligne</th>
-        </thead>
-        <tbody>
-            
-            {% for ressource in ressources %}
-                <tr>
-                    <td>{{ ressource.id }}</td>
-                    <td>{{ ressource.name }}</td>
-                    <td>{{ ressource.extension }}</td>
-                    <td>{{ ressource.path }}</td>
-                    {% if ressource.matiere %}
-                        <td>{{ ressource.matiere }}</td>
-                    {% else %}
-                        <td>non défini</td>
-                    {% endif %}
-                    <td>{{ ressource.date | format_datetime('short', 'short', locale='fr') }}</td>
-                </tr>
-            
-            {% else %}
-                <p>Aucune ressource n'a été mise en ligne pour le moment</p>
-            {% endfor %}
-        </tbody>
-    </table>
--->
+
+    {% if ressources is empty %}
+        <h3>Aucune ressource disponible</h3>
+        <h3><a href = "{{ path('teacher_upload') }}">Ajouter en ici</h3>
+    {% endif %}
 
     {% for ressource in ressources %}
         <div style = "border: solid;">
@@ -52,12 +24,5 @@
             <p><a href ="{{ path("admin_filelist_remove", {'id': ressource.id}) }}">Supprimer</a></p>
         </div>
     {% endfor %}
-
-
-
-
-
-
-
 
 {% endblock %}
