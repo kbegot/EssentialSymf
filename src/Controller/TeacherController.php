@@ -15,7 +15,7 @@ use App\Form\UploadType;
 class TeacherController extends AbstractController
 {
     /**
-     * @Route("/teacher", name="app_teacher")
+     * @Route("/teacher", name="teacher_home")
      */
     public function index(): Response
     {
@@ -26,7 +26,7 @@ class TeacherController extends AbstractController
 
 
     /**
-     * @Route("/teacher/upload",name = "upload")
+     * @Route("/teacher/upload",name = "teacher_upload")
      */
     public function upload(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager)
     {
@@ -40,10 +40,11 @@ class TeacherController extends AbstractController
             if ($ressourcefile){
 
                 // liste d'extension autorisé
-                $allowed_extension = ["pdf","jpg","png","txt","docx","xlsx","ppt","csv","odt","ods","odp","odg"];
+                $allowed_extension = [
+                    "pdf","jpg","png","txt","docx","xlsx","ppt","csv","odt","ods","odp","odg","mp3","mp4","zip",
+                ];
                 $originalFilename = pathinfo($ressourcefile->getClientOriginalName(), PATHINFO_FILENAME);
                 //$file = $upload->getName();
-                var_dump($originalFilename);
                 //var_dump($ressourcefile->guessExtension());
 
                 if (in_array($ressourcefile->guessExtension(), $allowed_extension)){
@@ -73,22 +74,12 @@ class TeacherController extends AbstractController
 
                 $entityManager->persist($ressource);
                 $entityManager->flush();
-
-
-
-
-               
+    
 
             }
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('teacher_upload');
         }
-
-        /*if ($form->isSubmitted() && $form->isValdie())
-        {
-                $file->
-
-        }*/
 
         return $this->render('teacher/upload.html.twig', array(
             'form' => $form->createView(),

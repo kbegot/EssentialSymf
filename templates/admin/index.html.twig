@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<h1>Vous êtes connecté en tant qu'administrateur</h1>
+<h3><a href="{{ path("admin_userlist") }}">Liste des utilisateurs</h3>
+<h3><a href="{{ path("admin_filelist") }}">Liste des ressources</h3>
+<h3><a href="{{ path("teacher_upload") }}">Page de mise en ligne</h3>
+
+
+{% endblock %}

@@ -1,19 +1,52 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>EssentialSup</title>
+    <link rel="stylesheet" href="{{ asset('css/style_login.css') }}">
+  </head>
+  <body>
+    <div class="center">
+      <h1>Inscription</h1>
 
-{% block title %}Register{% endblock %}
+      {{  form_start(registrationForm) }}
 
-{% block body %}
-    <h1>Register</h1>
+        <div class="txt_field">
+          <input type="text" required>
+          <span></span>
+          <label>{{  form_row(registrationForm.email, {label: 'Adresse Email'}) }} </label>
+        </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="txt_field">
+          <input type="text" required>
+          <span></span>
+          <label>{{  form_row(registrationForm.nom, {label: 'Nom'}) }} </label>
+        </div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+        <div class="txt_field">
+          <input type="text" required>
+          <span></span>
+          <label>{{  form_row(registrationForm.prenom, {label: 'Prénom'}) }} </label>
+        </div>
+
+        <div class="txt_field">
+          <input type="password" required>
+          <span></span>
+          <label>{{  form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }} </label>
+        </div>
+
+        <div class="agree">
+          <label>{{ form_row(registrationForm.agreeTerms, {label: "J'accepte les termes d'utilisation"}) }}</label>
+        </div>
+
+        <br>
+
+        <input type="submit" value="S'inscrire">
+        <div class="signup_link">
+          Déjà un compte ? <a id="login" href="{{ path("app_login") }}">Connnectez-vous</a>
+        </div>
+        
+    {{  form_end(registrationForm) }}
+  </body>
+
+</html>

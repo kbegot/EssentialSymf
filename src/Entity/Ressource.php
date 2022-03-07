@@ -38,9 +38,10 @@ class Ressource
     private $name;
 
     /**
-     * @ORM\column(type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $path;
+
 
     public function getId(): ?int
     {
@@ -95,12 +96,12 @@ class Ressource
         return $this;
     }
 
-    public function getPath()
+    public function getPath(): ?string
     {
-        return $this->$path;
+        return $this->path;
     }
 
-    public function setPath($path)
+    public function setPath(string $path): self
     {
         $this->path = $path;
 
