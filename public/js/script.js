@@ -13,6 +13,14 @@ let valider = document.getElementById("valider");
 let d1 = document.getElementById("d1");
 let d2 = document.getElementById("d2");
 
+let displayUserId = document.getElementById("display-userId");
+let userId = document.getElementById("userId");
+
+let displayUserEmail = document.getElementById("display-userEmail");
+let userEmail = document.getElementById("userEmail");
+
+displayUserId.textContent = "ID: " + userId.textContent;
+displayUserEmail.textContent = "Email: " + userEmail.textContent;
 
 togg1.forEach(togg => {
   
@@ -40,8 +48,8 @@ togg2.forEach(togg => {
         }
     }
     else {
-        d2.style.display = "block";
-        d1.style.display = "none";
+      d2.style.display = "block";
+      d1.style.display = "none";
     }
     
     })

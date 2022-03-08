@@ -91,8 +91,8 @@
                                    <tbody>
                                         {% for user in users %}
                                         <tr>
-                                            <td>{{ user.id }}</td>
-                                            <td>{{ user.email }}</td>
+                                            <td id="userId">{{ user.id }}</td>
+                                            <td id="userEmail">{{ user.email }}</td>
                                             <td>
                                                 {% for role in user.roles %}
                                                     {% if role == "ROLE_USER" %}
@@ -131,8 +131,8 @@
                                 <div class="info">
                                     <img src="fbi.png" width="40px" height="40px" alt="">
                                     <div>
-                                        <h4>Kévin Lalouche</h4>
-                                        <small>Eleve</small>
+                                        <h4 id="display-userEmail">Email: </h4>
+                                        <small id="display-userId">ID: </small>
                                     </div>
                                 </div>
                                 <div class="contact">
