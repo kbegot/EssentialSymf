@@ -16,7 +16,6 @@ let d2 = document.getElementById("d2");
 
 togg1.forEach(togg => {
   
-  
   togg.addEventListener("click", () => {
     
     if(getComputedStyle(d1).display != "none"){
@@ -31,20 +30,22 @@ togg1.forEach(togg => {
   })
 });
 
-togg2.addEventListener("click", () => {
-  if(getComputedStyle(d2).display != "none"){
-    d2.style.display = "none";
-    if(getComputedStyle(d1).display != "none"){
-      d1.style.display = "none";
-    }
-  }
-  else {
-    d2.style.display = "block";
-    d1.style.display = "none";
-  }
- 
-})
+togg2.forEach(togg => {
 
+    togg2.addEventListener("click", () => {
+    if(getComputedStyle(d2).display != "none"){
+        d2.style.display = "none";
+        if(getComputedStyle(d1).display != "none"){
+        d1.style.display = "none";
+        }
+    }
+    else {
+        d2.style.display = "block";
+        d1.style.display = "none";
+    }
+    
+    })
+});
 /*active1.addEventListener("click", () => {
   if(getComputedStyle(form1).display != "none"){
     form1.style.display = "none";
