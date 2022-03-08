@@ -32,7 +32,7 @@ togg1.forEach(togg => {
 
 togg2.forEach(togg => {
 
-    togg2.addEventListener("click", () => {
+    togg.addEventListener("click", () => {
     if(getComputedStyle(d2).display != "none"){
         d2.style.display = "none";
         if(getComputedStyle(d1).display != "none"){
