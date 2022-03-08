@@ -237,6 +237,16 @@ main{
     border: 1px solid var(--main-color);
 }
 
+button {
+    background: var(--main-color);
+    border-radius: 10px;
+    color: #fff;
+    font-size: .8rem;
+    padding: .5rem 1rem;
+    border: 1px solid var(--main-color);
+}
+
+
 table {
     border-collapse: collapse;
 }
@@ -319,4 +329,24 @@ tr td:last-child {
     display: inline-block;
     margin-left: .5rem;
     color: var(--main-color);
+}
+
+.uil-folder-open{
+    color: white;
+}
+
+.table-modif {
+    display: none;
+}
+
+.table-delete {
+    display: none;
+}
+
+.display-classe {
+    display: none;
+}
+
+.display-valider {
+    display: none;
 }

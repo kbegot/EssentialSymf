@@ -17,11 +17,11 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="{{path("admin_home")}}" class=""><span class="uil uil-home"></span>
+                    <a href=""><span class="uil uil-home"></span>
                         <span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="{{path("admin_userlist")}}" class="active"><span class="uil uil-user"></span>
+                    <a href="" class="active"><span class="uil uil-user"></span>
                         <span>Utilisateurs</span></a>
                 </li>
                 <li>
@@ -61,8 +61,8 @@
             <div class="user-wrapper">
                 <img src="fbi.png" width="40px" height="40px" alt="">
                 <div>
-                    <h4>{{app.user.nom}} {{app.user.prenom}}</h4>
-                    <small>Administrateur</small>
+                    <h4>John</h4>
+                    <small>Super admin</small>
                 </div>
 
             </div>
@@ -74,7 +74,7 @@
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Liste des Utilisateurs </h3>
+                            <h3>Recent Projects</h3>
                         </div>
 
                         <div class="card-body">
@@ -82,13 +82,13 @@
                                 <table width="100%">
                                     <thead>
                                         <tr>
-                                            <td>ID</td>
-                                            <td>Email</td>
-                                            <td>Rôle</td>
-                                            <td>Modifier</td>
+                                            <td>Project Title</td>
+                                            <td>Departement</td>
+                                            <td>Status</td>
+                                            <td>Modification</td>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                   <tbody>
                                         {% for user in users %}
                                         <tr>
                                             <td>{{ user.id }}</td>
@@ -106,8 +106,8 @@
                                             </td>
                                             <td>
                                                 <div class="contact">
-                                                    <span class="uil uil-trash-alt"></span>
-                                                    <span class="uil uil-edit"></span>
+                                                    <span class="uil uil-trash-alt" id="togg2"></span>
+                                                    <span class="uil uil-edit" id="togg1"></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -118,10 +118,144 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="table-modif" id="d1">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Modifier l'utilisateur</h3>
+
+                        </div>
+
+                        <div class="card-body">
+                            <div class="customer">
+                                <div class="info">
+                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <div>
+                                        <h4>Kévin Lalouche</h4>
+                                        <small>Eleve</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                    <div>
+                                        <h4>Rôle:</h4>
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div class="test">
+                                    <input type="checkbox" id="eleve" name="color" value="eleve">
+                                    <label for="eleve">Eleve</label>
+
+                                    <input type="checkbox" id="prof" name="color" value="prof">
+                                    <label for="prof">Prof</label>
+
+                                    <input type="checkbox" id="admin" name="color" value="admin">
+                                    <label for="admin">Admin</label>
+                                </div>
+                                <div class="contact">
+                                    <span class="uil uil-edit" id="active1"></span>
+                                </div>
+                            </div>
+                            <div class="customer display-classe" id="eleve-classe">
+                                <div class="info">
+                                    <div>
+                                        <h4>Modifier Classe:</h4>
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div>
+                                    <select name="role" id="role-select">
+                                        <option value="">--Choisir le rôle--</option>
+                                        <option value="ROLE_USER">Elève</option>
+                                        <option value="ROLE_TEACHER">Professeur</option>
+                                        <option value="ROLE_ADMIN">Administrateur</option>
+                                    </select>
+                                </div>
+                                <div class="contact">
+                                </div>
+                            </div>
+                            <div class="customer display-classe" id="prof-matière">
+                                <div class="info">
+                                    <div>
+                                        <h4>Modifier Matière:</h4>
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div>
+                                    <select name="role" id="role-select">
+                                        <option value="">--Choisir la classe--</option>
+                                        <option value="ROLE_USER">STI2D A</option>
+                                        <option value="ROLE_TEACHER">STI2D B</option>
+                                        <option value="ROLE_ADMIN">STI2D C</option>
+                                    </select>
+                                </div>
+                                <div class="contact">
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                    <div>
+                                        <h4></h4>
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="display-valider" id="valider">Valider <span class="uil uil-check"></span></button>
+                                </div>
+                                <div class="contact">
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                </div>
+                <div class="table-delete" id="d2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Supprimer l'utilisateur</h3>
+
+                        </div>
+
+                        <div class="card-body">
+                            <div class="customer">
+                                <div class="info">
+                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <div>
+                                        <h4>Lewis strauss</h4>
+                                        <small>Professeur</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="customer">
+                            <div class="info">
+                                <div>
+                                    <h4></h4>
+                                    <small></small>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="" id="">Supprimer <span class="uil uil-times"></span></button>
+                            </div>
+                            <div class="contact">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
         </main>
     </div>
     
 </body>
+<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 </html>
