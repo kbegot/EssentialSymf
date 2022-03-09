@@ -283,8 +283,12 @@ tr td:last-child {
     background: rebeccapurple;
 }
 
-.status.pink {
-    background: deeppink;
+.status.green {
+    background: limegreen;
+}
+
+.status.grey {
+    background: silver;
 }
 
 .status.orange {

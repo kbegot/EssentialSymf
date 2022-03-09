@@ -96,11 +96,13 @@
                                             <td>
                                                 {% for role in user.roles %}
                                                     {% if role == "ROLE_USER" %}
-                                                        Utilisateur <span class="status orange"></span>
+                                                        Utilisateur <span class="status grey"></span>
                                                     {% elseif role == "ROLE_ADMIN" %}
-                                                        Administrateur <span class="status pink"></span>
+                                                        Administrateur <span class="status orange"></span>
                                                     {% elseif role == "ROLE_TEACHER" %}
                                                         Professeur <span class="status purple"></span>
+                                                    {% elseif role == "ROLE_STUDENT" %}
+                                                        Élève <span class="status green"></span>
                                                     {% endif %}
                                                 {% endfor %}
                                             </td>
