@@ -19,12 +19,15 @@ let userId = document.getElementById("userId");
 let displayUserEmail = document.getElementById("display-userEmail");
 let userEmail = document.getElementById("userEmail");
 
-displayUserId.textContent = "ID: " + userId.textContent;
-displayUserEmail.textContent = "Email: " + userEmail.textContent;
+
 
 togg1.forEach(togg => {
   
   togg.addEventListener("click", () => {
+    
+    console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
+    displayUserId.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
+    displayUserEmail.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
     
     if(getComputedStyle(d1).display != "none"){
       d1.style.display = "none";
@@ -41,6 +44,10 @@ togg1.forEach(togg => {
 togg2.forEach(togg => {
 
     togg.addEventListener("click", () => {
+      console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
+      displayUserId.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
+      displayUserEmail.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
+
     if(getComputedStyle(d2).display != "none"){
         d2.style.display = "none";
         if(getComputedStyle(d1).display != "none"){
