@@ -30,7 +30,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @route("admin/userlist/edit/{id}/{role}", name = "admin_useredit")
+     * @Route("admin/userlist/edit/{id}/{role}", name = "admin_useredit")
      */
     public function userEdit(UserRepository $users, $id, $role, EntityManagerInterface $entityManager)
     {
@@ -43,8 +43,15 @@ class AdminController extends AbstractController
 
     }
 
-
-
+    /**
+     * @Route("admin/userlist/delete/{id}", name = "admin_userdelete")
+     */
+    public function userDelete(userRepository $users, $id)
+    {
+        $user = $users->find($id);
+        $users->remove($user, true);
+        return $this->redirectToRoute('admin_filelist');
+    }
 
 
     /**
