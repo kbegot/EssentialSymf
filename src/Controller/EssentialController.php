@@ -49,5 +49,15 @@ class EssentialController extends AbstractController
 
     }
 
+    /**
+     * @Route("/folder", name = "folder")
+     */
+    public function folder()
+    {
+        $this->render('essential/folder.html.twig');
+    }
+
+
+
 
 }
