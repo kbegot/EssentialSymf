@@ -120,13 +120,29 @@ valider.addEventListener('click',(event) => {
   checkboxes.forEach((checkbox) => {
       values.push(checkbox.value);
   });
-  if(values == "admin"){
-    
+  let role;
+  if(values == "admin")
+  {
+    role = "ROLE_ADMIN";
   }
-  if(values == "prof"){
-    
+  if(values == "prof")
+  {
+    role = "ROLE_TEACHER";
   }
-  if(values == "eleve"){
-    
+  if(values == "eleve")
+  {
+    role = "ROLE_ELEVE"
   }
+
+  else
+  {
+
+  }
+
+
+
+
+
+
+
 });
