@@ -27,7 +27,6 @@ togg1.forEach(togg => {
   
   togg.addEventListener("click", () => {
     
-    console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
     displayUserId1.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
     displayUserEmail1.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
     
@@ -120,6 +119,8 @@ valider.addEventListener('click',(event) => {
   checkboxes.forEach((checkbox) => {
       values.push(checkbox.value);
   });
+
+  //variable pour la route
   let role;
   if(values == "admin")
   {
@@ -140,6 +141,9 @@ valider.addEventListener('click',(event) => {
   }
 
 
+  let id = valider.parentNode.parentNode.parentNode.querySelector('#display-userId-1').textContent;
+  id = id.slice(id.length-1);
+  console.log(id);
 
 
 
