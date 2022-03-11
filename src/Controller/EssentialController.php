@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use App\Repository\RessourceRepository;
 
 
 class EssentialController extends AbstractController
@@ -52,9 +53,9 @@ class EssentialController extends AbstractController
     /**
      * @Route("/folder", name = "folder")
      */
-    public function folder()
+    public function folder(RessourceRepository $ressources)
     {
-        return $this->render('essential/folder.html.twig');
+        return $this->render('essential/folder.html.twig',['ressources'=>$ressources->findAll()]);
     }
 
 
