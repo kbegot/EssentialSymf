@@ -72,45 +72,43 @@ togg2.forEach(togg => {
  
 })*/
 
-const btn = document.querySelector('#active1');
-btn.addEventListener('click', (event) => {
+
+let listebtn = document.querySelectorAll('#active1');
+//const btn = document.querySelector('#active1');
+console.log(listebtn);
+
+listebtn.forEach(btn => {
+  btn.addEventListener('click', (event) => {
     let checkboxes = document.querySelectorAll('input[name="color"]:checked');
     let values = [];
     checkboxes.forEach((checkbox) => {
         values.push(checkbox.value);
     });
+
     if(values == "eleve"){
       valider.style.display = "inline-block";
       eleveClasse.style.display = "flex";
       profMatiere.style.display = "none";
     }
-});    
-
-btn.addEventListener('click', (event) => {
-    let checkboxes = document.querySelectorAll('input[name="color"]:checked');
-    let values = [];
-    checkboxes.forEach((checkbox) => {
-        values.push(checkbox.value);
-    });
+    
     if(values == "prof"){
       valider.style.display = "inline-block";
       profMatiere.style.display = "flex";
       eleveClasse.style.display = "none";
     }
-});    
 
-btn.addEventListener('click', (event) => {
-  let checkboxes = document.querySelectorAll('input[name="color"]:checked');
-  let values = [];
-  checkboxes.forEach((checkbox) => {
-      values.push(checkbox.value);
-  });
-  if(values == "admin"){
-    valider.style.display = "inline-block";
-    profMatiere.style.display = "none";
-    eleveClasse.style.display = "none";
-  }
+    if(values == "admin"){
+      valider.style.display = "inline-block";
+      profMatiere.style.display = "none";
+      eleveClasse.style.display = "none";
+    }
+
+
+  });    
+
+  
 });
+
 
 
 valider.addEventListener('click',(event) => {

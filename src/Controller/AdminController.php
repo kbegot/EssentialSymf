@@ -41,6 +41,7 @@ class AdminController extends AbstractController
         {
             return $this->redirectToRoute('admin_userlist');
         }
+        
         $user = $users->find($id);
         $user->setRoles([$role]);
         $entityManager->persist($user);
