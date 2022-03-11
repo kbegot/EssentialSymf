@@ -131,18 +131,15 @@ valider.addEventListener('click',(event) => {
   }
   if(values == "eleve")
   {
+    let mois = document.getElementById("classe-select").value;
+    alert(mois);
     role = "ROLE_ELEVE"
+    
+    
   }
 
   else
   {
 
   }
-
-
-
-
-
-
-
 });
