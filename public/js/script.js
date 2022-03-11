@@ -27,7 +27,7 @@ togg1.forEach(togg => {
   
   togg.addEventListener("click", () => {
     
-    displayUserId1.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
+    displayUserId1.textContent = "ID: [" + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent + "]";
     displayUserEmail1.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
     
     if(getComputedStyle(d1).display != "none"){
@@ -46,7 +46,7 @@ togg2.forEach(togg => {
 
     togg.addEventListener("click", () => {
       console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
-      displayUserId2.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
+      displayUserId2.textContent = "ID: [" + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent + "]";
       displayUserEmail2.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
 
     if(getComputedStyle(d2).display != "none"){
