@@ -115,9 +115,9 @@
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Recent Projects</h3>
+                            <h3>Table des utilisateurs</h3>
 
-                            <button>See all <span class="uil uil-folder-open"></span></button>
+                            
                         </div>
 
                         <div class="card-body">
@@ -131,70 +131,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>UI/UX</td>
-                                            <td>Web developer</td>
-                                            <td><span class="status purple"></span>
-                                                review
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Web encore</td>
-                                            <td>web toujours</td>
-                                            <td><span class="status pink"></span>
-                                                in progress
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>ahahah test</td>
-                                            <td>Fronted</td>
-                                            <td><span class="status orange"></span>
-                                                pending
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>UI/UX</td>
-                                            <td>Web developer</td>
-                                            <td><span class="status purple"></span>
-                                                review
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Web encore</td>
-                                            <td>web toujours</td>
-                                            <td><span class="status pink"></span>
-                                                in progress
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>ahahah test</td>
-                                            <td>Fronted</td>
-                                            <td><span class="status orange"></span>
-                                                pending
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>UI/UX</td>
-                                            <td>Web developer</td>
-                                            <td><span class="status purple"></span>
-                                                review
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Web encore</td>
-                                            <td>web toujours</td>
-                                            <td><span class="status pink"></span>
-                                                in progress
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>ahahah test</td>
-                                            <td>Fronted</td>
-                                            <td><span class="status orange"></span>
-                                                pending
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                            {% for user in users %}
+                                            <tr>
+                                                <td id="userId">{{ user.id }}</td>
+                                                <td id="userEmail">{{ user.email }}</td>
+                                                <td>
+                                                    {% for role in user.roles %}
+                                                        {% if role == "ROLE_USER" %}
+                                                            Utilisateur <span class="status grey"></span>
+                                                        {% elseif role == "ROLE_ADMIN" %}
+                                                            Administrateur <span class="status orange"></span>
+                                                        {% elseif role == "ROLE_TEACHER" %}
+                                                            Professeur <span class="status purple"></span>
+                                                        {% elseif role == "ROLE_STUDENT" %}
+                                                            Élève <span class="status green"></span>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                                
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
                                 </table>
                             </div>
                         </div>

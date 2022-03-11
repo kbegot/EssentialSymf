@@ -14,10 +14,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin_home")
      */
-    public function index(): Response
+    public function index(UserRepository $users): Response
     {
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'controller_name' => 'AdminController','users'=>$users->findAll()
         ]);
     }
 

@@ -20,6 +20,8 @@ let displayUserEmail = document.getElementById("display-userEmail");
 let userEmail = document.getElementById("userEmail");
 
 
+let EditProf = document.getElementById("prof").checked;
+
 
 togg1.forEach(togg => {
   
@@ -110,6 +112,8 @@ btn.addEventListener('click', (event) => {
     eleveClasse.style.display = "none";
   }
 }); 
+
+
 
 
 

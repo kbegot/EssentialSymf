@@ -74,7 +74,7 @@
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Recent Proects</h3>
+                            <h3>Table des utilisateurs</h3>
                         </div>
 
                         <div class="card-body">
@@ -88,33 +88,33 @@
                                             <td>Modification</td>
                                         </tr>
                                     </thead>
-                                   <tbody>
-                                        {% for user in users %}
-                                        <tr>
-                                            <td id="userId">{{ user.id }}</td>
-                                            <td id="userEmail">{{ user.email }}</td>
-                                            <td>
-                                                {% for role in user.roles %}
-                                                    {% if role == "ROLE_USER" %}
-                                                        Utilisateur <span class="status grey"></span>
-                                                    {% elseif role == "ROLE_ADMIN" %}
-                                                        Administrateur <span class="status orange"></span>
-                                                    {% elseif role == "ROLE_TEACHER" %}
-                                                        Professeur <span class="status purple"></span>
-                                                    {% elseif role == "ROLE_STUDENT" %}
-                                                        Élève <span class="status green"></span>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </td>
-                                            <td>
-                                                <div class="contact">
-                                                    <span class="uil uil-trash-alt" id="togg2"></span>
-                                                    <span class="uil uil-edit" id="togg1"></span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
+                                    <tbody>
+                                            {% for user in users %}
+                                            <tr>
+                                                <td id="userId">{{ user.id }}</td>
+                                                <td id="userEmail">{{ user.email }}</td>
+                                                <td>
+                                                    {% for role in user.roles %}
+                                                        {% if role == "ROLE_USER" %}
+                                                            Utilisateur <span class="status grey"></span>
+                                                        {% elseif role == "ROLE_ADMIN" %}
+                                                            Administrateur <span class="status orange"></span>
+                                                        {% elseif role == "ROLE_TEACHER" %}
+                                                            Professeur <span class="status purple"></span>
+                                                        {% elseif role == "ROLE_STUDENT" %}
+                                                            Élève <span class="status green"></span>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    <div class="contact">
+                                                        <span class="uil uil-trash-alt" id="togg2"></span>
+                                                        <span class="uil uil-edit" id="togg1"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
                                 </table>
                             </div>
                         </div>
