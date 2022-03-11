@@ -4,7 +4,7 @@
 let togg1 = document.querySelectorAll('#togg1');
 let togg2 = document.querySelectorAll('#togg2');
 
-let active1 = document.getElementById("active1");
+//let active1 = document.getElementById("active1");
 
 let eleveClasse = document.getElementById("eleve-classe");
 let profMatiere = document.getElementById("prof-matière");
