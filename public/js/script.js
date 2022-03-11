@@ -1,4 +1,4 @@
-//test
+//Script de modification des utilisateurs 
 //let togg1 = document.querySelector('#togg1');
 //let togg2 = document.querySelector('#togg2');
 let togg1 = document.querySelectorAll('#togg1');
@@ -13,6 +13,8 @@ let valider = document.getElementById("valider");
 
 let d1 = document.getElementById("d1");
 let d2 = document.getElementById("d2");
+
+let valider = document.getElementById("valider");
 
 let displayUserId1 = document.getElementById("display-userId-1");
 let displayUserId2 = document.getElementById("display-userId-2");
@@ -129,4 +131,4 @@ valider.addEventListener('click',(event) => {
   if(values == "eleve"){
     
   }
-}
+});
