@@ -14,8 +14,6 @@ let valider = document.getElementById("valider");
 let d1 = document.getElementById("d1");
 let d2 = document.getElementById("d2");
 
-let valider = document.getElementById("valider");
-
 let displayUserId1 = document.getElementById("display-userId-1");
 let displayUserId2 = document.getElementById("display-userId-2");
 let displayUserEmail1 = document.getElementById("display-userEmail-1");
