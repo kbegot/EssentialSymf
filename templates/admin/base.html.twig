@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Essential Admin</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
+</head>
+<body>
+
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="uil uil-graduation-cap"></span> <span>EssentialSup</span></h2>
+        </div>
+
+        {% block menu %}
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="{{path("admin_home")}}" class=""><span class="uil uil-home"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="{{path("admin_userlist")}}" class=""><span class="uil uil-user"></span>
+                        <span>Utilisateurs</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-books"></span>
+                        <span>Classe</span></a>
+                </li>
+                <li>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder-open"></span>
+                        <span>Ressource</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                        <span>test1</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                    <span>test2</span></a>
+                </li>
+            </ul>
+        </div>
+        {% endblock %}
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                <span class="uil uil-align-justify"></span>
+                </label>
+
+                Dashboard
+            </h2>
+            <div class="search-wrapper">
+                <span class="uil uil-search"></span>
+                <input type="search" placeholder="Rechercher">
+            </div>
+
+            <div class="user-wrapper">
+                <img src="fbi.png" width="40px" height="40px" alt="">
+                <div>
+                {% if app.user %}
+                    <h4>{{app.user.nom}} {{app.user.prenom}}</h4>
+                    <small>Administrateur</small>
+                {% endif %}
+                </div>
+
+            </div>
+        </header>
+
+
+        {% block body %}{% endblock %}
+    </div>
+</body>
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+</html>
