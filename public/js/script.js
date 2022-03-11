@@ -111,3 +111,21 @@ btn.addEventListener('click', (event) => {
     eleveClasse.style.display = "none";
   }
 });
+
+
+valider.addEventListener('click',(event) => {
+  let checkboxes = document.querySelectorAll('input[name="color"]:checked');
+  let values = [];
+  checkboxes.forEach((checkbox) => {
+      values.push(checkbox.value);
+  });
+  if(values == "admin"){
+    
+  }
+  if(values == "prof"){
+    
+  }
+  if(values == "eleve"){
+    
+  }
+}
