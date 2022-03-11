@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
@@ -13,10 +14,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin_home")
      */
-    public function index(): Response
+    public function index(UserRepository $users): Response
     {
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'controller_name' => 'AdminController','users'=>$users->findAll()
         ]);
     }
 
@@ -28,6 +29,29 @@ class AdminController extends AbstractController
         return $this->render('admin/userList.html.twig',['users'=>$users->findAll()]);
     }
 
+    /**
+     * @Route("admin/userlist/edit/{id}/{role}", name = "admin_useredit")
+     */
+    public function userEdit(UserRepository $users, $id, $role, EntityManagerInterface $entityManager)
+    {
+        $user = $users->find($id);
+        $user->setRoles([$role]);
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_userlist');
+
+    }
+
+    /**
+     * @Route("admin/userlist/delete/{id}", name = "admin_userdelete")
+     */
+    public function userDelete(userRepository $users, $id)
+    {
+        $user = $users->find($id);
+        $users->remove($user, true);
+        return $this->redirectToRoute('admin_filelist');
+    }
 
 
     /**
@@ -59,9 +83,9 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/filelist/edit/{id}", name = "admin_filelist_edit")
+     * @Route("admin/fileedit/{id}", name = "admin_filelist_edit")
      */
-    public function filelistedit(RessourceRepository $ressources)
+    public function fileEdit(RessourceRepository $ressources)
     {
         $ressource = $ressources->find($id);
 
