@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if deletedid is defined %}
+        <h3>La ressource n°{{deletedid}} a bien été supprimé</h3>
+    {% endif %}
+
+    {% if ressources is empty %}
+        <h3>Aucune ressource disponible</h3>
+        <h3><a href = "{{ path('teacher_upload') }}">Ajouter en ici</a></h3>
+    {% endif %}
+
+
+
+    {% for ressource in ressources %}
+        <div style = "border: solid;">
+            <p>Id : {{ ressource.id }}</p>
+            <p>Nom : {{ ressource.name }}</p>
+            <p>Extension : {{ ressource.extension }}</p>
+            <p>Chemin d'accès : {{ ressource.path }}</p>
+            <p>Matière : 
+            {% if ressource.matiere %}
+                {{ ressource.matiere }}
+            {% else %}
+                non défini
+            {% endif %}
+            </p>
+            <p>Date de mise en ligne {{ ressource.date | format_datetime('short', 'short', locale='fr') }}</p>
+            <p><a href ="{{ path("admin_filelist_remove", {'id': ressource.id}) }}">Supprimer</a></p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

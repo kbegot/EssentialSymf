@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>EssentialSup</title>
+    <link rel="stylesheet" href="{{ asset('css/style_login.css') }}">
+  </head>
+
+  <body>
+
+    <div class="center">
+
+      <h1>Connexion</h1>
+
+      <form method="post">
+
+        <div class="txt_field">
+
+          <input value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+          <span></span>
+          <label for="inputEmail">Adresse Email</label>
+
+        </div>
+
+        <div class="txt_field">
+
+          <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+          <span></span>
+          <label for="inputPassword">Mot de passe</label>
+
+        </div>
+
+        <!--<div class="pass">Mot de passe oublié ?</div>-->
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <input type="submit" value="Se connecter">
+
+        <div class="signup_link">
+          Pas de compte ? <a id="login" href="{{ path("app_register") }}">Inscrivez-vous</a>
+        </div>
+
+      </form>
+
+  </body>
+
+</html>

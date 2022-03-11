@@ -41,7 +41,9 @@
         "symfony/web-link": "5.4.*",
         "symfony/yaml": "5.4.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/intl-extra": "^3.3",
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^1.15"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
@@ -53,7 +55,7 @@
         "symfony/phpunit-bridge": "^6.0",
         "symfony/stopwatch": "5.4.*",
         "symfony/web-profiler-bundle": "5.4.*",
-        "symfony/web-server-bundle": " ^4.4.2"
+        "symfony/web-server-bundle": "4.4.2"
     },
     "config": {
         "allow-plugins": {

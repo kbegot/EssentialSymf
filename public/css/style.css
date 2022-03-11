@@ -1,0 +1,348 @@
+body{
+  overflow: hidden;
+}
+
+
+
+.container {
+  width: 95%;
+  height: 95%;
+  margin-top: -1%;
+  background-color: white;
+}
+
+
+
+.MenuGauche {
+  position: fixed;
+  background: #f3f3f7;
+  width: 4%;
+  height: 97.5%;
+  top: 1%;
+  left: 1%;
+  float: left;
+  text-align: center;
+  border-radius: 55px;
+}
+
+.lottiefiles-alt, .estate, .search, .folder-open, .setting, .user-circle-menu {
+  display: inline-block;
+  width: 45%;
+  height: auto;
+}
+
+.lottiefiles-alt {
+  margin-top: 40%;
+}
+
+.estate, .user-circle-menu {
+  margin-top: 320%;
+}
+
+.search, .folder-open, .setting {
+  margin-top: 45%;
+}
+
+.MenuHaut {
+  position: fixed;
+  display: flex;
+  width: 30%;
+  height: 6%;
+  top: 1%;
+  left: 93%;
+  float: left;
+}
+
+.bell, .user-circle-up, .angle-down {
+  width: 6.5%;
+  height: auto;
+}
+
+.bell, .user-circle-up, .Nom-Prenom, .angle-down {
+  display: inline-block;
+  text-align: right;
+  z-index: 1;
+}
+
+.Nom-Prenom {
+  position: fixed;
+  width: 50%;
+  height: auto;
+  float: right;
+  font-family: Arial;
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  color: #213350;
+  margin-left: -51%;
+}
+
+#menu path{
+  transition: fill 0.3s;
+}
+
+#menu:hover path{
+  fill: tomato;
+}
+
+#login {
+  text-decoration: none;
+  color: #213350;
+  transition: color 0.3s;
+}
+
+#login:hover {
+  color: tomato;
+}
+
+/*.angle-down {
+  transform: rotate(180deg) 0.5s;
+}
+
+.angle-down:hover {
+  color: tomato;
+}*/
+
+
+
+/* Page Home */
+
+.EdT, .CaseEdT, .Actus, .CaseActus {
+  width: 125%;
+  margin-top: -1%;
+}
+
+.EdT, .CaseEdT {
+  margin-left: -20%;
+}
+
+.EdT {
+  height: auto;
+  font-family: Arial;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #213350;
+  z-index: 0;
+}
+
+.CaseEdT{
+  height: 40vw;
+  border-radius: 2.5%;
+  background-color: #f3f3f7;
+  z-index: 0;
+}
+
+.Actus, .CaseActus {
+  margin-left: 10%;
+}
+
+.Actus {
+  height: auto;
+  font-family: Arial;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #213350;
+  z-index: 0;
+}
+
+.CaseActus {
+  height: 17vw;
+  border-radius: 1vw;
+  background-color: #f3f3f7;
+  z-index: 0;
+}
+
+
+
+.CreateRecents, .CaseCreateRecents {
+  margin-top: -1%;
+  margin-left: 20%;
+}
+
+.OpenRecents, .CaseOpenRecents {
+  margin-top: -1%;
+  margin-left: 50%;
+}
+
+.CreateRecents, .CaseCreateRecents {
+  height: auto;
+}
+
+.CaseCreateRecents, .CaseOpenRecents {
+  width: 118.75%;
+  height: 17vw;
+}
+
+
+.CreateRecents {
+  font-family: Arial;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #213350;
+  z-index: 0;
+}
+
+.CaseCreateRecents {
+  border-radius: 21px;
+  background-color: #f3f3f7;
+  z-index: 0;
+}
+
+
+
+.OpenRecents {
+  font-family: Arial;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #213350;
+  z-index: 0;
+}
+
+.CaseOpenRecents {
+  border-radius: 21px;
+  background-color: #f3f3f7;
+  z-index: 0;
+}
+
+
+
+/* Page de Login */
+
+.connect, .txt_field, .signup_link, .agree {
+  font-family: Arial;
+  color: #213350;
+}
+
+.connect, .txt_field, .signup_link {
+  font-weight: 900;
+}
+
+.connect, .signup_link, .agree {
+  text-align: center;
+}
+
+.connect {
+  font-size: 2rem;
+  border-bottom: 1px solid silver;
+  padding: 0 0 20px 0;
+}
+
+.agree {
+  font-weight: 700;
+}
+
+#inputEmail, #inputPassword {
+  font-size: 20px;
+  font-family: Arial;
+  font-weight: 800;
+  color: #213350;
+}
+
+.txt_field {
+  font-size: 1.8rem;
+}
+
+form .txt_field {
+	position: relative;
+	border-bottom: 2px solid #adadad;
+	margin: 30px 0;
+}
+
+.txt_field input {
+	width: 100%;
+	padding: 0 5px;
+	height: 40px;
+	font-size: 16px;
+	border: none;
+	background: none;
+	outline: none;
+}
+
+.txt_field label {
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	color: #adadad;
+	transform: translateY(-50%);
+	font-size: 16px;
+	pointer-events: none;
+	transition: 0.3s;
+}
+
+.txt_field span::before {
+	content: '';
+	position: absolute;
+	top: 40px;
+	left: 0;
+	width: 0%;
+	height: 2px;
+	background: #2691d9;
+	transition: 1s;
+}
+
+.txt_field input:focus ~ label, .txt_field input:valid ~ label {
+	top: -15px;
+	color: #2691d9;
+}
+
+.txt_field input:focus ~ span::before, .txt_field input:valid ~ span::before {
+	width: 100%;
+}
+
+.pass {
+	margin: -5px 0 20px 5px;
+	color: #a6a6a6;
+	cursor: pointer;
+}
+
+.pass:hover {
+	text-decoration: underline;
+}
+
+.btn_login, .btn_register {
+	position: relative;
+	transform: translate(-50%);
+}
+
+.center {
+  vertical-align: middle;
+}
+
+.btn_login {
+  left: 92.5%;
+}
+
+.btn_register {
+  left: 93.75%;
+}
+
+.signup_link #login {
+  text-decoration: none;
+  color: #a6a6a6;
+  transition: color 0.3s;
+}
+
+.signup_link #login:hover {
+color: tomato;
+}
