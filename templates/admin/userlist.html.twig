@@ -64,7 +64,7 @@
                                                             Administrateur <span class="status orange"></span>
                                                         {% elseif role == "ROLE_TEACHER" %}
                                                             Professeur <span class="status purple"></span>
-                                                        {% elseif role == "ROLE_STUDENT" %}
+                                                        {% elseif role == "ROLE_ELEVE" %}
                                                             Élève <span class="status green"></span>
                                                         {% endif %}
                                                     {% endfor %}
@@ -134,10 +134,11 @@
                                 </div>
                                 <div>
                                     <select name="classe-select" id="classe-select">
-                                        <option value="">--Choisir la classe--</option>
-                                        <option value="1">STI2D A</option>
-                                        <option value="2">STI2D B</option>
-                                        <option value="78">STI2D C</option>
+                                    <option value="">--Choisir la classe--</option>
+                                    {% for classe in classes %}
+                                         <option value="{{ classe.id }}">{{ classe.libelle }}</option>
+                                    {% endfor %}
+
                                     </select>
                                 </div>
                                 <div class="contact">
@@ -153,9 +154,9 @@
                                 <div>
                                     <select name="classe-matiere" id="classe-matiere">
                                         <option value="">--Choisir la matière--</option>
-                                        <option value="1">Math STI2D A</option>
-                                        <option value="2">Français STI2D B</option>
-                                        <option value="3">Anglais STI2D C</option>
+                                        {% for matiere in matieres %}
+                                         <option value="{{ matiere.id }}">{{ matiere.nom }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="contact">

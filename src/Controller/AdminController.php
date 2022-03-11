@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
+use App\Repository\ClasseRepository;
+use App\Repository\MatiereRepository;
 use App\Repository\RessourceRepository;
 
 class AdminController extends AbstractController
@@ -24,9 +26,9 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/userlist", name = "admin_userlist")
      */
-    public function userList(UserRepository $users)
+    public function userList(UserRepository $users, ClasseRepository $classes, MatiereRepository $matieres)
     {
-        return $this->render('admin/userList.html.twig',['users'=>$users->findAll()]);
+        return $this->render('admin/userList.html.twig',['users'=>$users->findAll(),'classes'=>$classes->findAll(),'matieres'=>$matieres->findAll()]);
     }
 
     /**
