@@ -1,39 +1,41 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>EssentialSup</title>
+    <link rel="stylesheet" href="{{ asset('css/style_login.css') }}">
+  </head>
 
-{% block title %}Register{% endblock %}
+  <body>
 
-{% block body %}
-    <h1 class="connect">Inscription</h1>
+    <div class="center">
 
-    {{ form_start(registrationForm) }}
+      <h1>Inscription</h1>
+
+      {{  form_start(registrationForm) }}
+
         <div class="txt_field">
-            <i name="email" id="inputEmail" class="form-row" autocomplete="email" required autofocus></i>
-            <span></span>
-            {{ form_row(registrationForm.email) }}
+          <span>Adresse Email</span>
+          {{ form_row(registrationForm.email, {label: ' '}) }}
         </div>
 
         <div class="txt_field">
-            <i name="nom" id="inputEmail" class="form-row" required autofocus></i>
-            <span></span>
-            {{ form_row(registrationForm.nom) }}
+          <span>Nom</span>
+          {{ form_row(registrationForm.nom, {label: ' '}) }}
         </div>
 
         <div class="txt_field">
-            <i name="prenom" id="inputEmail" class="form-row" required autofocus></i>
-            <span></span>
-            {{ form_row(registrationForm.prenom) }}
+          <span>Prénom</span>
+          {{ form_row(registrationForm.prenom, {label: ' '}) }}
         </div>
 
         <div class="txt_field">
-            <i type="password" name="password" id="inputPassword" class="form-row" autocomplete="current-password" required></i>
-            <span></span>
-            {{ form_row(registrationForm.plainPassword, {label: 'Password' }) }}
+          <span>Mot de passe</span>
+          {{ form_row(registrationForm.plainPassword, {label: ' '}) }}
         </div>
 
         <div class="agree">
-            <i name="email" id="inputEmail" class="form-row" autocomplete="email" required autofocus></i>
-            <span></span>
-            {{ form_row(registrationForm.agreeTerms) }}
+          <label>{{ form_row(registrationForm.agreeTerms, {label: "J'accepte les termes d'utilisation"}) }}</label>
         </div>
 
         <div class="btn_register">
@@ -42,8 +44,12 @@
             </button>
         </div>
 
-        <!--<button type="submit" class="btn">Register</button>-->
+        <input type="submit" value="S'inscrire">
+        <div class="signup_link">
+          Déjà un compte ? <a id="login" href="{{ path("app_login") }}">Connnectez-vous</a>
+        </div>
         
-    {{ form_end(registrationForm) }}
-    
-{% endblock %}
+    {{  form_end(registrationForm) }}
+  </body>
+
+</html>

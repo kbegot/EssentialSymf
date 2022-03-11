@@ -57,9 +57,11 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/filelist", name ="admin_filelist")
      */
-    public function filelist(RessourceRepository $ressources)
+    public function filelist(RessourceRepository $ressources, $deletedid=null)
     {
-        return $this->render('admin/filelist.html.twig',['ressources'=>$ressources->findAll()]);
+        {
+            return $this->render('admin/filelist.html.twig',['ressources'=>$ressources->findAll()]);
+        }
     }
 
     /**
@@ -76,8 +78,7 @@ class AdminController extends AbstractController
         $ressources->remove($ressource, true);
         
         return $this->redirectToRoute('admin_filelist');
-        
-        //return new Response("<html><body><h3>La ressource $ressourcename été supprimé ✔");
+    
 
     }
 
@@ -88,10 +89,25 @@ class AdminController extends AbstractController
     {
         $ressource = $ressources->find($id);
 
+    }
+
+
+    /**
+     * @Route("admin/classelist", name = "admin_classelist")
+     */
+    public function classelist(ClasseRepository $classes)
+    {
+        return $this->render('admin/classelist.html.twig',['ressources'=>$classes->findAll()]);
+    }
 
 
 
-
+    /**
+     * @route("admin/matierelist", name = "admin_matierelist")
+     */
+    public function matierelist(RessourceRepository $matieres)
+    {
+        return $this->render('admin/matiere.html.twig',['ressources'=>$matieres->findAll()]);
     }
 
 
