@@ -128,12 +128,14 @@ valider.addEventListener('click',(event) => {
   }
   if(values == "prof")
   {
+    let ValueMatiere = document.getElementById("classe-matiere").value;
+    alert(ValueMatiere);
     role = "ROLE_TEACHER";
   }
   if(values == "eleve")
   {
-    let ValueSelect = document.getElementById("classe-select").value;
-    alert(ValueSelect);
+    let ValueClasse = document.getElementById("classe-select").value;
+    alert(ValueClasse);
     role = "ROLE_ELEVE"
     
     
