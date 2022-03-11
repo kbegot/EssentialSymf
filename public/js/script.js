@@ -44,24 +44,22 @@ togg1.forEach(togg => {
 });
 
 togg2.forEach(togg => {
+  togg.addEventListener("click", () => {
 
-    togg.addEventListener("click", () => {
-      console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
-      displayUserId.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
-      displayUserEmail.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
+    console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
+    displayUserId.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
+    displayUserEmail.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
 
     if(getComputedStyle(d2).display != "none"){
-        d2.style.display = "none";
-        if(getComputedStyle(d1).display != "none"){
-        d1.style.display = "none";
-        }
-    }
-    else {
+      d2.style.display = "none";
+      if(getComputedStyle(d1).display != "none"){
+      d1.style.display = "none";
+      }
+    } else {
       d2.style.display = "block";
       d1.style.display = "none";
     }
-    
-    })
+  })  
 });
 /*active1.addEventListener("click", () => {
   if(getComputedStyle(form1).display != "none"){
