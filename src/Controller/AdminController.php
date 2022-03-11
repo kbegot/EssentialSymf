@@ -34,6 +34,11 @@ class AdminController extends AbstractController
      */
     public function userEdit(UserRepository $users, $id, $role, EntityManagerInterface $entityManager)
     {
+        $posibility = ['ROLE_ELEVE','ROLE_TEACHER','ROLE_ADMIN'];
+        if (!in_array($role,$posibility))
+        {
+            return $this->redirectToRoute('admin_userlist');
+        }
         $user = $users->find($id);
         $user->setRoles([$role]);
         $entityManager->persist($user);
