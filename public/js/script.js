@@ -1,3 +1,4 @@
+//test
 //let togg1 = document.querySelector('#togg1');
 //let togg2 = document.querySelector('#togg2');
 let togg1 = document.querySelectorAll('#togg1');
