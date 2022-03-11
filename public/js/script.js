@@ -146,8 +146,13 @@ valider.addEventListener('click',(event) => {
 
   }
 
-  let id = valider.parentNode.parentNode.parentNode.querySelector('#display-userId-1').textContent;
-  id = id.slice(id.length-1);
+  var regularExpression= /(?<=\[).*?(?=\])/g;
+
+  let id = valider.parentNode.parentNode.parentNode.querySelector('#display-userId-1').textContent.match(regularExpression)[0];
   console.log(id);
+
+  location.href =`userlist/edit/${id}/${role}`;
+
+
 
 });
