@@ -132,8 +132,8 @@ valider.addEventListener('click',(event) => {
   }
   if(values == "eleve")
   {
-    let mois = document.getElementById("classe-select").value;
-    alert(mois);
+    let ValueSelect = document.getElementById("classe-select").value;
+    alert(ValueSelect);
     role = "ROLE_ELEVE"
     
     
@@ -143,17 +143,9 @@ valider.addEventListener('click',(event) => {
   {
 
   }
-<<<<<<< HEAD
-=======
-
 
   let id = valider.parentNode.parentNode.parentNode.querySelector('#display-userId-1').textContent;
   id = id.slice(id.length-1);
   console.log(id);
 
-
-
-
-
->>>>>>> e7314a50270a7b232282d8c11c5b2737a8935139
 });
