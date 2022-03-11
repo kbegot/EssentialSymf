@@ -54,7 +54,7 @@ class EssentialController extends AbstractController
      */
     public function folder()
     {
-        $this->render('essential/folder.html.twig');
+        return $this->render('essential/folder.html.twig');
     }
 
 
