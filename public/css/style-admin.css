@@ -354,3 +354,8 @@ tr td:last-child {
 .display-valider {
     display: none;
 }
+
+.icone {
+    margin-right: 15px;
+    font-size: 2rem;
+}
