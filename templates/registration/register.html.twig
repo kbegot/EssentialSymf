@@ -15,22 +15,22 @@
       {{  form_start(registrationForm) }}
 
         <div class="txt_field">
-          <span>Adresse Email</span>
+          <span>Adresse Email:</span>
           {{ form_row(registrationForm.email, {label: ' '}) }}
         </div>
 
         <div class="txt_field">
-          <span>Nom</span>
+          <span>Nom:</span>
           {{ form_row(registrationForm.nom, {label: ' '}) }}
         </div>
 
         <div class="txt_field">
-          <span>Prénom</span>
+          <span>Prénom:</span>
           {{ form_row(registrationForm.prenom, {label: ' '}) }}
         </div>
 
         <div class="txt_field">
-          <span>Mot de passe</span>
+          <span>Mot de passe:</span>
           {{ form_row(registrationForm.plainPassword, {label: ' '}) }}
         </div>
 
@@ -38,11 +38,7 @@
           <label>{{ form_row(registrationForm.agreeTerms, {label: "J'accepte les termes d'utilisation"}) }}</label>
         </div>
 
-        <div class="btn_register">
-            <button class="btn btn-lg btn-primary" type="submit">
-               Inscription
-            </button>
-        </div>
+        <br>
 
         <input type="submit" value="S'inscrire">
         <div class="signup_link">

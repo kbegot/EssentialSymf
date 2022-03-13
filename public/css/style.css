@@ -78,6 +78,10 @@ body{
   margin-left: -51%;
 }
 
+.SeConnecter {
+  font-size: 1.8rem;
+}
+
 #menu path{
   transition: fill 0.3s;
 }
@@ -344,5 +348,24 @@ form .txt_field {
 }
 
 .signup_link #login:hover {
-color: tomato;
+  color: tomato;
+}
+
+/* Page folder */
+
+.scroll {
+  margin-top: 5vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.CaseCours {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2.5%;
+  background-color: #f3f3f7;
+  font-size: 20px;
+  z-index: 0;
+  margin-bottom: -2%;
 }
