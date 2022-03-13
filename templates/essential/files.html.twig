@@ -5,10 +5,10 @@
 <link rel="stylesheet" href="{{ asset('css/folder-style.css') }}">
     <section class="section__card">
         <div class="cards">
-            {% for matiere in matieres %}
+            {% for ressource in ressources %}
                 <div class="card">
-                    <h2>{{matiere.name}}.{{matiere.extension}}</h2>
-                    <a href={{matiere.id}} class="button">
+                    <h2>{{ressource.name}}.{{ressource.extension}}</h2>
+                    <a href={{ressource.id}} class="button">
                         <p>Télécharger</p>
                     </a>
                 </div>
