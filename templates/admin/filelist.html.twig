@@ -1,34 +1,55 @@
-{% extends 'base.html.twig' %}
+{% extends '/admin/base.html.twig' %}
 
 {% block body %}
+<main>
+    <div class="recent-grid2">
+    <div class="projects">
+        <div class="card">
+            <div class="card-header">
+                <h3>Table des utilisateurs</h3>
+            </div>
 
-    {% if deletedid is defined %}
-        <h3>La ressource n°{{deletedid}} a bien été supprimé</h3>
-    {% endif %}
-
-    {% if ressources is empty %}
-        <h3>Aucune ressource disponible</h3>
-        <h3><a href = "{{ path('teacher_upload') }}">Ajoutez-en ici</a></h3>
-    {% endif %}
-
-
-
-    {% for ressource in ressources %}
-        <div style = "border: solid;">
-            <p>Id : {{ ressource.id }}</p>
-            <p>Nom : {{ ressource.name }}</p>
-            <p>Extension : {{ ressource.extension }}</p>
-            <p>Chemin d'accès : {{ ressource.path }}</p>
-            <p>Matière : 
-            {% if ressource.matiere %}
-                {{ ressource.matiere }}
-            {% else %}
-                non défini
-            {% endif %}
-            </p>
-            <p>Date de mise en ligne {{ ressource.date | format_datetime('short', 'short', locale='fr') }}</p>
-            <p><a href ="{{ path("admin_filelist_remove", {'id': ressource.id}) }}">Supprimer</a></p>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Nom</td>
+                                <td>Extension</td>
+                                <td>Chemin d'accès</td>
+                                <td>Matière</td>
+                                <td>Date d'ajout</td>
+                                <td>Supprimer</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ressource in ressources %}
+                            <tr>
+                                <td id="userId">{{ ressource.id }}</td>
+                                <td id="userEmail">{{ ressource.name }}</td>
+                                <td>{{ ressource.extension }}</td>
+                                <td>{{ ressource.path }}</td>
+                                {% if ressource.matiere %}
+                                    <td>{{ ressource.matiere }}</td>
+                                {% else %}
+                                    <td>non défini</td>
+                                {% endif %}
+                                <td>{{ ressource.date | format_datetime('short', 'short', locale='fr') }}</td>
+                                <td>
+                                    <div class="contact">
+                                        <a href ="{{ path("admin_filelist_remove", {'id': ressource.id}) }}" class="uil uil-trash-alt" id="togg2"></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    {% endfor %}
+    </div>
+</div>
+                
 
 {% endblock %}
