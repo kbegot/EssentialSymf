@@ -21,6 +21,14 @@
     </head>
     <body>
 
+        {% if current_path == "folder" %}
+            <style> 
+            body {
+                overflow-y :scroll;
+            }
+            </style>
+        {% endif %}
+
         {% if current_path == "app_login" or current_path == "app_register" %}
 
         {% else %}
@@ -116,7 +124,6 @@
 
         <div style="height: 60px;">
         </div>
-        
         <div class="container">
             {% block body %}{% endblock %}
         </div>

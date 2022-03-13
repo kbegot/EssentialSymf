@@ -354,7 +354,6 @@ form .txt_field {
 /* Page folder */
 
 .scroll {
-  margin-top: 5vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }

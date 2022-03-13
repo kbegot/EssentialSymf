@@ -1,20 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    <div class="scroll">
 
-        {% for ressource in ressources %}
-
-            <div class="CaseCours">
-                <!--<a href={{ressource}} download={{ressource}}>-->
-                    <p>{{ressource.name}}.{{ressource.extension}}</p>
-                <!--</a>-->
-            </div>
-
-            <br>
-
-        {% endfor %}
-    
+    <div class="search-wrapper">
+        <span class="uil uil-search"></span>
+            <input type="search" placeholder="Rechercher">
     </div>
 
 {% endblock %}
