@@ -4,17 +4,21 @@
 
 <link rel="stylesheet" href="{{ asset('css/folder-style.css') }}">
     <section class="section__card">
-        <div class="cards">
-            {% for matiere in matieres %}
-                <div class="card">
-                    <h2>{{matiere.name}}.{{matiere.extension}}</h2>
-                    <a href={{matiere.id}} class="button">
-                        <p>Télécharger</p>
-                    </a>
-                </div>
-            {% endfor %}
-            
-        </div>
+    {% for classe in classes %}
+        <h1>{{classe.libelle}}</h1>
+            <div class="cards">
+                {% for matiere in matieres %}
+                    <div class="card">
+                        <h2>{{matiere.nom}}</h2>
+                        <a href={{matiere.id}} class="button">
+                            <p>Afficher dossier</p>
+                        </a>
+                    </div>
+                {% endfor %}
+                
+            </div>
+
+    {% endfor %}
         
     </section>
 

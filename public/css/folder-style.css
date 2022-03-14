@@ -33,16 +33,17 @@ a{
 
 .button{
     display: inline-block;
-    background-color: hsl(230, 69%, 61%);
+    background-color: #213350;
     color: #fff;
     padding: 1rem;
     border-radius: .5rem;
     font-weight: var(--font-medium);
     text-decoration: none;
+    transition: background-color 0.5s;
 }
 
 .button:hover{
-    background-color: hsl(230, 57%, 53%);
+    background-color: #475c7e;
 }
 
 .scroll {
