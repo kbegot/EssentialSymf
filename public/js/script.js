@@ -45,7 +45,6 @@ togg1.forEach(togg => {
 togg2.forEach(togg => {
 
     togg.addEventListener("click", () => {
-      console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
       displayUserId2.textContent = "ID: [" + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent + "]";
       displayUserEmail2.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
 
@@ -75,9 +74,9 @@ togg2.forEach(togg => {
 
 let listebtn = document.querySelectorAll('#active1');
 //const btn = document.querySelector('#active1');
-console.log(listebtn);
 
 listebtn.forEach(btn => {
+  btn.checked = false;
   btn.addEventListener('click', (event) => {
     let checkboxes = document.querySelectorAll('input[name="color"]:checked');
     let values = [];
@@ -120,6 +119,7 @@ valider.addEventListener('click',(event) => {
 
   //variable pour la route
   let role;
+  let ValueClasse;
   if(values == "admin")
   {
     role = "ROLE_ADMIN";
@@ -132,7 +132,7 @@ valider.addEventListener('click',(event) => {
   }
   if(values == "eleve")
   {
-    let ValueClasse = document.getElementById("classe-select").value;
+    ValueClasse = document.getElementById("classe-select").value;
     alert(ValueClasse);
     role = "ROLE_ELEVE"
     
@@ -147,9 +147,8 @@ valider.addEventListener('click',(event) => {
   var regularExpression= /(?<=\[).*?(?=\])/g;
 
   let id = valider.parentNode.parentNode.parentNode.querySelector('#display-userId-1').textContent.match(regularExpression)[0];
-  console.log(id);
 
-  location.href =`userlist/edit/${id}/${role}`;
+  location.href =`userlist/edit/${id}/${role}/${ValueClasse}`;
 
 
 
