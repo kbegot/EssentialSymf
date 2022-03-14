@@ -35,6 +35,9 @@
 
             <div class="recent-grid">
                 <div class="projects">
+                        {% if message is defined %}
+                            <h3>{{message}}</h3>
+                        {% endif %}
                     <div class="card">
                         <div class="card-header">
                             <h3>Table des utilisateurs</h3>

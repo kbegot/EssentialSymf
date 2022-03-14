@@ -10,8 +10,9 @@ use App\Repository\UserRepository;
 use App\Repository\ClasseRepository;
 use App\Repository\MatiereRepository;
 use App\Repository\RessourceRepository;
-use App\Repository\eleveRepository;
+use App\Repository\EleveRepository;
 use App\Entity\Eleve;
+use APP\Entity\Professeur;
 
 class AdminController extends AbstractController
 {
@@ -36,7 +37,7 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/userlist/edit/{userid}/{role}/{classeid_matiereid}", name = "admin_useredit")
      */
-    public function userEdit(UserRepository $users, ClasseRepository $classes, Matiererepository $matieres ,$userid, $role,$classeid_matiereid, EntityManagerInterface $entityManager)
+    public function userEdit(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, Matiererepository $matieres ,$userid, $role,$classeid_matiereid, EntityManagerInterface $entityManager)
     {
 
         if ($role == 'ROLE_ELEVE')
@@ -48,9 +49,17 @@ class AdminController extends AbstractController
                 return $this->redirectToRoute('admin_userlist');
             }
 
+            if ($eleves->findByUser($userid))
+            {
 
-            $eleve = new eleve();
-            $eleve->setUser($users->find($userid));
+                echo "L'eleve existe déjà";
+                return $this->render('admin/userList.html.twig',['users'=>$users->findAll(),'classes'=>$classes->findAll(),'matieres'=>$matieres->findAll(),'message'=>'Erreur, L\'élève existe déjà']);
+
+
+
+            }
+                $eleve = new eleve();
+                $eleve->setUser($users->find($userid));
             $eleve->setClasse($classes->find($classeid));
             $entityManager->persist($eleve);
             $entityManager->flush();
@@ -62,10 +71,18 @@ class AdminController extends AbstractController
         {
             $matiereid = $classeid_matiereid;
 
-            if (!$matieres->find($matiereid))
+            /*if (!$matieres->find($matiereid))
             {
                 return $this->redirectToRoute('admin_userlist');
-            }
+            }*/
+
+            $teacher = new Professeur();
+            $teacher->setUser($users->find($userid));
+            //$teacher->setMatiere($matieres->find($matiereid));
+            $entityManager->persist($teacher);
+            $entityManager->flush();
+
+
         }
 
         if ($role == 'ROLE_ADMIN')
