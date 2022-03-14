@@ -10,6 +10,8 @@ use App\Repository\UserRepository;
 use App\Repository\ClasseRepository;
 use App\Repository\MatiereRepository;
 use App\Repository\RessourceRepository;
+use App\Repository\eleveRepository;
+use App\Entity\Eleve;
 
 class AdminController extends AbstractController
 {
@@ -32,17 +34,54 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/userlist/edit/{id}/{role}", name = "admin_useredit")
+     * @Route("admin/userlist/edit/{userid}/{role}/{classeid_matiereid}", name = "admin_useredit")
      */
-    public function userEdit(UserRepository $users, $id, $role, EntityManagerInterface $entityManager)
+    public function userEdit(UserRepository $users, ClasseRepository $classes, Matiererepository $matieres ,$userid, $role,$classeid_matiereid, EntityManagerInterface $entityManager)
     {
-        $posibility = ['ROLE_ELEVE','ROLE_TEACHER','ROLE_ADMIN'];
-        if (!in_array($role,$posibility))
+
+        if ($role == 'ROLE_ELEVE')
+        {
+            $classeid = $classeid_matiereid;
+
+            if (!$classes->find($classeid))
+            {
+                return $this->redirectToRoute('admin_userlist');
+            }
+
+
+            $eleve = new eleve();
+            $eleve->setUser($users->find($userid));
+            $eleve->setClasse($classes->find($classeid));
+            $entityManager->persist($eleve);
+            $entityManager->flush();
+
+
+        }
+
+        if ($role == 'ROLE_TEACHER')
+        {
+            $matiereid = $classeid_matiereid;
+
+            if (!$matieres->find($matiereid))
+            {
+                return $this->redirectToRoute('admin_userlist');
+            }
+        }
+
+        if ($role == 'ROLE_ADMIN')
+        {
+
+        }
+
+        else
         {
             return $this->redirectToRoute('admin_userlist');
         }
-        
-        $user = $users->find($id);
+
+
+
+
+        $user = $users->find($userid);
         $user->setRoles([$role]);
         $entityManager->persist($user);
         $entityManager->flush();
