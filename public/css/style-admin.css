@@ -372,3 +372,9 @@ tr td:last-child {
     margin-right: 15px;
     font-size: 2rem;
 }
+
+.erreur{
+    background-color: rgba(255, 0, 0, 0.1);
+    border-radius: 5px;
+    color: #C62828;
+}
