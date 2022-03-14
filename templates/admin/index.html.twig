@@ -15,7 +15,7 @@
                         <span>Classe</span></a>
                 </li>
                 <li>
-                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder-open"></span>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder"></span>
                         <span>Ressource</span></a>
                 </li>
                 <li>
@@ -88,8 +88,8 @@
                                 <table width="100%">
                                     <thead>
                                         <tr>
-                                            <td>Project Title</td>
-                                            <td>Departement</td>
+                                            <td>ID</td>
+                                            <td>Email</td>
                                             <td>Status</td>
                                         </tr>
                                     </thead>
@@ -101,17 +101,16 @@
                                                 <td>
                                                     {% for role in user.roles %}
                                                         {% if role == "ROLE_USER" %}
-                                                            Utilisateur <span class="status grey"></span>
+                                                            Utilisateur<span class="status grey"></span>
                                                         {% elseif role == "ROLE_ADMIN" %}
                                                             Administrateur <span class="status orange"></span>
                                                         {% elseif role == "ROLE_TEACHER" %}
                                                             Professeur <span class="status purple"></span>
-                                                        {% elseif role == "ROLE_STUDENT" %}
+                                                        {% elseif role == "ROLE_ELEVE" %}
                                                             Élève <span class="status green"></span>
                                                         {% endif %}
                                                     {% endfor %}
                                                 </td>
-                                                
                                             </tr>
                                             {% endfor %}
                                         </tbody>
