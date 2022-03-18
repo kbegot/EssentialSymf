@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
@@ -40,8 +41,15 @@ class AdminController extends AbstractController
      */
     public function userEdit(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, ProfesseurRepository $professeurs, Matiererepository $matieres ,$userid, $role, $classeid_matiereid, EntityManagerInterface $entityManager)
     {
-        
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $user = $users->find($userid);
+
+        if ($currentUser == $user)
+        {
+            $this->addFlash('message','Vous ne pouvez pas modifier votre propre rôle');
+            return $this->redirectToRoute('admin_userlist');
+        }
+
 
         if ($role == 'ROLE_ELEVE')
         {
