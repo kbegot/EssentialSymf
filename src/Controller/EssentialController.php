@@ -60,7 +60,12 @@ class EssentialController extends AbstractController
         return $this->render('essential/folder.html.twig',['classes'=>$classes->findAll()]);
     }
 
-
-
+    /**
+     * @Route("/deniedaccess", name = "deniedaccess")
+     */
+    public function deniedaccess()
+    {
+        return $this->render('essential/deniedaccess.html.twig');
+    }
 
 }

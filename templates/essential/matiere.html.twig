@@ -7,11 +7,11 @@
     {% for classe in classes %}
         <h1>{{classe.libelle}}</h1>
             <div class="cards">
-                {% for matiere in classe.matiere %}
+                {% for ressource in ressources %}
                     <div class="card">
-                        <h2>{{matiere.nom}}</h2>
-                        <a href={{ path("classe_matiere") }} class="button">
-                            <p>Afficher dossier</p>
+                        <h2>{{ressource.name}}.{{ressource.extension}}</h2>
+                        <a href={{ressource}} download={{ressource}}>
+                            <p>Télécharger</p>
                         </a>
                     </div>
                 {% endfor %}
