@@ -11,20 +11,18 @@ body {
 	position: absolute;
 	background: white;
 	border-radius: 10px;
-}
-
-.center {
+	
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.center {
 	width: 400px;
 }
 
 .widecenter {
-	top: 50%;
-	left: 25%;
-	transform: translate(-50%, -25%);
-	width: 800px;
+	width: 600px;
 }
 
 .center h1, .widecenter h1 {
@@ -140,4 +138,9 @@ span {
 	color: #adadad;
 	font-size: 16px;
 
+}
+
+#logout {
+	font-size: 3vh;
+	font-weight: 600;
 }
