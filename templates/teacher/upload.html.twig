@@ -2,11 +2,19 @@
 
 {% block body %}
 
+<link rel="stylesheet" href="{{ asset('css/style-upload.css') }}">
 
 {{ form_start(form) }}
-    {# ... #}
 
-    {{ form_row(form.upload) }}
-{{ form_end(form) }}
+    <div class="center">
+        <h1>Ajoutez un fichier:</h1>
+        
+        <div class="txt_field">
+        
+            {{ form_row(form.upload)}}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}
