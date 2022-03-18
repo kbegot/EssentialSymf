@@ -102,14 +102,15 @@ class AdminController extends AbstractController
 
         if ($role == 'ROLE_ADMIN')
         {
-
+            $user->setRoles([$role]);
+            $entityManager->persist($user);
+            $entityManager->flush();
         }
 
         else
         {
             return $this->redirectToRoute('admin_userlist');
         }
-
 
         return $this->redirectToRoute('admin_userlist');
 
@@ -118,11 +119,36 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/userlist/delete/{id}", name = "admin_userdelete")
      */
-    public function userDelete(userRepository $users, $id)
+    public function userDelete(userRepository $users, EleveRepository $eleves, ProfesseurRepository $professeurs, $id)
     {
+
         $user = $users->find($id);
-        $users->remove($user, true);
-        return $this->redirectToRoute('admin_filelist');
+        $role = $user->getRoles()[0];
+        $entityManager = $this->getDoctrine()->getManager();
+
+        
+        if ($role == 'ROLE_ADMIN')
+        {
+            
+        }
+        
+        if ($role == 'ROLE_TEACHER')
+        {
+            $professeur = $professeurs->findOneByUser($user);
+            $entityManager->remove($professeur);
+        }
+        
+        
+        if ($role == 'ROLE_ELEVE')
+        {
+            $eleve = $eleves->findOneByUser($id);
+            $entityManager->remove($eleve);
+        }
+        
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_userlist');
     }
 
 
