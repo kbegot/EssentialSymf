@@ -46,7 +46,7 @@ class AdminController extends AbstractController
 
         if ($currentUser == $user)
         {
-            $this->addFlash('message','Vous ne pouvez pas modifier votre propre rôle');
+            $this->addFlash('erreur','Vous ne pouvez pas modifier votre propre rôle');
             return $this->redirectToRoute('admin_userlist');
         }
 
@@ -57,8 +57,8 @@ class AdminController extends AbstractController
 
             if (!$classes->find($classeid))
             {
-                exit("sékassé");
-                //return $this->redirectToRoute('admin_userlist');
+                $this->addFlash('erreur','La classe spécifié est introuvable');
+                return $this->redirectToRoute('admin_userlist');
             }
 
             if ($eleves->findOneByUser($userid))
@@ -89,7 +89,7 @@ class AdminController extends AbstractController
 
         }
 
-        if ($role == 'ROLE_TEACHER')
+        else if ($role == 'ROLE_TEACHER')
         {
             $matiereid = $classeid_matiereid;
 
@@ -118,7 +118,7 @@ class AdminController extends AbstractController
 
         }
 
-        if ($role == 'ROLE_ADMIN')
+        else if ($role == 'ROLE_ADMIN')
         {
             $user->setRoles([$role]);
             $entityManager->persist($user);
@@ -127,9 +127,11 @@ class AdminController extends AbstractController
 
         else
         {
+            $this->addFlash('erreur','Le rôle spécifié n\'existe pas');
             return $this->redirectToRoute('admin_userlist');
         }
 
+        $this->addFlash('info','L\'utilisateur a bien été modifié');
         return $this->redirectToRoute('admin_userlist');
 
     }

@@ -36,9 +36,13 @@
             <div class="recent-grid">
                 <div class="projects">
 
-                        {% for message in app.flashes('message') %}
+                        {% for message in app.flashes('erreur') %}
                             <h3 class="erreur">{{message}}</h3>
                         {% endfor %}
+                        {% for message in app.flashes('info') %}
+                            <h3 class="validation">{{message}}</h3>
+                        {% endfor %}
+
                     <div class="card">
                         <div class="card-header">
                             <h3>Table des utilisateurs</h3>
