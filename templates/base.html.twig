@@ -96,7 +96,7 @@
 
             <div class="Nom-Prenom">
                 {% if app.user %}
-                    <p id="login" class="SeConnecter">{{app.user.nom}} {{app.user.prenom}}</p>
+                    <p>{{app.user.nom}} {{app.user.prenom}}</p>
                 {% else %}
                     <p class="SeConnecter"><a id="login" href="{{path("app_login")}}">Se connecter</a></p>
                 {% endif %}
