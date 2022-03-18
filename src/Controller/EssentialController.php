@@ -6,10 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\entity\Ressource;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use App\Repository\RessourceRepository;
 use App\Repository\MatiereRepository;
 use App\Repository\ClasseRepository;
+
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 
 class EssentialController extends AbstractController
@@ -59,6 +63,19 @@ class EssentialController extends AbstractController
     {
         return $this->render('essential/folder.html.twig',['classes'=>$classes->findAll(), 'ressources'=>$ressources->findAll()]);
     }
+
+
+    /**
+     * @Route("/folder/{id}", name = "fileGet")
+     */
+    public function fileGet(RessourceRepository $ressources, $id)
+    {
+        $ressource = $ressources->findOneById($id);
+        $file = new File($this->getParameter('upload_directory') . '/' . $ressource->getPath());
+        return $this->file($file, $ressource->getName() . $ressource->getExtension());
+
+    }
+
 
     /**
      * @Route("/deniedaccess", name = "deniedaccess")

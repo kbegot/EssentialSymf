@@ -8,7 +8,7 @@
             {% for ressource in ressources %}
                 <div class="card">
                     <h2>{{ressource.name}}.{{ressource.extension}}</h2>
-                    <a href={{ressource.id}} class="button">
+                    <a href="{{ path('fileGet', {id: ressource.id}) }}" class="button">
                         <p>Télécharger</p>
                     </a>
                 </div>
