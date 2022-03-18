@@ -57,7 +57,7 @@ class EssentialController extends AbstractController
      */
     public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes)
     {
-        return $this->render('essential/folder.html.twig',['classes'=>$classes->findAll()]);
+        return $this->render('essential/folder.html.twig',['classes'=>$classes->findAll(), 'ressources'=>$ressources->findAll()]);
     }
 
     /**
