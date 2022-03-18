@@ -1,6 +1,31 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    
-
+{% extends '/admin/base.html.twig' %}
+{% block menu %}
+<div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="{{path("admin_home")}}" class=""><span class="uil uil-home"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="{{path("admin_userlist")}}" ><span class="uil uil-user"></span>
+                        <span>Utilisateurs</span></a>
+                </li>
+                <li>
+                    <a href="" class="active"><span class="uil uil-books"></span>
+                        <span>Classe</span></a>
+                </li>
+                <li>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder-open"></span>
+                        <span>Ressource</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                        <span>test1</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                    <span>test2</span></a>
+                </li>
+            </ul>
+        </div>
 {% endblock %}

@@ -10,6 +10,10 @@ use App\Repository\UserRepository;
 use App\Repository\ClasseRepository;
 use App\Repository\MatiereRepository;
 use App\Repository\RessourceRepository;
+use App\Repository\EleveRepository;
+use App\Repository\ProfesseurRepository;
+use App\Entity\Eleve;
+use APP\Entity\Professeur;
 
 class AdminController extends AbstractController
 {
@@ -32,20 +36,81 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/userlist/edit/{id}/{role}", name = "admin_useredit")
+     * @Route("admin/userlist/edit/{userid}/{role}/{classeid_matiereid}", name = "admin_useredit")
      */
-    public function userEdit(UserRepository $users, $id, $role, EntityManagerInterface $entityManager)
+    public function userEdit(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, ProfesseurRepository $professeurs, Matiererepository $matieres ,$userid, $role, $classeid_matiereid, EntityManagerInterface $entityManager)
     {
-        $posibility = ['ROLE_ELEVE','ROLE_TEACHER','ROLE_ADMIN'];
-        if (!in_array($role,$posibility))
+        
+        $user = $users->find($userid);
+
+        if ($role == 'ROLE_ELEVE')
+        {
+            $classeid = $classeid_matiereid;
+
+            if (!$classes->find($classeid))
+            {
+                exit("sékassé");
+                //return $this->redirectToRoute('admin_userlist');
+            }
+
+            if ($eleves->findOneByUser($userid))
+            {
+                $eleve = $eleves->findOneByUser($user);
+            }
+
+            else
+            {
+                $eleve = new eleve();
+                $eleve->setUser($user);
+            }
+            
+            
+            
+            $eleve->setClasse($classes->find($classeid));
+
+            $entityManager->persist($eleve);
+
+            $user->setRoles([$role]);
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+
+        }
+
+        if ($role == 'ROLE_TEACHER')
+        {
+            $matiereid = $classeid_matiereid;
+
+            if ($professeurs->findOneByUser($userid))
+            {
+                $professeur = $professeurs->findOneByUser($user);
+            }
+
+            else
+            {
+                $professeur = new Professeur();
+                $professeur->setUser($user);
+                //$professeur->addMatiere($matieres->find($matiereid));
+            }
+
+            $user->setRoles([$role]);
+            $entityManager->persist($professeur);
+            $entityManager->flush();
+
+
+        }
+
+        if ($role == 'ROLE_ADMIN')
+        {
+            $user->setRoles([$role]);
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
+
+        else
         {
             return $this->redirectToRoute('admin_userlist');
         }
-        
-        $user = $users->find($id);
-        $user->setRoles([$role]);
-        $entityManager->persist($user);
-        $entityManager->flush();
 
         return $this->redirectToRoute('admin_userlist');
 
@@ -54,11 +119,36 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/userlist/delete/{id}", name = "admin_userdelete")
      */
-    public function userDelete(userRepository $users, $id)
+    public function userDelete(userRepository $users, EleveRepository $eleves, ProfesseurRepository $professeurs, $id)
     {
+
         $user = $users->find($id);
-        $users->remove($user, true);
-        return $this->redirectToRoute('admin_filelist');
+        $role = $user->getRoles()[0];
+        $entityManager = $this->getDoctrine()->getManager();
+
+        
+        if ($role == 'ROLE_ADMIN')
+        {
+            
+        }
+        
+        if ($role == 'ROLE_TEACHER')
+        {
+            $professeur = $professeurs->findOneByUser($user);
+            $entityManager->remove($professeur);
+        }
+        
+        
+        if ($role == 'ROLE_ELEVE')
+        {
+            $eleve = $eleves->findOneByUser($id);
+            $entityManager->remove($eleve);
+        }
+        
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_userlist');
     }
 
 
