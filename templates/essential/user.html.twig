@@ -3,14 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>EssentialSup</title>
-    <link rel="stylesheet" href="{{ asset('css/style_login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-login.css') }}">
   </head>
 
   <body>
 
-    <div class="center">
+    <div class="widecenter">
 
       <h1>Vous êtes connecté en tant que {{app.user.nom}} {{app.user.prenom}}</h1>
+
+      <h1>Votre adresse mail est {{app.user.email}}</h1>
+
+      <div class="signup_link">
+        <a id="logout" href="{{ path('app_logout') }}">Se déconnecter</a>
+      </div>
 
     </div>
   </body>
