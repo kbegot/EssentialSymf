@@ -11,6 +11,7 @@ use App\Repository\ClasseRepository;
 use App\Repository\MatiereRepository;
 use App\Repository\RessourceRepository;
 use App\Repository\EleveRepository;
+use App\Repository\ProfesseurRepository;
 use App\Entity\Eleve;
 use APP\Entity\Professeur;
 
@@ -37,8 +38,10 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/userlist/edit/{userid}/{role}/{classeid_matiereid}", name = "admin_useredit")
      */
-    public function userEdit(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, Matiererepository $matieres ,$userid, $role,$classeid_matiereid, EntityManagerInterface $entityManager)
+    public function userEdit(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, ProfesseurRepository $professeurs, Matiererepository $matieres ,$userid, $role, $classeid_matiereid, EntityManagerInterface $entityManager)
     {
+        
+        $user = $users->find($userid);
 
         if ($role == 'ROLE_ELEVE')
         {
@@ -46,22 +49,29 @@ class AdminController extends AbstractController
 
             if (!$classes->find($classeid))
             {
-                return $this->redirectToRoute('admin_userlist');
+                exit("sékassé");
+                //return $this->redirectToRoute('admin_userlist');
             }
 
             if ($eleves->findByUser($userid))
             {
-
-                echo "L'eleve existe déjà";
-                return $this->render('admin/userList.html.twig',['users'=>$users->findAll(),'classes'=>$classes->findAll(),'matieres'=>$matieres->findAll(),'message'=>'Erreur, L\'élève existe déjà']);
-
-
-
+                $eleve = $eleves->findByUser($user);
             }
+
+            else
+            {
                 $eleve = new eleve();
-                $eleve->setUser($users->find($userid));
+                $eleve->setUser($user);
+            }
+            
+            
+            
             $eleve->setClasse($classes->find($classeid));
+
             $entityManager->persist($eleve);
+
+            $user->setRoles([$role]);
+            $entityManager->persist($user);
             $entityManager->flush();
 
 
@@ -71,15 +81,19 @@ class AdminController extends AbstractController
         {
             $matiereid = $classeid_matiereid;
 
-            /*if (!$matieres->find($matiereid))
+            if (!$professeurs->findByUser($userid))
             {
-                return $this->redirectToRoute('admin_userlist');
-            }*/
+                $professeur = $professeurs->findOneByUser($user);
+            }
 
-            $teacher = new Professeur();
-            $teacher->setUser($users->find($userid));
-            //$teacher->setMatiere($matieres->find($matiereid));
-            $entityManager->persist($teacher);
+            else
+            {
+                $professeur = new Professeur();
+                $professeur->setMatiere($matieres->find($matiereid));
+            }
+
+            $user->setRoles([$role]);
+            $entityManager->persist($professeur);
             $entityManager->flush();
 
 
@@ -98,7 +112,6 @@ class AdminController extends AbstractController
 
 
 
-        $user = $users->find($userid);
         $user->setRoles([$role]);
         $entityManager->persist($user);
         $entityManager->flush();

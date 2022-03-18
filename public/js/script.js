@@ -127,13 +127,13 @@ valider.addEventListener('click',(event) => {
   if(values == "prof")
   {
     let ValueMatiere = document.getElementById("classe-matiere").value;
-    alert(ValueMatiere);
+    //alert(ValueMatiere);
     role = "ROLE_TEACHER";
   }
   if(values == "eleve")
   {
     ValueClasse = document.getElementById("classe-select").value;
-    alert(ValueClasse);
+    //alert(ValueClasse);
     role = "ROLE_ELEVE"
     
     
