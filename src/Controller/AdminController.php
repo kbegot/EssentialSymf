@@ -53,9 +53,9 @@ class AdminController extends AbstractController
                 //return $this->redirectToRoute('admin_userlist');
             }
 
-            if ($eleves->findByUser($userid))
+            if ($eleves->findOneByUser($userid))
             {
-                $eleve = $eleves->findByUser($user);
+                $eleve = $eleves->findOneByUser($user);
             }
 
             else
@@ -81,7 +81,7 @@ class AdminController extends AbstractController
         {
             $matiereid = $classeid_matiereid;
 
-            if (!$professeurs->findByUser($userid))
+            if ($professeurs->findOneByUser($userid))
             {
                 $professeur = $professeurs->findOneByUser($user);
             }
@@ -89,7 +89,8 @@ class AdminController extends AbstractController
             else
             {
                 $professeur = new Professeur();
-                $professeur->setMatiere($matieres->find($matiereid));
+                $professeur->setUser($user);
+                //$professeur->addMatiere($matieres->find($matiereid));
             }
 
             $user->setRoles([$role]);
@@ -109,12 +110,6 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_userlist');
         }
 
-
-
-
-        $user->setRoles([$role]);
-        $entityManager->persist($user);
-        $entityManager->flush();
 
         return $this->redirectToRoute('admin_userlist');
 
