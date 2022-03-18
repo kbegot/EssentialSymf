@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use App\Repository\RessourceRepository;
+use App\Repository\MatiereRepository;
+use App\Repository\ClasseRepository;
 
 
 class EssentialController extends AbstractController
@@ -53,12 +55,26 @@ class EssentialController extends AbstractController
     /**
      * @Route("/folder", name = "folder")
      */
-    public function folder(RessourceRepository $ressources)
+    public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes)
     {
-        return $this->render('essential/folder.html.twig',['ressources'=>$ressources->findAll()]);
+        return $this->render('essential/folder.html.twig',['classes'=>$classes->findAll(), 'ressources'=>$ressources->findAll()]);
     }
 
+    /**
+     * @Route("/deniedaccess", name = "deniedaccess")
+     */
+    public function deniedaccess()
+    {
+        return $this->render('essential/deniedaccess.html.twig');
+    }
 
+    /**
+     * @Route("/user", name = "user")
+     */
+    public function user()
+    {
+        return $this->render('essential/user.html.twig');
+    }
 
 
 }
