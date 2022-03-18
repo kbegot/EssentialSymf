@@ -72,7 +72,7 @@ class EssentialController extends AbstractController
     {
         $ressource = $ressources->findOneById($id);
         $file = new File($this->getParameter('upload_directory') . '/' . $ressource->getPath());
-        return $this->file($file, $ressource->getName() . $ressource->getExtension());
+        return $this->file($file, $ressource->getName());
 
     }
 
