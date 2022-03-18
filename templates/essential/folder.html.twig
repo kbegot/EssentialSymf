@@ -2,6 +2,10 @@
 
 {% block body %}
 
+{% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN') %}
+    <a id="menu" href="{{ path("teacher_upload") }}">Ajoutez un fichier</a>
+{% endif %}
+
 <link rel="stylesheet" href="{{ asset('css/style-folder.css') }}">
 
     <section class="section__card">

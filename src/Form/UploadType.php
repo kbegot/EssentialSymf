@@ -20,7 +20,7 @@ class UploadType extends AbstractType
                 'mapped' => false,
 
             ))
-            ->add('submit', SubmitType::class)
+        ->add('Ajouter', SubmitType::class)
         ;
     }
 
