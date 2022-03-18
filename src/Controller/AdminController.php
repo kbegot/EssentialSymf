@@ -65,7 +65,11 @@ class AdminController extends AbstractController
             }
             
             
-            
+            if ($professeurs->findOneByUser($user))
+            {
+                $entityManager->remove($professeurs->findOneByUser($user));
+            }
+
             $eleve->setClasse($classes->find($classeid));
 
             $entityManager->persist($eleve);
@@ -91,6 +95,12 @@ class AdminController extends AbstractController
                 $professeur = new Professeur();
                 $professeur->setUser($user);
                 //$professeur->addMatiere($matieres->find($matiereid));
+            }
+
+
+            if ($eleves->findOneByUser($user))
+            {
+                $entityManager->remove($eleves->findOneByUser($user));
             }
 
             $user->setRoles([$role]);
