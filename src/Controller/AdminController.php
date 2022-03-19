@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
@@ -41,15 +40,8 @@ class AdminController extends AbstractController
      */
     public function userEdit(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, ProfesseurRepository $professeurs, Matiererepository $matieres ,$userid, $role, $classeid_matiereid, EntityManagerInterface $entityManager)
     {
-        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        
         $user = $users->find($userid);
-
-        if ($currentUser == $user)
-        {
-            $this->addFlash('erreur','Vous ne pouvez pas modifier votre propre rôle');
-            return $this->redirectToRoute('admin_userlist');
-        }
-
 
         if ($role == 'ROLE_ELEVE')
         {
@@ -57,13 +49,13 @@ class AdminController extends AbstractController
 
             if (!$classes->find($classeid))
             {
-                $this->addFlash('erreur','La classe spécifié est introuvable');
-                return $this->redirectToRoute('admin_userlist');
+                exit("sékassé");
+                //return $this->redirectToRoute('admin_userlist');
             }
 
-            if ($eleves->findOneByUser($userid))
+            if ($eleves->findByUser($userid))
             {
-                $eleve = $eleves->findOneByUser($user);
+                $eleve = $eleves->findByUser($user);
             }
 
             else
@@ -73,11 +65,7 @@ class AdminController extends AbstractController
             }
             
             
-            if ($professeurs->findOneByUser($user))
-            {
-                $entityManager->remove($professeurs->findOneByUser($user));
-            }
-
+            
             $eleve->setClasse($classes->find($classeid));
 
             $entityManager->persist($eleve);
@@ -89,11 +77,11 @@ class AdminController extends AbstractController
 
         }
 
-        else if ($role == 'ROLE_TEACHER')
+        if ($role == 'ROLE_TEACHER')
         {
             $matiereid = $classeid_matiereid;
 
-            if ($professeurs->findOneByUser($userid))
+            if (!$professeurs->findByUser($userid))
             {
                 $professeur = $professeurs->findOneByUser($user);
             }
@@ -101,14 +89,7 @@ class AdminController extends AbstractController
             else
             {
                 $professeur = new Professeur();
-                $professeur->setUser($user);
-                //$professeur->addMatiere($matieres->find($matiereid));
-            }
-
-
-            if ($eleves->findOneByUser($user))
-            {
-                $entityManager->remove($eleves->findOneByUser($user));
+                $professeur->setMatiere($matieres->find($matiereid));
             }
 
             $user->setRoles([$role]);
@@ -118,20 +99,23 @@ class AdminController extends AbstractController
 
         }
 
-        else if ($role == 'ROLE_ADMIN')
+        if ($role == 'ROLE_ADMIN')
         {
-            $user->setRoles([$role]);
-            $entityManager->persist($user);
-            $entityManager->flush();
+
         }
 
         else
         {
-            $this->addFlash('erreur','Le rôle spécifié n\'existe pas');
             return $this->redirectToRoute('admin_userlist');
         }
 
-        $this->addFlash('info','L\'utilisateur a bien été modifié');
+
+
+
+        $user->setRoles([$role]);
+        $entityManager->persist($user);
+        $entityManager->flush();
+
         return $this->redirectToRoute('admin_userlist');
 
     }
@@ -139,36 +123,11 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/userlist/delete/{id}", name = "admin_userdelete")
      */
-    public function userDelete(userRepository $users, EleveRepository $eleves, ProfesseurRepository $professeurs, $id)
+    public function userDelete(userRepository $users, $id)
     {
-
         $user = $users->find($id);
-        $role = $user->getRoles()[0];
-        $entityManager = $this->getDoctrine()->getManager();
-
-        
-        if ($role == 'ROLE_ADMIN')
-        {
-            
-        }
-        
-        if ($role == 'ROLE_TEACHER')
-        {
-            $professeur = $professeurs->findOneByUser($user);
-            $entityManager->remove($professeur);
-        }
-        
-        
-        if ($role == 'ROLE_ELEVE')
-        {
-            $eleve = $eleves->findOneByUser($id);
-            $entityManager->remove($eleve);
-        }
-        
-        $entityManager->remove($user);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('admin_userlist');
+        $users->remove($user, true);
+        return $this->redirectToRoute('admin_filelist');
     }
 
 
