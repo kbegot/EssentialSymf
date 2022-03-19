@@ -109,6 +109,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_userlist');
         }
 
+<<<<<<< HEAD
 
 
 
@@ -116,6 +117,8 @@ class AdminController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
+=======
+>>>>>>> parent of a678f24 (Merge branch 'dev' of https://github.com/kbegot/EssentialSymf into dev)
         return $this->redirectToRoute('admin_userlist');
 
     }
