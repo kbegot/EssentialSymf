@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
@@ -40,8 +41,15 @@ class AdminController extends AbstractController
      */
     public function userEdit(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, ProfesseurRepository $professeurs, Matiererepository $matieres ,$userid, $role, $classeid_matiereid, EntityManagerInterface $entityManager)
     {
-        
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $user = $users->find($userid);
+
+        if ($currentUser == $user)
+        {
+            $this->addFlash('erreur','Vous ne pouvez pas modifier votre propre rôle');
+            return $this->redirectToRoute('admin_userlist');
+        }
+
 
         if ($role == 'ROLE_ELEVE')
         {
@@ -49,8 +57,8 @@ class AdminController extends AbstractController
 
             if (!$classes->find($classeid))
             {
-                exit("sékassé");
-                //return $this->redirectToRoute('admin_userlist');
+                $this->addFlash('erreur','La classe spécifié est introuvable');
+                return $this->redirectToRoute('admin_userlist');
             }
 
             if ($eleves->findOneByUser($userid))
@@ -65,7 +73,11 @@ class AdminController extends AbstractController
             }
             
             
-            
+            if ($professeurs->findOneByUser($user))
+            {
+                $entityManager->remove($professeurs->findOneByUser($user));
+            }
+
             $eleve->setClasse($classes->find($classeid));
 
             $entityManager->persist($eleve);
@@ -77,7 +89,7 @@ class AdminController extends AbstractController
 
         }
 
-        if ($role == 'ROLE_TEACHER')
+        else if ($role == 'ROLE_TEACHER')
         {
             $matiereid = $classeid_matiereid;
 
@@ -93,6 +105,12 @@ class AdminController extends AbstractController
                 //$professeur->addMatiere($matieres->find($matiereid));
             }
 
+
+            if ($eleves->findOneByUser($user))
+            {
+                $entityManager->remove($eleves->findOneByUser($user));
+            }
+
             $user->setRoles([$role]);
             $entityManager->persist($professeur);
             $entityManager->flush();
@@ -100,7 +118,7 @@ class AdminController extends AbstractController
 
         }
 
-        if ($role == 'ROLE_ADMIN')
+        else if ($role == 'ROLE_ADMIN')
         {
             $user->setRoles([$role]);
             $entityManager->persist($user);
@@ -109,9 +127,11 @@ class AdminController extends AbstractController
 
         else
         {
+            $this->addFlash('erreur','Le rôle spécifié n\'existe pas');
             return $this->redirectToRoute('admin_userlist');
         }
 
+        $this->addFlash('info','L\'utilisateur a bien été modifié');
         return $this->redirectToRoute('admin_userlist');
 
     }
@@ -121,8 +141,15 @@ class AdminController extends AbstractController
      */
     public function userDelete(userRepository $users, EleveRepository $eleves, ProfesseurRepository $professeurs, $id)
     {
-
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $user = $users->find($id);
+
+        if ($currentUser == $user)
+        {
+            $this->addFlash('erreur','Vous ne pouvez pas supprimer votre propre rôle');
+            return $this->redirectToRoute('admin_userlist');
+        }
+        
         $role = $user->getRoles()[0];
         $entityManager = $this->getDoctrine()->getManager();
 

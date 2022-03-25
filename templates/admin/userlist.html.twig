@@ -35,9 +35,14 @@
 
             <div class="recent-grid">
                 <div class="projects">
-                        {% if message is defined %}
-                            <h3 class="erreur">{{message}} !</h3>
-                        {% endif %}
+
+                        {% for message in app.flashes('erreur') %}
+                            <h3 class="erreur">{{message}}</h3>
+                        {% endfor %}
+                        {% for message in app.flashes('info') %}
+                            <h3 class="validation">{{message}}</h3>
+                        {% endfor %}
+
                     <div class="card">
                         <div class="card-header">
                             <h3>Table des utilisateurs</h3>
@@ -212,7 +217,7 @@
                                 </div>
                             </div>
                             <div>
-                                <button class="" id="">Supprimer <span class="uil uil-times"></span></button>
+                                <button class="" id="supprimer">Supprimer <span class="uil uil-times"></span></button>
                             </div>
                             <div class="contact">
                             </div>

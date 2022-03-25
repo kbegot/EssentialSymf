@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/folder-style.css') }}">
+    <section class="section__card">
+    {% for classe in classes %}
+        <h1>{{classe.libelle}}</h1>
+            <div class="cards">
+                {% for ressource in ressources %}
+                    <div class="card">
+                        <h2>{{ressource.name}}.{{ressource.extension}}</h2>
+                        <a href={{ressource}} download={{ressource}}>
+                            <p>Télécharger</p>
+                        </a>
+                    </div>
+                {% endfor %}
+                
+            </div>
+
+    {% endfor %}
+        
+    </section>
+
+{% endblock %}

@@ -10,6 +10,7 @@ let eleveClasse = document.getElementById("eleve-classe");
 let profMatiere = document.getElementById("prof-matière");
 
 let valider = document.getElementById("valider");
+let supprimer = document.getElementById("supprimer")
 
 let d1 = document.getElementById("d1");
 let d2 = document.getElementById("d2");
@@ -108,7 +109,7 @@ listebtn.forEach(btn => {
   
 });
 
-
+// action bouton editer
 
 valider.addEventListener('click',(event) => {
   let checkboxes = document.querySelectorAll('input[name="color"]:checked');
@@ -153,3 +154,21 @@ valider.addEventListener('click',(event) => {
 
 
 });
+
+
+
+// action bouton supprimer
+
+supprimer.addEventListener('click',(event)=>{
+  console.log('action');
+  console.log(supprimer.parentNode.parentNode.parentNode);
+  var regularExpression= /(?<=\[).*?(?=\])/g;
+  let id = supprimer.parentNode.parentNode.parentNode.querySelector('#display-userId-2').textContent.match(regularExpression)[0];
+  alert(id);
+
+  location.href= `userlist/delete/${id}`;
+
+
+});
+
+

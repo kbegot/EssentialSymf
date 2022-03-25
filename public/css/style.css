@@ -9,6 +9,7 @@ body{
   height: 95%;
   margin-top: -1%;
   background-color: white;
+  z-index: -10;
 }
 
 
@@ -76,6 +77,10 @@ body{
   font-style: normal;
   color: #213350;
   margin-left: -51%;
+}
+
+.SeConnecter {
+  font-size: 1.8rem;
 }
 
 #menu path{
@@ -327,6 +332,7 @@ form .txt_field {
 
 .center {
   vertical-align: middle;
+  text-align: center;
 }
 
 .btn_login {
@@ -344,5 +350,23 @@ form .txt_field {
 }
 
 .signup_link #login:hover {
-color: tomato;
+  color: tomato;
+}
+
+/* Page folder */
+
+.scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.CaseCours {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2.5%;
+  background-color: #f3f3f7;
+  font-size: 20px;
+  z-index: 0;
+  margin-bottom: -2%;
 }
