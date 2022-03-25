@@ -164,7 +164,6 @@ supprimer.addEventListener('click',(event)=>{
   console.log(supprimer.parentNode.parentNode.parentNode);
   var regularExpression= /(?<=\[).*?(?=\])/g;
   let id = supprimer.parentNode.parentNode.parentNode.querySelector('#display-userId-2').textContent.match(regularExpression)[0];
-  alert(id);
 
   location.href= `userlist/delete/${id}`;
 
