@@ -7,23 +7,31 @@ body {
 	overflow: hidden;
 }
 
-.center {
+.center, .widecenter {
 	position: absolute;
+	background: white;
+	border-radius: 10px;
+	
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 400px;
-	background: white;
-	border-radius: 10px;
 }
 
-.center h1 {
+.center {
+	width: 400px;
+}
+
+.widecenter {
+	width: 600px;
+}
+
+.center h1, .widecenter h1 {
 	text-align: center;
 	padding: 0 0 20px 0;
 	border-bottom: 1px solid silver;
 }
 
-.center form {
+.center form, .center form {
 	padding: 0 40px;
 	box-sizing: border-box;
 }
@@ -129,5 +137,9 @@ input[type="submit"]:hover {
 span {
 	color: #adadad;
 	font-size: 16px;
+}
 
+#logout {
+	font-size: 3vh;
+	font-weight: 600;
 }

@@ -1,35 +1,35 @@
+//Script de modification des utilisateurs 
 //let togg1 = document.querySelector('#togg1');
 //let togg2 = document.querySelector('#togg2');
 let togg1 = document.querySelectorAll('#togg1');
 let togg2 = document.querySelectorAll('#togg2');
 
-let active1 = document.getElementById("active1");
+//let active1 = document.getElementById("active1");
 
 let eleveClasse = document.getElementById("eleve-classe");
 let profMatiere = document.getElementById("prof-matière");
 
 let valider = document.getElementById("valider");
+let supprimer = document.getElementById("supprimer")
 
 let d1 = document.getElementById("d1");
 let d2 = document.getElementById("d2");
 
-let displayUserId = document.getElementById("display-userId");
+let displayUserId1 = document.getElementById("display-userId-1");
+let displayUserId2 = document.getElementById("display-userId-2");
+let displayUserEmail1 = document.getElementById("display-userEmail-1");
+let displayUserEmail2 = document.getElementById("display-userEmail-2");
+
 let userId = document.getElementById("userId");
-
-let displayUserEmail = document.getElementById("display-userEmail");
 let userEmail = document.getElementById("userEmail");
-
-
-let EditProf = document.getElementById("prof").checked;
 
 
 togg1.forEach(togg => {
   
   togg.addEventListener("click", () => {
     
-    console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
-    displayUserId.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
-    displayUserEmail.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
+    displayUserId1.textContent = "ID: [" + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent + "]";
+    displayUserEmail1.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
     
     if(getComputedStyle(d1).display != "none"){
       d1.style.display = "none";
@@ -46,9 +46,8 @@ togg1.forEach(togg => {
 togg2.forEach(togg => {
 
     togg.addEventListener("click", () => {
-      console.log(togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent);
-      displayUserId.textContent = "ID: " + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent;
-      displayUserEmail.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
+      displayUserId2.textContent = "ID: [" + togg.parentNode.parentNode.parentNode.querySelector('#userId').textContent + "]";
+      displayUserEmail2.textContent = "Email: " + togg.parentNode.parentNode.parentNode.querySelector('#userEmail').textContent;
 
     if(getComputedStyle(d2).display != "none"){
         d2.style.display = "none";
@@ -73,47 +72,103 @@ togg2.forEach(togg => {
  
 })*/
 
-const btn = document.querySelector('#active1');
-btn.addEventListener('click', (event) => {
+
+let listebtn = document.querySelectorAll('#active1');
+//const btn = document.querySelector('#active1');
+
+listebtn.forEach(btn => {
+  btn.checked = false;
+  btn.addEventListener('click', (event) => {
     let checkboxes = document.querySelectorAll('input[name="color"]:checked');
     let values = [];
     checkboxes.forEach((checkbox) => {
         values.push(checkbox.value);
     });
+
     if(values == "eleve"){
       valider.style.display = "inline-block";
       eleveClasse.style.display = "flex";
       profMatiere.style.display = "none";
     }
-});    
-
-btn.addEventListener('click', (event) => {
-    let checkboxes = document.querySelectorAll('input[name="color"]:checked');
-    let values = [];
-    checkboxes.forEach((checkbox) => {
-        values.push(checkbox.value);
-    });
+    
     if(values == "prof"){
       valider.style.display = "inline-block";
       profMatiere.style.display = "flex";
       eleveClasse.style.display = "none";
     }
-});    
 
-btn.addEventListener('click', (event) => {
+    if(values == "admin"){
+      valider.style.display = "inline-block";
+      profMatiere.style.display = "none";
+      eleveClasse.style.display = "none";
+    }
+
+
+  });    
+
+  
+});
+
+// action bouton editer
+
+valider.addEventListener('click',(event) => {
   let checkboxes = document.querySelectorAll('input[name="color"]:checked');
   let values = [];
   checkboxes.forEach((checkbox) => {
       values.push(checkbox.value);
   });
-  if(values == "admin"){
-    valider.style.display = "inline-block";
-    profMatiere.style.display = "none";
-    eleveClasse.style.display = "none";
+
+  //variable pour la route
+  let role;
+  let ValueClasse;
+  if(values == "admin")
+  {
+    role = "ROLE_ADMIN";
   }
-}); 
+  if(values == "prof")
+  {
+    let ValueMatiere = document.getElementById("classe-matiere").value;
+    //alert(ValueMatiere);
+    role = "ROLE_TEACHER";
+  }
+  if(values == "eleve")
+  {
+    ValueClasse = document.getElementById("classe-select").value;
+    //alert(ValueClasse);
+    role = "ROLE_ELEVE"
+    
+    
+  }
+
+  else
+  {
+
+  }
+
+  var regularExpression= /(?<=\[).*?(?=\])/g;
+
+  let id = valider.parentNode.parentNode.parentNode.querySelector('#display-userId-1').textContent.match(regularExpression)[0];
+
+  location.href =`userlist/edit/${id}/${role}/${ValueClasse}`;
 
 
 
+});
+
+
+
+// action bouton supprimer
+
+supprimer.addEventListener('click',(event)=>{
+  console.log('action');
+  console.log(supprimer.parentNode.parentNode.parentNode);
+  var regularExpression= /(?<=\[).*?(?=\])/g;
+  let id = supprimer.parentNode.parentNode.parentNode.querySelector('#display-userId-2').textContent.match(regularExpression)[0];
+  alert(id);
+
+  location.href= `userlist/delete/${id}`;
+
+
+});
 
 

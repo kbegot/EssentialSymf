@@ -1,23 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Essential Admin</title>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
-</head>
-<body>
-
-    <input type="checkbox" id="nav-toggle">
-    <div class="sidebar">
-        <div class="sidebar-brand">
-            <h2><span class="uil uil-graduation-cap"></span> <span>EssentialSup</span></h2>
-        </div>
-
-        <div class="sidebar-menu">
+{% extends '/admin/base.html.twig' %}
+{% block menu %}
+<div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="{{path("admin_home")}}"><span class="uil uil-home"></span>
+                    <a href="{{path("admin_home")}}" class=""><span class="uil uil-home"></span>
                         <span>Dashboard</span></a>
                 </li>
                 <li>
@@ -29,7 +15,7 @@
                         <span>Classe</span></a>
                 </li>
                 <li>
-                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder-open"></span>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder"></span>
                         <span>Ressource</span></a>
                 </li>
                 <li>
@@ -42,36 +28,21 @@
                 </li>
             </ul>
         </div>
-    </div>
+{% endblock %}
 
-    <div class="main-content">
-        <header>
-            <h2>
-                <label for="nav-toggle">
-                <span class="uil uil-align-justify"></span>
-                </label>
-
-                Gestion des Utilisateurs
-            </h2>
-            <div class="search-wrapper">
-                <span class="uil uil-search"></span>
-                <input type="search" placeholder="Rechercher">
-            </div>
-
-            <div class="user-wrapper">
-                <img src="fbi.png" width="40px" height="40px" alt="">
-                <div>
-                    <h4>John</h4>
-                    <small>Super admin</small>
-                </div>
-
-            </div>
-        </header>
-
-        <main>
+{% block body %}
+<main>
 
             <div class="recent-grid">
                 <div class="projects">
+
+                        {% for message in app.flashes('erreur') %}
+                            <h3 class="erreur">{{message}}</h3>
+                        {% endfor %}
+                        {% for message in app.flashes('info') %}
+                            <h3 class="validation">{{message}}</h3>
+                        {% endfor %}
+
                     <div class="card">
                         <div class="card-header">
                             <h3>Table des utilisateurs</h3>
@@ -82,8 +53,8 @@
                                 <table width="100%">
                                     <thead>
                                         <tr>
-                                            <td>Project Title</td>
-                                            <td>Departement</td>
+                                            <td>ID</td>
+                                            <td>Email</td>
                                             <td>Status</td>
                                             <td>Modification</td>
                                         </tr>
@@ -101,7 +72,7 @@
                                                             Administrateur <span class="status orange"></span>
                                                         {% elseif role == "ROLE_TEACHER" %}
                                                             Professeur <span class="status purple"></span>
-                                                        {% elseif role == "ROLE_STUDENT" %}
+                                                        {% elseif role == "ROLE_ELEVE" %}
                                                             Élève <span class="status green"></span>
                                                         {% endif %}
                                                     {% endfor %}
@@ -131,10 +102,10 @@
                         <div class="card-body">
                             <div class="customer">
                                 <div class="info">
-                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <i class="uil uil-user icone"></i>
                                     <div>
-                                        <h4 id="display-userEmail"></h4>
-                                        <small id="display-userId"></small>
+                                        <h4 id="display-userEmail-1"></h4>
+                                        <small id="display-userId-1"></small>
                                     </div>
                                 </div>
                                 <div class="contact">
@@ -149,13 +120,13 @@
                                     </div>
                                 </div>
                                 <div class="test">
-                                    <input type="checkbox" id="eleve" name="color" value="eleve">
+                                    <input type="checkbox" id="active1" name="color" value="eleve">
                                     <label for="eleve">Eleve</label>
 
-                                    <input type="checkbox" id="prof" name="color" value="prof">
+                                    <input type="checkbox" id="active1" name="color" value="prof">
                                     <label for="prof">Prof</label>
 
-                                    <input type="checkbox" id="admin" name="color" value="admin">
+                                    <input type="checkbox" id="active1" name="color" value="admin">
                                     <label for="admin">Admin</label>
                                 </div>
                                 <div class="contact">
@@ -170,11 +141,12 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <select name="role" id="role-select">
-                                        <option value="">--Choisir le rôle--</option>
-                                        <option value="ROLE_USER">Elève</option>
-                                        <option value="ROLE_TEACHER">Professeur</option>
-                                        <option value="ROLE_ADMIN">Administrateur</option>
+                                    <select name="classe-select" id="classe-select">
+                                    <option value="">--Choisir la classe--</option>
+                                    {% for classe in classes %}
+                                         <option value="{{ classe.id }}">{{ classe.libelle }}</option>
+                                    {% endfor %}
+
                                     </select>
                                 </div>
                                 <div class="contact">
@@ -188,11 +160,11 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <select name="role" id="role-select">
-                                        <option value="">--Choisir la classe--</option>
-                                        <option value="ROLE_USER">STI2D A</option>
-                                        <option value="ROLE_TEACHER">STI2D B</option>
-                                        <option value="ROLE_ADMIN">STI2D C</option>
+                                    <select name="classe-matiere" id="classe-matiere">
+                                        <option value="">--Choisir la matière--</option>
+                                        {% for matiere in matieres %}
+                                         <option value="{{ matiere.id }}">{{ matiere.nom }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="contact">
@@ -206,7 +178,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="display-valider" id="valider">Valider <span class="uil uil-check"></span></button>
+                                    <button class="display-valider"  id="valider">Valider <span class="uil uil-check"></span></button>
                                 </div>
                                 <div class="contact">
                                 </div>
@@ -226,10 +198,10 @@
                         <div class="card-body">
                             <div class="customer">
                                 <div class="info">
-                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <i class="uil uil-user icone"></i>
                                     <div>
-                                        <h4>Lewis strauss</h4>
-                                        <small>Professeur</small>
+                                        <h4 id="display-userEmail-2"></h4>
+                                        <small id="display-userId-2"></small>
                                     </div>
                                 </div>
                                 <div class="contact">
@@ -245,7 +217,7 @@
                                 </div>
                             </div>
                             <div>
-                                <button class="" id="">Supprimer <span class="uil uil-times"></span></button>
+                                <button class="" id="supprimer">Supprimer <span class="uil uil-times"></span></button>
                             </div>
                             <div class="contact">
                             </div>
@@ -259,5 +231,4 @@
     </div>
     
 </body>
-<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-</html>
+{% endblock %}

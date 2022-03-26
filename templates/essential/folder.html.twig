@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN') %}
+    <a id="menu" href="{{ path("teacher_upload") }}">Ajoutez un fichier</a>
+{% endif %}
+
+<link rel="stylesheet" href="{{ asset('css/style-folder.css') }}">
+
+    <section class="section__card">
+        <div class="cards">
+            {% for ressource in ressources %}
+                <div class="card">
+                    <h2>{{ressource.name}}.{{ressource.extension}}</h2>
+                    <a href="{{ path('fileGet', {id: ressource.id}) }}" class="button">
+                        <p>Télécharger</p>
+                    </a>
+                </div>
+            {% endfor %}
+            
+        </div>
+        
+    </section>
+
+{% endblock %}

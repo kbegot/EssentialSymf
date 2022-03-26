@@ -212,6 +212,13 @@ main{
     grid-template-columns: 65% auto;
 }
 
+.recent-grid2 {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 90% auto;
+}
+
 .card {
     background: #fff;
     border-radius: 5px;
@@ -328,10 +335,16 @@ tr td:last-child {
     color: var(--text-grey);
 }
 
-.contact span {
+.contact span{
     font-size: 1.2rem;
     display: inline-block;
     margin-left: .5rem;
+    color: var(--main-color);
+}
+.contact a {
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-left: 2rem;
     color: var(--main-color);
 }
 
@@ -353,4 +366,21 @@ tr td:last-child {
 
 .display-valider {
     display: none;
+}
+
+.icone {
+    margin-right: 15px;
+    font-size: 2rem;
+}
+
+.erreur{
+    background-color: rgba(255, 0, 0, 0.1);
+    border-radius: 5px;
+    color: #C62828;
+}
+
+.validation{
+    background-color: rgba(255, 0, 0, 0.1);;
+    border-radius: 5px;
+    color: green;
 }

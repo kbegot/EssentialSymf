@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Essential Admin</title>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
-</head>
-<body>
-
-    <input type="checkbox" id="nav-toggle">
-    <div class="sidebar">
-        <div class="sidebar-brand">
-            <h2><span class="uil uil-graduation-cap"></span> <span>EssentialSup</span></h2>
-        </div>
-
-        <div class="sidebar-menu">
+{% extends '/admin/base.html.twig' %}
+{% block menu %}
+<div class="sidebar-menu">
             <ul>
                 <li>
                     <a href="{{path("admin_home")}}" class="active"><span class="uil uil-home"></span>
@@ -29,7 +15,7 @@
                         <span>Classe</span></a>
                 </li>
                 <li>
-                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder-open"></span>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder"></span>
                         <span>Ressource</span></a>
                 </li>
                 <li>
@@ -42,33 +28,10 @@
                 </li>
             </ul>
         </div>
-    </div>
+{% endblock %}
 
-    <div class="main-content">
-        <header>
-            <h2>
-                <label for="nav-toggle">
-                <span class="uil uil-align-justify"></span>
-                </label>
-
-                Dashboard
-            </h2>
-            <div class="search-wrapper">
-                <span class="uil uil-search"></span>
-                <input type="search" placeholder="Rechercher">
-            </div>
-
-            <div class="user-wrapper">
-                <img src="fbi.png" width="40px" height="40px" alt="">
-                <div>
-                    <h4>John</h4>
-                    <small>Super admin</small>
-                </div>
-
-            </div>
-        </header>
-
-        <main>
+{% block body %}
+ <main>
             <div class="cards">
                 <div class="card-single">
                     <div>
@@ -125,8 +88,8 @@
                                 <table width="100%">
                                     <thead>
                                         <tr>
-                                            <td>Project Title</td>
-                                            <td>Departement</td>
+                                            <td>ID</td>
+                                            <td>Email</td>
                                             <td>Status</td>
                                         </tr>
                                     </thead>
@@ -138,17 +101,16 @@
                                                 <td>
                                                     {% for role in user.roles %}
                                                         {% if role == "ROLE_USER" %}
-                                                            Utilisateur <span class="status grey"></span>
+                                                            Utilisateur<span class="status grey"></span>
                                                         {% elseif role == "ROLE_ADMIN" %}
                                                             Administrateur <span class="status orange"></span>
                                                         {% elseif role == "ROLE_TEACHER" %}
                                                             Professeur <span class="status purple"></span>
-                                                        {% elseif role == "ROLE_STUDENT" %}
+                                                        {% elseif role == "ROLE_ELEVE" %}
                                                             Élève <span class="status green"></span>
                                                         {% endif %}
                                                     {% endfor %}
                                                 </td>
-                                                
                                             </tr>
                                             {% endfor %}
                                         </tbody>
@@ -169,7 +131,7 @@
                         <div class="card-body">
                             <div class="customer">
                                 <div class="info">
-                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <i class="uil uil-user icone"></i>
                                     <div>
                                         <h4>LEwis strauss</h4>
                                         <small>CEO Expert</small>
@@ -182,7 +144,7 @@
                             </div>
                             <div class="customer">
                                 <div class="info">
-                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <i class="uil uil-user icone"></i>
                                     <div>
                                         <h4>LEwis strauss</h4>
                                         <small>CEO Expert</small>
@@ -196,7 +158,7 @@
                             </div>
                             <div class="customer">
                                 <div class="info">
-                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <i class="uil uil-user icone"></i>
                                     <div>
                                         <h4>LEwis strauss</h4>
                                         <small>CEO Expert</small>
@@ -210,7 +172,7 @@
                             </div>
                             <div class="customer">
                                 <div class="info">
-                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <i class="uil uil-user icone"></i>
                                     <div>
                                         <h4>LEwis strauss</h4>
                                         <small>CEO Expert</small>
@@ -224,7 +186,7 @@
                             </div>
                             <div class="customer">
                                 <div class="info">
-                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <i class="uil uil-user icone"></i>
                                     <div>
                                         <h4>LEwis strauss</h4>
                                         <small>CEO Expert</small>
@@ -238,7 +200,7 @@
                             </div>
                             <div class="customer">
                                 <div class="info">
-                                    <img src="fbi.png" width="40px" height="40px" alt="">
+                                    <i class="uil uil-user icone"></i>
                                     <div>
                                         <h4>LEwis strauss</h4>
                                         <small>CEO Expert</small>
@@ -259,5 +221,4 @@
         </main>
     </div>
     
-</body>
-</html>
+{% endblock %}
