@@ -218,6 +218,21 @@ class AdminController extends AbstractController
         return $this->render('admin/classelist.html.twig',['ressources'=>$classes->findAll()]);
     }
 
+    /**
+     * @Route("admin/classeedit/{id}/{libelle}", name = "admin_classe_edit")
+     */
+    public function classeEdit(ClasseRepository $classes, $id,$libelle)
+    {
+        /*$entityManager = $this->getDoctrine()->getManager();
+        $classe = $classes->find($id);
+        $classe->setLibelle($libelle);
+        $entityManager->persist($classe);
+        $entityManager->flush();
+
+        $this->redirectToRoute('admin_classe_edit');
+        */
+        $this->redirectToRoute('admin_classe_edit');
+    }
 
 
     /**
