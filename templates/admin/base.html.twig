@@ -26,7 +26,7 @@
                         <span>Utilisateurs</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="uil uil-books"></span>
+                    <a href="{{path("admin_classelist")}}"><span class="uil uil-books"></span>
                         <span>Classe</span></a>
                 </li>
                 <li>
@@ -76,5 +76,6 @@
         {% block body %}{% endblock %}
     </div>
 </body>
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script-user.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script-classe.js') }}"></script>
 </html>

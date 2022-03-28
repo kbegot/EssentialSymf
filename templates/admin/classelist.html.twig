@@ -3,7 +3,7 @@
 <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="{{path("admin_home")}}" class=""><span class="uil uil-home"></span>
+                    <a href="{{path("admin_home")}}" ><span class="uil uil-home"></span>
                         <span>Dashboard</span></a>
                 </li>
                 <li>
@@ -11,7 +11,7 @@
                         <span>Utilisateurs</span></a>
                 </li>
                 <li>
-                    <a href="" class="active"><span class="uil uil-books"></span>
+                    <a href="{{path("admin_classelist")}}" class="active"><span class="uil uil-books"></span>
                         <span>Classe</span></a>
                 </li>
                 <li>
@@ -28,4 +28,112 @@
                 </li>
             </ul>
         </div>
+{% endblock %}
+
+{% block body %}
+<main>
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Table des classes</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Libelle</td>
+                                            <td>Status</td>
+                                            <td>Afficher</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                           
+                                            {% for classe in classes %}
+                                            <tr>
+                                                <td id="userId">{{ classe.id }}</td>
+                                                <td id="userEmail">{{ classe.libelle }}</td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    <div class="contact">
+                                                        <span class="uil uil-ruler" id="togg3"></span>
+                                                        <span class="uil uil-user" id="togg4"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-eleve" id="d3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Listes des Élèves</h3>
+
+                        </div>
+
+                        <div class="card-body">
+                            {% for eleve in eleves %}
+                            <div class="customer">
+                                <div class="info">
+                                    <i class="uil uil-user icone"></i>
+                                    <div>
+                                        <h4>{{ eleve.id }}</h4>
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <span class="uil uil-trash-alt"></span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="table-matiere" id="d4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Listes des Matières</h3>
+
+                        </div>
+
+                        <div class="card-body">
+                            <div class="customer">
+                                <div class="info">
+                                    <i class="uil uil-user icone"></i>
+                                    <div>
+                                        <h4 id="display-userEmail-2"></h4>
+                                        <small id="display-userId-2"></small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="customer">
+                            <div class="info">
+                                <div>
+                                    <h4></h4>
+                                    <small></small>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="" id="supprimer">Supprimer <span class="uil uil-times"></span></button>
+                            </div>
+                            <div class="contact">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 {% endblock %}
