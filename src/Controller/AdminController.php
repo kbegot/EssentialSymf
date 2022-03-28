@@ -141,8 +141,15 @@ class AdminController extends AbstractController
      */
     public function userDelete(userRepository $users, EleveRepository $eleves, ProfesseurRepository $professeurs, $id)
     {
-
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $user = $users->find($id);
+
+        if ($currentUser == $user)
+        {
+            $this->addFlash('erreur','Vous ne pouvez pas supprimer votre propre rôle');
+            return $this->redirectToRoute('admin_userlist');
+        }
+        
         $role = $user->getRoles()[0];
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -213,9 +220,9 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/classelist", name = "admin_classelist")
      */
-    public function classelist(ClasseRepository $classes)
+    public function classelist(ClasseRepository $classes, EleveRepository $eleves)
     {
-        return $this->render('admin/classelist.html.twig',['ressources'=>$classes->findAll()]);
+        return $this->render('admin/classelist.html.twig',['eleves'=>$eleves->findAll(),'classes'=>$classes->findAll()]);
     }
 
     /**

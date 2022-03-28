@@ -380,7 +380,15 @@ tr td:last-child {
 }
 
 .validation{
-    background-color: rgba(255, 0, 0, 0.1);;
+    background-color: rgba(0, 128, 0, 0.1);;
     border-radius: 5px;
     color: green;
+}
+
+.table-eleve{
+    display: none;
+}
+
+.table-matiere{
+    display: none;
 }
