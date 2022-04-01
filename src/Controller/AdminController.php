@@ -2,19 +2,22 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Eleve;
+use App\Entity\Classe;
+use App\Entity\Professeur;
+use App\Form\CreationClasseType;
+use App\Repository\UserRepository;
+use App\Repository\EleveRepository;
+use App\Repository\ClasseRepository;
+use App\Repository\MatiereRepository;
+use App\Repository\RessourceRepository;
+use Doctrine\Persistence\ObjectManager;
+use App\Repository\ProfesseurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\UserRepository;
-use App\Repository\ClasseRepository;
-use App\Repository\MatiereRepository;
-use App\Repository\RessourceRepository;
-use App\Repository\EleveRepository;
-use App\Repository\ProfesseurRepository;
-use App\Entity\Eleve;
-use APP\Entity\Professeur;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
@@ -251,6 +254,29 @@ class AdminController extends AbstractController
         return $this->render('admin/matiere.html.twig',['ressources'=>$matieres->findAll()]);
     }
 
+    /**
+     *@Route("/admin/classelist/create", name="admin_classecreate")
+     */
+    public function creationClasse(Request $request, EntityManagerInterface $entityManager): Response 
+    {
+
+        $classe = new Classe();
+        $form = $this->createForm(CreationClasseType::class, $classe);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $entityManager->persist($classe);
+            $entityManager->flush();
+        }
+
+
+        return $this->render('admin/classecreate.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
 
 
 
