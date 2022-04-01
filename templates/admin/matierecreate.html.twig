@@ -35,16 +35,16 @@
                         </div>
                         <div class="formm">
                             {{ form_start(form) }}
-                            <p>
-                                {{ form_row (form.nom,{'label': 'Libelle Matière: ','attr':{'placeholder':'ex: Francais STI2D'}}) }}
-                                {{ form_row (form.professeur,{'label': 'Professeur: '}) }}
-                                {{ form_row (form.classe,{'label': 'Classe: '}) }}
+                            
+                                <p>{{ form_row (form.nom,{'label': 'Libelle Matière: ','attr':{'placeholder':'ex: Francais','id': 'classe-text'}}) }}</p>
+                                <p>{{ form_row (form.professeur,{'label': 'Professeur: '}) }}</p>
+                                <p>{{ form_row (form.classe,{'attr': {'onChange': 'refresh_value()','id': 'classe-selector'}}) }}</p>
 
 
                                 
                             
                             
-                            </p>
+                            
                             <button type="submit" class="button-form">Valider</button>
                             {{form_end(form)}}
                         </div>

@@ -312,7 +312,7 @@ class AdminController extends AbstractController
 
             $entityManager->persist($matiere);
             $entityManager->flush();
-            $this->addFlash('info','La Classe a bien été créée');
+            $this->addFlash('info','La Matière a bien été créée');
         }
 
 
