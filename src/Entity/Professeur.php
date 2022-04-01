@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Professeur
 {
+    public function __toString(){
+        return $this->user->getNom() . " " . $this->user->getPrenom(); // Remplacer champ par une propriété "string" de l'entité
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
