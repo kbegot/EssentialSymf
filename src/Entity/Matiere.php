@@ -103,6 +103,11 @@ class Matiere
         return $this;
     }
 
+    public function RemoveProfesseur()
+    {
+        $this->professeur = null;
+    }
+
     public function getClasse(): ?Classe
     {
         return $this->classe;

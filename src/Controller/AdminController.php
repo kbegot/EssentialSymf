@@ -80,6 +80,13 @@ class AdminController extends AbstractController
             
             if ($professeurs->findOneByUser($user))
             {
+                if ($matieres->findOneByProfesseur($professeurs->findOneByUser($user)))
+                {
+                    $professeur = $professeurs->findOneByUser($user);
+                    $matiere = $matieres->findOneByProfesseur($professeur);
+                    $matiere->RemoveProfesseur();
+                    $entityManager->persist($matiere);
+                }
                 $entityManager->remove($professeurs->findOneByUser($user));
             }
 
