@@ -12,6 +12,7 @@ use App\Repository\RessourceRepository;
 use App\Repository\MatiereRepository;
 use App\Repository\ClasseRepository;
 use App\Repository\EleveRepository;
+use App\Repository\ProfesseurRepository;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
@@ -60,29 +61,46 @@ class EssentialController extends AbstractController
     /**
      * @Route("/folder", name = "folder")
      */
-    public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves)
+    public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs)
     {
         $user = $this->getUser();
-        $eleve = $eleves->findOneByUser($user);
         $SelectedRessources = [];
+        $userRole = $user->getRoles()[0];
 
-        if(!is_null($eleve))
+        if ($userRole == "ROLE_ADMIN")
         {
-            $classe = $eleve->getClasse();
-            if(!is_null($classe))
-            {
-                $matieres = $classe->getMatiere();
-                if(!is_null($matieres))
-                {
-                    foreach ($matieres as &$matiere)
-                    {
-                        $SelectedRessources[] = $ressources->findOneByMatiere($matiere);
-                    }
-                }
-            }
-
+            $SelectedRessources = $ressources->findAll();
         }
-        
+
+        if ($userRole == "ROLE_TEACHER")
+        {
+            $professeur = $professeurs->findOneByUser($user);
+            $lesMatieres = $matieres->findByProfesseur($professeur);
+            foreach ($lesMatieres as &$matiere)
+            {
+                $SelectedRessources[] = $ressources->findOneByMatiere($matiere);
+            }
+        }
+
+
+
+        if ($userRole == "ROLE_ELEVE")
+        {
+ 
+            $eleve = $eleves->findOneByUser($user);
+            $classe = $eleve->getClasse();
+            $matieres = $classe->getMatiere();
+            foreach ($matieres as &$matiere)
+            {
+                $SelectedRessources[] = $ressources->findOneByMatiere($matiere);
+            }
+                
+        }
+
+
+                
+            
+            
 
 
         //$SelectedRessources = $ressources->findByMatiere($matieres);
