@@ -71,7 +71,7 @@ body{
   height: auto;
   float: right;
   font-family: Arial;
-  font-size: 1.8rem;
+  font-size: 3vh;
   font-weight: 900;
   font-stretch: normal;
   font-style: normal;
@@ -264,7 +264,8 @@ th {
 /* Page User */
 
 h3 {
-  padding-top: 20px;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
   margin-left: 2%;
 }
 
@@ -293,7 +294,7 @@ h3 {
 .CaseUser {
   width: 125%;
   margin-top: -1%;
-  height: 40vw;
+  height: auto;
   border-radius: 1vw;
   background-color: #f3f3f7;
   z-index: 0;
