@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Classe
 {
+    public function __toString(){
+        return $this->libelle; // Remplacer champ par une propriété "string" de l'entité
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
