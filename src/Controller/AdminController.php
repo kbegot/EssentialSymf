@@ -239,10 +239,10 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/classelist", name = "admin_classelist")
      */
-    public function classelist(ClasseRepository $classes, EleveRepository $eleves)
+    public function classelist(ClasseRepository $classes, EleveRepository $eleves, MatiereRepository $matieres)
     {
         
-        return $this->render('admin/classelist.html.twig',['eleves'=>$eleves->findAll(),'classes'=>$classes->findAll()]);
+        return $this->render('admin/classelist.html.twig',['eleves'=>$eleves->findAll(),'classes'=>$classes->findAll(),'matieres'=>$matieres->findAll()]);
     }
 
     /**
