@@ -14,6 +14,10 @@
 
       <h1>Votre adresse mail est {{app.user.email}}</h1>
 
+      {% if is_granted('ROLE_ELEVE') %}
+        <h1>Vous êtes en {{app.user.nom}}</h1>
+      {% endif %}
+
       <div class="signup_link">
         <a id="logout" href="{{ path('app_logout') }}">Se déconnecter</a>
       </div>

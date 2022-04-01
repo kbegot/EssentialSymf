@@ -230,143 +230,21 @@ body{
   z-index: 0;
 }
 
+/* Partie Emploi du temps */
 
-
-/* Page de Login */
-
-.connect, .txt_field, .signup_link, .agree {
-  font-family: Arial;
-  color: #213350;
-}
-
-.connect, .txt_field, .signup_link {
-  font-weight: 900;
-}
-
-.connect, .signup_link, .agree {
+table {
+  border-spacing: 10px;
   text-align: center;
-}
-
-.connect {
-  font-size: 2rem;
-  border-bottom: 1px solid silver;
-  padding: 0 0 20px 0;
-}
-
-.agree {
-  font-weight: 700;
-}
-
-#inputEmail, #inputPassword {
-  font-size: 20px;
+  border-collapse: separate;
   font-family: Arial;
-  font-weight: 800;
-  color: #213350;
 }
 
-.txt_field {
-  font-size: 1.8rem;
+
+td {
+  width: 10%;
+  height: 7.2vh;
 }
 
-form .txt_field {
-	position: relative;
-	border-bottom: 2px solid #adadad;
-	margin: 30px 0;
-}
-
-.txt_field input {
-	width: 100%;
-	padding: 0 5px;
-	height: 40px;
-	font-size: 16px;
-	border: none;
-	background: none;
-	outline: none;
-}
-
-.txt_field label {
-	position: absolute;
-	top: 50%;
-	left: 5px;
-	color: #adadad;
-	transform: translateY(-50%);
-	font-size: 16px;
-	pointer-events: none;
-	transition: 0.3s;
-}
-
-.txt_field span::before {
-	content: '';
-	position: absolute;
-	top: 40px;
-	left: 0;
-	width: 0%;
-	height: 2px;
-	background: #2691d9;
-	transition: 1s;
-}
-
-.txt_field input:focus ~ label, .txt_field input:valid ~ label {
-	top: -15px;
-	color: #2691d9;
-}
-
-.txt_field input:focus ~ span::before, .txt_field input:valid ~ span::before {
-	width: 100%;
-}
-
-.pass {
-	margin: -5px 0 20px 5px;
-	color: #a6a6a6;
-	cursor: pointer;
-}
-
-.pass:hover {
-	text-decoration: underline;
-}
-
-.btn_login, .btn_register {
-	position: relative;
-	transform: translate(-50%);
-}
-
-.center {
-  vertical-align: middle;
-  text-align: center;
-}
-
-.btn_login {
-  left: 92.5%;
-}
-
-.btn_register {
-  left: 93.75%;
-}
-
-.signup_link #login {
-  text-decoration: none;
-  color: #a6a6a6;
-  transition: color 0.3s;
-}
-
-.signup_link #login:hover {
-  color: tomato;
-}
-
-/* Page folder */
-
-.scroll {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.CaseCours {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 2.5%;
-  background-color: #f3f3f7;
-  font-size: 20px;
-  z-index: 0;
-  margin-bottom: -2%;
+td:first-child {
+  width: 2%;
 }

@@ -1,0 +1,13 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Page introuvable</h1>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+
+    <p>La page demandée n'a pas pu être trouvée. Vérifier l'URL ou cliquez <a href="{{ path('homepage') }}">ici</a> pour revenir à la page principale.
+    </p>
+{% endblock %}
