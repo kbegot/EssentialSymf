@@ -2,15 +2,17 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\UploadType;
+use App\Entity\Ressource;
+use App\Repository\RessourceRepository;
+use App\Repository\ProfesseurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
-use App\Entity\Ressource;
-use App\Form\UploadType;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TeacherController extends AbstractController
 {
@@ -85,6 +87,39 @@ class TeacherController extends AbstractController
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * @Route("/teacher/removefile", name = "teacher_removeFile")
+     */
+    public function RemoveFile(RessourceRepository $ressources, ProfesseurRepository $professeurs)
+    {
+        $user = $this->getUser();
+
+        if ($ressource->getMatiere() == $professeurs->getOneByUser($user)->getMatiere())
+        {
+
+            $ressource = $ressources->find($id);
+
+            $filename = $this->getParameter('upload_directory') . "/" . $ressource->getPath();
+            $ressourcename = $ressource->getName() . "." . $ressource->getExtension();
+    
+            unlink($filename);
+            $ressources->remove($ressource, true);
+
+            $this->addFlash('info','la ressource a été supprimée');
+
+        }
+
+        else
+        {
+            $this->addFlash('error','vous n\'êtes pas autorisé à supprimer cette ressource');
+        }
+
+        return $this->redirectToRoute('folder');
+    }
+
+
+
 
 
 }
