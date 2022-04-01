@@ -63,7 +63,12 @@
                             </div>
                         </div>
                     </div>
+                        <div class="rangement-button">
+                            <a href="{{path ("admin_classecreate")}}"class=" button">Ajouter une Classe</a>
+                            <a href="{{path ("admin_matierecreate")}}"class=" button">Ajouter une Matière</a>
+                        </div>
                 </div>
+                    
                 <div class="table-eleve" id="d3">
                     <div class="card">
                         <div class="card-header">
@@ -90,6 +95,7 @@
 
                     </div>
                 </div>
+                
                 <div class="table-matiere" id="d4">
                     <div class="card">
                         <div class="card-header">
@@ -98,18 +104,20 @@
                         </div>
 
                         <div class="card-body">
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4 id="display-userEmail-2"></h4>
-                                        <small id="display-userId-2"></small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                </div>
-                            </div>
-                            
+                            {% for matiere in matieres %}
+                                    <div class="customer">
+                                        <div class="info">
+                                            <i class="uil uil-ruler icone"></i>
+                                            <div>
+                                                <h4>{{ matiere.nom }}</h4>
+                                                <small>ID: [{{matiere.id }}]</small>
+                                            </div>
+                                        </div>
+                                        <div class="contact">
+                                            <span class="uil uil-trash-alt"></span>
+                                        </div>
+                                    </div>                                
+                            {% endfor %}
                         </div>
                         <div class="customer">
                             <div class="info">
@@ -129,7 +137,6 @@
                 </div>
             </div>
 
-    <a href="{{path ("admin_classecreate")}}"class=" btn-classe button">Ajouter une Classe</a>
-    <a href="{{path ("admin_matierecreate")}}"class=" btn-classe button">Ajouter une Matière</a>
+
 
 {% endblock %}

@@ -210,7 +210,7 @@ main{
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: 65% auto;
-    margin-bottom: .8rem;
+    
 }
 
 .recent-grid2 {
@@ -264,13 +264,17 @@ main{
 }
 
 button,
-.button {
+.button{
     background: var(--main-color);
     border-radius: 10px;
     color: #fff;
     font-size: .8rem;
     padding: .5rem 1rem;
     border: 1px solid var(--main-color);
+}
+
+.rangement-button{
+    margin-top: .8rem;
 }
 
 .button-form{
