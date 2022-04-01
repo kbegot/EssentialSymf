@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>EssentialSup</title>
-    <link rel="stylesheet" href="{{ asset('css/style-login.css') }}">
-  </head>
+{% extends 'base.html.twig' %}
+{% block body %}
 
-  <body>
+  <div class="w-50">
 
-    <div class="widecenter">
+    <h1 class="Actus textcenter">Mes informations</h1>
 
-      <h1>Vous êtes connecté en tant que {{app.user.nom}} {{app.user.prenom}}</h1>
+    <div class="CaseActus textcenter">
+    
+      <h3>Vous êtes connecté en tant que {{app.user.nom}} {{app.user.prenom}}</h3>
 
-      <h1>Votre adresse mail est {{app.user.email}}</h1>
+      <h3>Votre adresse mail est {{app.user.email}}</h3>
 
       {% if is_granted('ROLE_ELEVE') %}
-        <h1>Vous êtes en {{app.user.nom}}</h1>
+        <h3>Vous êtes en {{app.user.nom}}</h3>
       {% endif %}
 
-      <div class="signup_link">
-        <a id="logout" href="{{ path('app_logout') }}">Se déconnecter</a>
-      </div>
+      <h3>
+        <div class="signup_link">
+          <a id="logout" href="{{ path('app_logout') }}">Se déconnecter</a>
+        </div>
+      </h3>
 
-    </div>
-  </body>
+  </div>
 
-</html>
+{% endblock %}

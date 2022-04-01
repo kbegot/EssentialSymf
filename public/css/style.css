@@ -242,9 +242,32 @@ table {
 
 td {
   width: 10%;
-  height: 7.2vh;
+  font-weight: 800;
 }
 
 td:first-child {
   width: 2%;
+}
+
+th {
+  font-weight: 800;
+  border-top: 1vh solid transparent;
+}
+
+.card{
+  height: 100%;
+  text-align: center;
+  background-color: #fff;
+  padding: 0.55vh;
+  border-radius: 6px;
+}
+
+/* Page User */
+
+h3 {
+  padding-top: 20px;
+}
+
+.textcenter {
+  text-align: center;
 }
