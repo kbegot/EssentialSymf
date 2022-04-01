@@ -165,7 +165,7 @@ body{
   height: 17vw;
   border-radius: 1vw;
   background-color: #f3f3f7;
-  z-index: 0;
+  z-index: 0; 
 }
 
 
@@ -239,7 +239,6 @@ table {
   font-family: Arial;
 }
 
-
 td {
   width: 10%;
   font-weight: 800;
@@ -266,8 +265,36 @@ th {
 
 h3 {
   padding-top: 20px;
+  margin-left: 2%;
+}
+
+.User, .CaseUser {
+  margin-left: 30%;
+}
+
+.User {
+  height: auto;
+  font-family: Arial;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #213350;
+  z-index: 0;
 }
 
 .textcenter {
-  text-align: center;
+  margin-left: 32.5%;
+}
+
+.CaseUser {
+  width: 125%;
+  margin-top: -1%;
+  height: 40vw;
+  border-radius: 1vw;
+  background-color: #f3f3f7;
+  z-index: 0;
 }
