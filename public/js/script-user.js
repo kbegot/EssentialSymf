@@ -1,10 +1,7 @@
 //Script de modification des utilisateurs 
-//let togg1 = document.querySelector('#togg1');
-//let togg2 = document.querySelector('#togg2');
+
 let togg1 = document.querySelectorAll('#togg1');
 let togg2 = document.querySelectorAll('#togg2');
-
-//let active1 = document.getElementById("active1");
 
 let eleveClasse = document.getElementById("eleve-classe");
 let profMatiere = document.getElementById("prof-matière");
@@ -62,19 +59,10 @@ togg2.forEach(togg => {
     
     })
 });
-/*active1.addEventListener("click", () => {
-  if(getComputedStyle(form1).display != "none"){
-    form1.style.display = "none";
-  }
-  else {
-    form1.style.display = "flex";
-  }
- 
-})*/
+
 
 
 let listebtn = document.querySelectorAll('#active1');
-//const btn = document.querySelector('#active1');
 
 listebtn.forEach(btn => {
   btn.checked = false;
@@ -120,20 +108,20 @@ valider.addEventListener('click',(event) => {
 
   //variable pour la route
   let role;
-  let ValueClasse;
+  let ValueId
   if(values == "admin")
   {
     role = "ROLE_ADMIN";
   }
   if(values == "prof")
   {
-    let ValueMatiere = document.getElementById("classe-matiere").value;
+    ValueId = document.getElementById("classe-matiere").value;
     //alert(ValueMatiere);
     role = "ROLE_TEACHER";
   }
   if(values == "eleve")
   {
-    ValueClasse = document.getElementById("classe-select").value;
+    ValueId = document.getElementById("classe-select").value;
     //alert(ValueClasse);
     role = "ROLE_ELEVE"
     
@@ -149,7 +137,8 @@ valider.addEventListener('click',(event) => {
 
   let id = valider.parentNode.parentNode.parentNode.querySelector('#display-userId-1').textContent.match(regularExpression)[0];
 
-  location.href =`userlist/edit/${id}/${role}/${ValueClasse}`;
+
+  location.href =`userlist/edit/${id}/${role}/${ValueId}`;
 
 
 
