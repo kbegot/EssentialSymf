@@ -3,7 +3,7 @@
 {% block body %}
 
 {% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN') %}
-    <a id="menu" href="{{ path("teacher_upload") }}">Ajoutez un fichier</a>
+    <a id="menu" href="{{ path("teacher_upload") }}">Ajouter un fichier</a>
 {% endif %}
 
 <link rel="stylesheet" href="{{ asset('css/style-folder.css') }}">
@@ -20,7 +20,7 @@
                 {# Affiche un bouton Supprimer si vous avez le rôle Professeur ou Admin #}
                     {% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN')%}
                         <br>
-                        <a href ="{{ path("admin_filelist_remove", {id: ressource.id}) }}" class="button">
+                        <a href ="{{ path("teacher_removeFile", {id: ressource.id}) }}" class="button">
                             <p>Supprimer</p>
                         </a>
                     {% endif %}
