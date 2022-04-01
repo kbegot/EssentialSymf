@@ -1,0 +1,56 @@
+{% extends '/admin/base.html.twig' %}
+{% block menu %}
+<div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="{{path("admin_home")}}" ><span class="uil uil-home"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="{{path("admin_userlist")}}" ><span class="uil uil-user"></span>
+                        <span>Utilisateurs</span></a>
+                </li>
+                <li>
+                    <a href="{{path("admin_classelist")}}" class="active"><span class="uil uil-books"></span>
+                        <span>Classe</span></a>
+                </li>
+                <li>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder-open"></span>
+                        <span>Ressource</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                        <span>test1</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="uil uil-home"></span>
+                    <span>test2</span></a>
+                </li>
+            </ul>
+        </div>
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="recent-grid3">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header2">
+                            <h3>Création d'une classes</h3>
+                        </div>
+                        <div class="formm">
+                            {{ form_start(form) }}
+                            <p>{{ form_row (form.libelle,{'label': 'Libelle Classe: ','attr':{'placeholder':'Nom de la classes'
+                            }}) }}</p>
+                            <button type="submit" class="button-form">Ajoute classe</button>
+                            {{form_end(form)}}
+                        </div>
+                    </div>
+                </div>
+
+
+        
+
+
+
+{% endblock %}
