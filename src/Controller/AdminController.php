@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Eleve;
 use App\Entity\Classe;
+use App\Entity\Matiere;
 use App\Entity\Professeur;
 use App\Form\CreationClasseType;
+use App\Form\CreationMatiereType;
 use App\Repository\UserRepository;
 use App\Repository\EleveRepository;
 use App\Repository\ClasseRepository;
@@ -255,7 +257,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     *@Route("/admin/classelist/create", name="admin_classecreate")
+     *@Route("/admin/classecreate", name="admin_classecreate")
      */
     public function creationClasse(Request $request, EntityManagerInterface $entityManager): Response 
     {
@@ -278,6 +280,30 @@ class AdminController extends AbstractController
         ]);
     }
 
+
+    /**
+     *@Route("/admin/matierecreate", name="admin_matierecreate")
+     */
+    public function creationMatiere(Request $request, EntityManagerInterface $entityManager): Response 
+    {
+
+        $matiere = new Matiere();
+        $form = $this->createForm(CreationMatiereType::class, $matiere);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $entityManager->persist($matiere);
+            $entityManager->flush();
+        }
+
+
+        return $this->render('admin/matierecreate.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
 
 
 
