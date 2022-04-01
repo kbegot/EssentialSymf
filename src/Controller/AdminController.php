@@ -218,7 +218,10 @@ class AdminController extends AbstractController
         unlink($filename);
         $ressources->remove($ressource, true);
         
+        $this->addFlash('info','La Ressource a bien été supprimée');
+
         return $this->redirectToRoute('admin_filelist');
+        
     
 
     }
@@ -283,6 +286,7 @@ class AdminController extends AbstractController
 
             $entityManager->persist($classe);
             $entityManager->flush();
+            $this->addFlash('info','La Classe a bien été créée');
         }
 
 
@@ -308,7 +312,7 @@ class AdminController extends AbstractController
 
             $entityManager->persist($matiere);
             $entityManager->flush();
-            $this->addFlash('info','La classe a été crée');
+            $this->addFlash('info','La Classe a bien été créée');
         }
 
 

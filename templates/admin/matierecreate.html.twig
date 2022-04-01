@@ -26,6 +26,9 @@
 <main>
     <div class="recent-grid3">
                 <div class="projects">
+                    {% for message in app.flashes('info') %}
+                        <h3 class="validation">{{message}}</h3>
+                    {% endfor %}
                     <div class="card">
                         <div class="card-header2">
                             <h3>Création d'une Matière</h3>
