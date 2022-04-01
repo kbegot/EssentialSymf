@@ -222,6 +222,7 @@ class AdminController extends AbstractController
      */
     public function classelist(ClasseRepository $classes, EleveRepository $eleves)
     {
+        
         return $this->render('admin/classelist.html.twig',['eleves'=>$eleves->findAll(),'classes'=>$classes->findAll()]);
     }
 

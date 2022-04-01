@@ -11,6 +11,7 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use App\Repository\RessourceRepository;
 use App\Repository\MatiereRepository;
 use App\Repository\ClasseRepository;
+use App\Repository\EleveRepository;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
@@ -59,9 +60,35 @@ class EssentialController extends AbstractController
     /**
      * @Route("/folder", name = "folder")
      */
-    public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes)
+    public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves)
     {
-        return $this->render('essential/folder.html.twig',['classes'=>$classes->findAll(), 'ressources'=>$ressources->findAll()]);
+        $user = $this->getUser();
+        $eleve = $eleves->findOneByUser($user);
+        $SelectedRessources = [];
+
+        if(!is_null($eleve))
+        {
+            $classe = $eleve->getClasse();
+            if(!is_null($classe))
+            {
+                $matieres = $classe->getMatiere();
+                if(!is_null($matieres))
+                {
+                    foreach ($matieres as &$matiere)
+                    {
+                        $SelectedRessources[] = $ressources->findOneByMatiere($matiere);
+                    }
+                }
+            }
+
+        }
+        
+
+
+        //$SelectedRessources = $ressources->findByMatiere($matieres);
+
+        return $this->render('essential/folder.html.twig',['ressources'=>$SelectedRessources]);
+        //return $this->render('essential/folder.html.twig');
     }
 
 
