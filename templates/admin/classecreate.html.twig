@@ -15,7 +15,7 @@
                         <span>Classe</span></a>
                 </li>
                 <li>
-                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder-open"></span>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder"></span>
                         <span>Ressource</span></a>
                 </li>
                 <li>
@@ -36,13 +36,13 @@
                 <div class="projects">
                     <div class="card">
                         <div class="card-header2">
-                            <h3>Création d'une classes</h3>
+                            <h3>Création d'une Classe</h3>
                         </div>
                         <div class="formm">
                             {{ form_start(form) }}
-                            <p>{{ form_row (form.libelle,{'label': 'Libelle Classe: ','attr':{'placeholder':'Nom de la classes'
+                            <p>{{ form_row (form.libelle,{'label': 'Libelle Classe: ','attr':{'placeholder':'Nom de la Classe'
                             }}) }}</p>
-                            <button type="submit" class="button-form">Ajoute classe</button>
+                            <button type="submit" class="button-form">Valider</button>
                             {{form_end(form)}}
                         </div>
                     </div>
