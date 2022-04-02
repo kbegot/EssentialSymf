@@ -108,7 +108,6 @@ class EssentialController extends AbstractController
 
 
         //$SelectedRessources = $ressources->findByMatiere($matieres);
-        dump($SelectedRessources);
         return $this->render('essential/folder.html.twig',['ressources'=>$SelectedRessources]);
         //return $this->render('essential/folder.html.twig');
     }
