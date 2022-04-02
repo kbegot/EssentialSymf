@@ -41,35 +41,22 @@ class TeacherController extends AbstractController
 
             if ($ressourcefile){
 
-                // liste d'extension autorisé
+                // liste d'extension autorisé (finalement désactivé)
                 $allowed_extension = [
                     "pdf","jpg","png","txt","docx","xlsx","ppt","csv","odt","ods","odp","odg","mp3","mp4","zip",
                 ];
+
+                //nom original du fichier
                 $originalFilename = pathinfo($ressourcefile->getClientOriginalName(), PATHINFO_FILENAME);
-                //$file = $upload->getName();
-                //var_dump($ressourcefile->guessExtension());
 
-                if (in_array($ressourcefile->guessExtension(), $allowed_extension)){
-                    echo "fichier accepté";
-                }
-
-                else{
-                    echo "Type de fichier Refusé\nLes fichiers accepté sont :\n";
-                    echo '</br>';
-                    foreach($allowed_extension as $extension)
-                    {
-                        echo "$extension </br>";
-                    }
-                    
-                    exit();
-
-                }
+                $extension = pathinfo($ressourcefile->getClientOriginalName(), PATHINFO_EXTENSION);
                 
-                $fileName = md5(uniqid()).'.'.$ressourcefile->guessExtension();
+                // nouveau nom généré a partir du hash
+                $fileName = md5(uniqid()).'.'. $extension;
 
                 $ressource->setName($originalFilename);
                 $ressource->setPath($fileName);
-                $ressource->setExtension($ressourcefile->guessExtension());
+                $ressource->setExtension($extension);
                 $ressource->setDate(new \DateTime('now'));
                 
                 $ressourcefile->move($this->getParameter('upload_directory'), $fileName);
@@ -89,26 +76,50 @@ class TeacherController extends AbstractController
     }
 
     /**
-     * @Route("/teacher/removefile", name = "teacher_removeFile")
+     * @Route("/teacher/removefile/{id}", name = "teacher_removeFile")
      */
-    public function RemoveFile(RessourceRepository $ressources, ProfesseurRepository $professeurs)
+    public function RemoveFile(RessourceRepository $ressources, ProfesseurRepository $professeurs, $id)
     {
         $user = $this->getUser();
+        $role = $user->getRoles()[0];
+        $authorized = false;
 
-        if ($ressource->getMatiere() == $professeurs->getOneByUser($user)->getMatiere())
+        if ($role == 'ROLE_ADMIN')
+        {
+            $authorized = true;
+        }
+
+        if ($role == 'ROLE_TEACHER')
+        {
+            $professeur = $professeurs->findOneByUser($user);
+            $ressource = $ressources->findOneById($id);
+
+            if (is_null($professeur) or is_null($ressource))
+            {
+                $authorized = false;
+            }
+            
+            else if ($ressource->getMatiere() == $professeur->getMatiere())
+            {
+                $authorized = true;
+            }
+
+        }
+
+        if ($authorized)
         {
 
             $ressource = $ressources->find($id);
-
+            
             $filename = $this->getParameter('upload_directory') . "/" . $ressource->getPath();
             $ressourcename = $ressource->getName() . "." . $ressource->getExtension();
-    
+            
             unlink($filename);
             $ressources->remove($ressource, true);
-
+            
             $this->addFlash('info','la ressource a été supprimée');
-
         }
+
 
         else
         {
