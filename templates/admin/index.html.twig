@@ -15,8 +15,12 @@
                         <span>Classe</span></a>
                 </li>
                 <li>
-                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder"></span>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-clipboard-alt"></span>
                         <span>Ressource</span></a>
+                </li>
+                <li>
+                    <a href="{{path ("home")}}"><span class="il uil-arrow-left"></span>
+                        <span>Retour EssentialSup</span></a>
                 </li>
             </ul>
         </div>
@@ -27,41 +31,42 @@
             <div class="cards">
                 <div class="card-single">
                     <div>
-                        <h1>54</h1>
-                        <span>custom</span>
+                        <h1> {{ users|length }} </h1>
+                        <span>Élèves</span>
                     </div>
+                        
                     <div>
-                        <span class="uil uil-folder-open"></span>
-                    </div>
-                </div>
-
-                <div class="card-single">
-                    <div>
-                        <h1>54</h1>
-                        <span>custom</span>
-                    </div>
-                    <div>
-                        <span class="uil uil-folder-open"></span>
+                        <span class="uil uil-user"></span>
                     </div>
                 </div>
 
                 <div class="card-single">
                     <div>
-                        <h1>54</h1>
-                        <span>custom</span>
+                        <h1>{{ professeurs|length }}</h1>
+                        <span>Professeurs</span>
                     </div>
                     <div>
-                        <span class="uil uil-folder-open"></span>
+                        <span class="uil uil-user-md"></span>
                     </div>
                 </div>
 
                 <div class="card-single">
                     <div>
-                        <h1>54</h1>
-                        <span>custom</span>
+                        <h1>{{ classes|length }}</h1>
+                        <span>Classes</span>
                     </div>
                     <div>
-                        <span class="uil uil-folder-open"></span>
+                        <span class="uil uil-books"></span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h1>{{ ressources|length }}</h1>
+                        <span>Ressources</span>
+                    </div>
+                    <div>
+                        <span class="uil uil-clipboard-alt"></span>
                     </div>
                 </div>
             </div>
@@ -72,7 +77,7 @@
                         <div class="card-header">
                             <h3>Table des utilisateurs</h3>
 
-                            
+                            <a class="button"href="{{path("admin_userlist")}}">Voir tout <span class="uil uil-folder-open"></span></a>
                         </div>
 
                         <div class="card-body">
@@ -91,17 +96,7 @@
                                                 <td id="userId">{{ user.id }}</td>
                                                 <td id="userEmail">{{ user.email }}</td>
                                                 <td>
-                                                    {% for role in user.roles %}
-                                                        {% if role == "ROLE_USER" %}
-                                                            Utilisateur<span class="status grey"></span>
-                                                        {% elseif role == "ROLE_ADMIN" %}
-                                                            Administrateur <span class="status orange"></span>
-                                                        {% elseif role == "ROLE_TEACHER" %}
-                                                            Professeur <span class="status purple"></span>
-                                                        {% elseif role == "ROLE_ELEVE" %}
-                                                            Élève <span class="status green"></span>
-                                                        {% endif %}
-                                                    {% endfor %}
+                                                    
                                                 </td>
                                             </tr>
                                             {% endfor %}
@@ -115,95 +110,24 @@
                 <div class="cutomers">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Recent Proects</h3>
+                            <h3>Table des classes</h3>
 
-                            <button>See all <span class="uil uil-folder-open"></span></button>
+                            <a class="button"href="{{path("admin_classelist")}}">Voir tout <span class="uil uil-folder-open"></span></a>
                         </div>
 
                         <div class="card-body">
+                        {% for classe in classes %}
                             <div class="customer">
                                 <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-trash-alt"></span>
-                                    <span class="uil uil-edit"></span>
+
+                                        <i class="uil uil-user icone"></i>
+                                        <div>
+                                            <h4>{{classe.libelle}}</h4>
+                                            <small>ID: [{{classe.id}}]</small>
+                                        </div>
                                 </div>
                             </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
+                        {% endfor %}
                         </div>
 
                     </div>

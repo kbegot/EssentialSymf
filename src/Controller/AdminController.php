@@ -26,7 +26,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin_home")
      */
-    public function index(UserRepository $users, ClasseRepository $classes): Response
+    public function index(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, ProfesseurRepository $professeurs, RessourceRepository $ressources): Response
     {
         $allUsers = $users->findAll();
         $allClasses = $classes->findAll();
@@ -65,7 +65,7 @@ class AdminController extends AbstractController
 
         
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController','users'=>$firstUsers,'classes'=>$firstClasses
+            'controller_name' => 'AdminController','users'=>$users->findAll(),'classes'=>$classes->findAll(), 'eleves'=>$eleves->findAll(), 'professeurs'=>$professeurs->findAll(),'ressources'=>$ressources->findAll()
         ]);
     }
 
