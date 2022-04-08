@@ -65,7 +65,7 @@ class AdminController extends AbstractController
 
         
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController','users'=>$firstUsers,'classes'=>$firstClasses, 'eleves'=>$eleves->findAll(), 'professeurs'=>$professeurs->findAll(),'ressources'=>$ressources->findAll()
+            'controller_name' => 'AdminController','users'=>$firstUsers,'classes'=>$firstClasses,'classesCount'=>count($allClasses),'eleves'=>$eleves->findAll(), 'professeurs'=>$professeurs->findAll(),'ressources'=>$ressources->findAll()
         ]);
     }
 
