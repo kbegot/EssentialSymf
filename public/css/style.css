@@ -36,8 +36,12 @@ body{
   margin-top: 40%;
 }
 
-.estate, .user-circle-menu {
-  margin-top: 320%;
+.estate {
+  margin-top: 360%;
+}
+
+.user-circle-menu {
+  margin-top: 400%;
 }
 
 .search, .folder-open, .setting {
@@ -137,6 +141,7 @@ body{
   border-radius: 2.5%;
   background-color: #f3f3f7;
   z-index: 0;
+  overflow-y: scroll;
 }
 
 .Actus, .CaseActus {
@@ -152,9 +157,9 @@ body{
   font-style: normal;
   line-height: 1.13;
   letter-spacing: normal;
-  text-align: left;
   color: #213350;
   z-index: 0;
+  margin-top: 10%;
 }
 
 .CaseActus {
@@ -186,7 +191,7 @@ body{
 }
 
 
-.CreateRecents {
+.DocsRecents {
   font-family: Arial;
   font-size: 40px;
   font-weight: bold;
@@ -199,31 +204,13 @@ body{
   z-index: 0;
 }
 
-.CaseCreateRecents {
-  border-radius: 21px;
+.CaseDocsRecents {
+  width: 40vw;
+  height: 17vw;
+  border-radius: 1vw;
   background-color: #f3f3f7;
   z-index: 0;
-}
-
-
-
-.OpenRecents {
-  font-family: Arial;
-  font-size: 40px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.13;
-  letter-spacing: normal;
-  text-align: left;
-  color: #213350;
-  z-index: 0;
-}
-
-.CaseOpenRecents {
-  border-radius: 21px;
-  background-color: #f3f3f7;
-  z-index: 0;
+  margin-top: 20%;
 }
 
 /* Partie Emploi du temps */
@@ -287,6 +274,11 @@ h3 {
   margin-left: 32.5%;
 }
 
+.center {
+  text-align: center;
+  margin-top: 5vh;
+}
+
 .CaseUser {
   width: 125%;
   margin-top: -1%;
@@ -294,4 +286,21 @@ h3 {
   border-radius: 1vw;
   background-color: #f3f3f7;
   z-index: 0;
+}
+
+.img-news {
+  width: 70%;
+  height: auto;
+  margin-left: 15%;
+  border: 10px solid #213350;
+  border-radius: 20px;
+}
+
+.img-stdenis {
+  width: 20%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: -10%;
+  margin-left: 115%;
+  margin-bottom: 10%;
 }
