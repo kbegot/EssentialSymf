@@ -13,7 +13,7 @@ class CreationMatiereType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('professeur')
+
             ->add('classe')
         ;
     }

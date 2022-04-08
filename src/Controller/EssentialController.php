@@ -64,27 +64,21 @@ class EssentialController extends AbstractController
     public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs)
     {
         $user = $this->getUser();
-        $SelectedRessources = [];
+        $SelectedMatiere = [];
         $userRole = $user->getRoles()[0];
 
         if ($userRole == "ROLE_ADMIN")
         {
-            $SelectedRessources = $ressources->findAll();
+            $selectedMatiere = $matieres->findAll();
 
         }
 
         if ($userRole == "ROLE_TEACHER")
         {
             $professeur = $professeurs->findOneByUser($user);
-            $lesMatieres = $matieres->findByProfesseur($professeur);
-            foreach ($lesMatieres as &$matiere)
-            {
-                $ressource = $ressources->findOneByMatiere($matiere);
-                if (!is_null($ressource))
-                {
-                    $SelectedRessources[] = $ressource;
-                }
-            }
+            $selectedMatiere = $matieres->findByProfesseur($professeur)[0];
+            dump($SelectedMatiere);
+
         }
 
 
@@ -94,27 +88,96 @@ class EssentialController extends AbstractController
  
             $eleve = $eleves->findOneByUser($user);
             $classe = $eleve->getClasse();
-            $matieres = $classe->getMatiere();
-            foreach ($matieres as &$matiere)
+            $selectedMatiere = $classe->getMatiere();
+        
+        }
+
+
+
+        return $this->render('essential/folder.html.twig',['matieres'=>$selectedMatiere]);
+
+    }
+
+    /**
+     * @Route("/folder/{matiereid}", name = "folder_matiere")
+     */
+    public function folderMatiere(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, $matiereid)
+    {
+        $user = $this->getUser();
+        $SelectedRessources = [];
+        $userRole = $user->getRoles()[0];
+        $selectedMatiere = $matieres->findOneById($matiereid);
+        $SelectedRessources=  $ressources->findByMatiere($selectedMatiere); 
+
+        if ($userRole == "ROLE_ADMIN")
+        {
+
+
+
+        }
+
+        if ($userRole == "ROLE_TEACHER")
+        {
+
+            $SelectedRessources=  $ressources->findByMatiere($selectedMatiere);
+
+            $professeur = $professeurs->findOneByUser($user);
+            $lesMatieres = $matieres->findByProfesseur($professeur);
+            if ($lesMatieres[0] != $selectedMatiere)
+            {
+                $this->addFlash('error','Vous n\'navez pas accès à cette matière');
+                return $this->redirectToRoute('folder');
+            }
+
+            /*foreach ($lesMatieres as &$matiere)
             {
                 $ressource = $ressources->findOneByMatiere($matiere);
                 if (!is_null($ressource))
                 {
                     $SelectedRessources[] = $ressource;
                 }
+            }*/
+        }
+
+
+
+        if ($userRole == "ROLE_ELEVE")
+        {
+ 
+            $eleve = $eleves->findOneByUser($user);
+            $classe = $eleve->getClasse();
+            $lesMatieres = $classe->getMatiere();
+            
+            if ($lesMatieres[0] != $selectedMatiere)
+            {
+                $this->addFlash('error','Vous n\'navez pas accès à cette matière');
+                return $this->redirectToRoute('folder');
             }
+
+
+
+            /*foreach ($matieres as &$matiere)
+            {
+                $ressource = $ressources->findOneByMatiere($matiere);
+                if (!is_null($ressource))
+                {
+                    $SelectedRessources[] = $ressource;
+                }
+            }*/
                 
         }
 
 
-        //$SelectedRessources = $ressources->findByMatiere($matieres);
-        return $this->render('essential/folder.html.twig',['ressources'=>$SelectedRessources]);
-        //return $this->render('essential/folder.html.twig');
+        return $this->render('essential/files.html.twig',['ressources'=>$SelectedRessources]);
+
     }
 
 
+
+
+
     /**
-     * @Route("/folder/{id}", name = "fileGet")
+     * @Route("/folderGet/{id}", name = "fileGet")
      */
     public function fileGet(RessourceRepository $ressources, $id)
     {
