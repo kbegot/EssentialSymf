@@ -3,31 +3,49 @@
 {% block body %}
 
 {% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN') %}
-    <a id="menu" href="{{ path("teacher_upload") }}">Ajouter un fichier</a>
+    <a id="menu" href="{{ path("teacher_upload") }}">Ajoutez un fichier</a>
 {% endif %}
 
 <link rel="stylesheet" href="{{ asset('css/style-folder.css') }}">
 
     <section class="section__card">
         <div class="cards">
-            {% for ressource in ressources %}
-                <div class="card">
-                    <h2>{{ressource.name}}.{{ressource.extension}}</h2>
-                    <a href="{{ path('fileGet', {id: ressource.id}) }}" class="button">
-                        <p>Télécharger</p>
-                    </a>
-                    
-                {# Affiche un bouton Supprimer si vous avez le rôle Professeur ou Admin #}
-                    {% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN')%}
-                        <a href ="{{ path("teacher_removeFile", {id: ressource.id}) }}" class="button">
-                            <p>Supprimer</p>
+            {% if is_granted('ROLE_ADMIN')%}
+                {% for matiere in matieres %}
+                    <div class="card">
+                        <h2>{{matiere.nom}}</h2>
+                        <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
+                            <p>Ouvrir</p>
                         </a>
+                    </div>
+                {% endfor %}
+
+            {% elseif is_granted('ROLE_TEACHER')%}
+                {% for matiere in matieres %}
+                    {% if matiere.professeur_id is same as(professeur.id) %}
+                        <div class="card">
+                            <h2>{{matiere.nom}}</h2>
+                            <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
+                                <p>Ouvrir</p>
+                            </a>
+                        </div>
                     {% endif %}
-                </div>
-            {% endfor %}
-            
-        </div>
-        
+                {% endfor %}
+                    
+            {% else %}
+                {% for matiere in matieres %}
+                    {% if matiere.classe_id is same as(eleve.classe_id) %}
+                        <div class="card">
+                            <h2>{{matiere.nom}}</h2>
+                            <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
+                                <p>Ouvrir</p>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+                    
+        </div>   
     </section>
 
 {% endblock %}
