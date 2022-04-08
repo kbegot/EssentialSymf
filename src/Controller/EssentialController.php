@@ -93,7 +93,7 @@ class EssentialController extends AbstractController
 
 
 
-        return $this->render('essential/folder.html.twig',['matires'=>$selectedMatiere]);
+        return $this->render('essential/folder.html.twig',['matieres'=>$selectedMatiere]);
 
     }
 
