@@ -64,12 +64,52 @@ class EssentialController extends AbstractController
     public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs)
     {
         $user = $this->getUser();
-        $SelectedRessources = [];
+        $SelectedMatiere = [];
         $userRole = $user->getRoles()[0];
 
         if ($userRole == "ROLE_ADMIN")
         {
-            $SelectedRessources = $ressources->findAll();
+            $selectedMatiere = $matieres->findAll();
+
+        }
+
+        if ($userRole == "ROLE_TEACHER")
+        {
+            $professeur = $professeurs->findOneByUser($user);
+            $selectedMatiere = $matieres->findByProfesseur($professeur);
+
+        }
+
+
+
+        if ($userRole == "ROLE_ELEVE")
+        {
+ 
+            $eleve = $eleves->findOneByUser($user);
+            $classe = $eleve->getClasse();
+            $selectedMatiere = $classe->getMatiere();
+        
+        }
+
+
+
+        return $this->render('essential/folder.html.twig',['matires'=>$selectedMatiere]);
+
+    }
+
+    /**
+     * @Route("/folder/{matiereid}", name = "folder_Matiere")
+     */
+    public function folderMatiere(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, $matiereid)
+    {
+        $user = $this->getUser();
+        $SelectedRessources = [];
+        $userRole = $user->getRoles()[0];
+        $selectedMatiere = $matieres->findOneById($matirerid);
+
+        if ($userRole == "ROLE_ADMIN")
+        {
+            $SelectedRessources = $ressources->findAllByMatiere();
 
         }
 
@@ -107,14 +147,17 @@ class EssentialController extends AbstractController
         }
 
 
-        //$SelectedRessources = $ressources->findByMatiere($matieres);
+
         return $this->render('essential/folder.html.twig',['ressources'=>$SelectedRessources]);
-        //return $this->render('essential/folder.html.twig');
+
     }
 
 
+
+
+
     /**
-     * @Route("/folder/{id}", name = "fileGet")
+     * @Route("/folderGet/{id}", name = "fileGet")
      */
     public function fileGet(RessourceRepository $ressources, $id)
     {

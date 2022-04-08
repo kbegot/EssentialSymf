@@ -44,8 +44,8 @@ class TeacherController extends AbstractController
         }
         $professeur = $professeurs->findOneByUser($user);
 
-
-        dump($professeur->getMatiere());
+        $matiere = $professeur->getMatiere();
+        dump($matiere);
 
 
         $ressource = new Ressource();
