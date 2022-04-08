@@ -6,6 +6,7 @@ use App\Form\UploadType;
 use App\Entity\Ressource;
 use App\Repository\RessourceRepository;
 use App\Repository\ProfesseurRepository;
+use App\Repository\MatiereRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -96,7 +97,7 @@ class TeacherController extends AbstractController
     /**
      * @Route("/teacher/removefile/{id}", name = "teacher_removeFile")
      */
-    public function RemoveFile(RessourceRepository $ressources, ProfesseurRepository $professeurs, $id)
+    public function RemoveFile(MatiereRepository $matieres, RessourceRepository $ressources, ProfesseurRepository $professeurs, $id)
     {
         $user = $this->getUser();
         $role = $user->getRoles()[0];
@@ -106,32 +107,30 @@ class TeacherController extends AbstractController
         {
             $authorized = true;
         }
-        
-        else if ($ressources->findOneById($id)->getMatiere() == $professeurs->findOneByUser($user)->getMatiere())
-        {
-            $authorized = true;
-        }
 
         if ($role == 'ROLE_TEACHER')
         {
             $professeur = $professeurs->findOneByUser($user);
             $ressource = $ressources->findOneById($id);
 
-            dump($professeur->getMatiere());
+
             //dump($ressource->getMatiere());
             if (is_null($professeur) or is_null($ressource))
             {
                 $authorized = false;
             }
-            
-            /*else if ($ressource->getMatiere()->getId() == $professeur->getMatiere()->getId())
-            {
-                $authorized = true;
-            }*/
 
+            
+            else if ($ressource->getMatiere() == $matieres->findByProfesseur($professeur)[0])
+            {
+                dump("authorised");
+                $authorized = true;
+            }
+            
         }
 
         dump($authorized);
+
         if ($authorized)
         {
 
