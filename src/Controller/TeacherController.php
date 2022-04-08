@@ -94,18 +94,21 @@ class TeacherController extends AbstractController
             $professeur = $professeurs->findOneByUser($user);
             $ressource = $ressources->findOneById($id);
 
+            dump($professeur->getMatiere());
+            //dump($ressource->getMatiere());
             if (is_null($professeur) or is_null($ressource))
             {
                 $authorized = false;
             }
             
-            else if ($ressource->getMatiere() == $professeur->getMatiere())
+            /*else if ($ressource->getMatiere()->getId() == $professeur->getMatiere()->getId())
             {
                 $authorized = true;
-            }
+            }*/
 
         }
 
+        dump($authorized);
         if ($authorized)
         {
 
