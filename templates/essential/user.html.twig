@@ -15,19 +15,13 @@
       {% elseif is_granted('ROLE_TEACHER') %}
         Enseignant
       {% elseif is_granted('ROLE_ELEVE') %}
-        Elève</h3>
-        <h3>Classe: {{app.user.classe}}
-
+        Elève
       {% endif %}
       </h3>
 
       <h3>Prénom: {{app.user.prenom}}</h3>
       <h3>Nom: {{app.user.nom}}</h3>
       <h3>Adresse E-mail: {{app.user.email}}</h3>
-
-      {% if is_granted('ROLE_ELEVE') %}
-        <h3>Vous êtes en {{app.user.nom}}</h3>
-      {% endif %}
 
       <h3>
         <div class="signup_link textcenter">
