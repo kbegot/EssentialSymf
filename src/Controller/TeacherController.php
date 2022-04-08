@@ -88,6 +88,11 @@ class TeacherController extends AbstractController
         {
             $authorized = true;
         }
+        
+        if ($ressources->findOneById($id)->getMatiere() == $professeurs->findOneByUser($user)->getMatiere())
+        {
+            $authorized = true;
+        }
 
         if ($role == 'ROLE_TEACHER')
         {
