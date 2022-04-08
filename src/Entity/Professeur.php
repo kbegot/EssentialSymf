@@ -41,7 +41,6 @@ class Professeur
 
     public function __construct()
     {
-        $this->matiere = new ArrayCollection();
         $this->classes = new ArrayCollection();
     }
 
@@ -55,35 +54,11 @@ class Professeur
         return $this->nom;
     }
 
-    /**
-     * @return Collection<int, Matiere>
-     */
-    public function getMatiere(): Collection
+    public function getMatiere()
     {
         return $this->matiere;
     }
 
-    public function addMatiere(Matiere $matiere): self
-    {
-        if (!$this->matiere->contains($matiere)) {
-            $this->matiere[] = $matiere;
-            $matiere->setProfesseur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMatiere(Matiere $matiere): self
-    {
-        if ($this->matiere->removeElement($matiere)) {
-            // set the owning side to null (unless already changed)
-            if ($matiere->getProfesseur() === $this) {
-                $matiere->setProfesseur(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getUser(): ?user
     {

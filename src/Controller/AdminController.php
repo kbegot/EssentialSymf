@@ -26,10 +26,46 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin_home")
      */
-    public function index(UserRepository $users): Response
+    public function index(UserRepository $users, ClasseRepository $classes): Response
     {
+        $allUsers = $users->findAll();
+        $allClasses = $classes->findAll();
+        $firstUsers = array();
+        $firstClasses = array();
+
+        $maxUserCount = 10;
+        $maxClassesCount = 5;
+
+        if (count($allUsers) < $maxUserCount)
+        {
+            $firstUsers = $allUsers;
+        }
+
+        else{
+
+            for ($i = 0; $i < $maxUserCount; $i++)
+            {
+                $firstUsers[] = $allUsers[$i];
+            }
+        }
+
+
+        if (count($allClasses) < $maxClassesCount)
+        {
+            $firstClasses = $allClasses;
+        }
+
+        else
+        {
+            for ($i = 0; $i < $maxClassesCount ; $i++)
+            {
+                $firstClasses[] = $allClasses[$i];
+            }
+        }
+
+        
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController','users'=>$users->findAll()
+            'controller_name' => 'AdminController','users'=>$firstUsers,'classes'=>$firstClasses
         ]);
     }
 
