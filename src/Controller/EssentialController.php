@@ -98,7 +98,7 @@ class EssentialController extends AbstractController
     }
 
     /**
-     * @Route("/folder/{matiereid}", name = "folder_Matiere")
+     * @Route("/folder/{matiereid}", name = "folder_matiere")
      */
     public function folderMatiere(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, $matiereid)
     {
