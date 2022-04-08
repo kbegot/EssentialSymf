@@ -105,26 +105,38 @@ class EssentialController extends AbstractController
         $user = $this->getUser();
         $SelectedRessources = [];
         $userRole = $user->getRoles()[0];
-        $selectedMatiere = $matieres->findOneById($matirerid);
+        $selectedMatiere = $matieres->findOneById($matiereid);
+        $SelectedRessources=  $ressources->findByMatiere($selectedMatiere); 
 
         if ($userRole == "ROLE_ADMIN")
         {
-            $SelectedRessources = $ressources->findAllByMatiere();
+
+
 
         }
 
         if ($userRole == "ROLE_TEACHER")
         {
+
+            $SelectedRessources=  $ressources->findByMatiere($selectedMatiere);
+
             $professeur = $professeurs->findOneByUser($user);
             $lesMatieres = $matieres->findByProfesseur($professeur);
-            foreach ($lesMatieres as &$matiere)
+            if ($lesMatieres[0] != $selectedMatiere)
+            {
+                dump("erreur accès");
+                $this->addFlash('error','Vous n\'navez pas accès à cette matière');
+                return $this->redirectToRoute('folder');
+            }
+
+            /*foreach ($lesMatieres as &$matiere)
             {
                 $ressource = $ressources->findOneByMatiere($matiere);
                 if (!is_null($ressource))
                 {
                     $SelectedRessources[] = $ressource;
                 }
-            }
+            }*/
         }
 
 
@@ -134,21 +146,31 @@ class EssentialController extends AbstractController
  
             $eleve = $eleves->findOneByUser($user);
             $classe = $eleve->getClasse();
-            $matieres = $classe->getMatiere();
-            foreach ($matieres as &$matiere)
+            $lesMatieres = $classe->getMatiere();
+            
+            if ($lesMatieres[0] != $selectedMatiere)
+            {
+                dump("erreur accès");
+                $this->addFlash('error','Vous n\'navez pas accès à cette matière');
+                return $this->redirectToRoute('folder');
+            }
+
+
+
+            /*foreach ($matieres as &$matiere)
             {
                 $ressource = $ressources->findOneByMatiere($matiere);
                 if (!is_null($ressource))
                 {
                     $SelectedRessources[] = $ressource;
                 }
-            }
+            }*/
                 
         }
 
 
-
-        return $this->render('essential/folder.html.twig',['ressources'=>$SelectedRessources]);
+        dump($SelectedRessources);
+        return $this->render('essential/files.html.twig',['ressources'=>$SelectedRessources]);
 
     }
 

@@ -9,41 +9,23 @@
 <link rel="stylesheet" href="{{ asset('css/style-folder.css') }}">
 
     <section class="section__card">
+                {% for message in app.flashes('erreur') %}
+            <h3 class="erreur">{{message}}</h3>
+        {% endfor %}
+        {% for message in app.flashes('info') %}
+            <h3 class="validation">{{message}}</h3>
+        {% endfor %}
         <div class="cards">
-            {% if is_granted('ROLE_ADMIN')%}
-                {% for matiere in matieres %}
-                    <div class="card">
-                        <h2>{{matiere.nom}}</h2>
-                        <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
-                            <p>Ouvrir</p>
-                        </a>
-                    </div>
-                {% endfor %}
-
-            {% elseif is_granted('ROLE_TEACHER')%}
-                {% for matiere in matieres %}
-                    {% if matiere.professeur_id is same as(professeur.id) %}
-                        <div class="card">
-                            <h2>{{matiere.nom}}</h2>
-                            <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
-                                <p>Ouvrir</p>
-                            </a>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+        {% for matiere in matieres %}
+            <div class="card">
+                <h2>{{matiere.nom}}</h2>
+                    <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
+                        <p>Ouvrir</p>
+                    </a>
+            </div>
+        {% endfor %}
                     
-            {% else %}
-                {% for matiere in matieres %}
-                    {% if matiere.classe_id is same as(eleve.classe_id) %}
-                        <div class="card">
-                            <h2>{{matiere.nom}}</h2>
-                            <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
-                                <p>Ouvrir</p>
-                            </a>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+
                     
         </div>   
     </section>
