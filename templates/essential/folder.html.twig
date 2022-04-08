@@ -22,26 +22,22 @@
 
             {% elseif is_granted('ROLE_TEACHER')%}
                 {% for matiere in matieres %}
-                    {% if matiere.professeur_id is same as(professeur.id) %}
-                        <div class="card">
-                            <h2>{{matiere.nom}}</h2>
-                            <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
-                                <p>Ouvrir</p>
-                            </a>
-                        </div>
-                    {% endif %}
+                    <div class="card">
+                        <h2>{{matiere.nom}}</h2>
+                        <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
+                            <p>Ouvrir</p>
+                        </a>
+                    </div>
                 {% endfor %}
                     
             {% else %}
                 {% for matiere in matieres %}
-                    {% if matiere.classe_id is same as(eleve.classe_id) %}
-                        <div class="card">
-                            <h2>{{matiere.nom}}</h2>
-                            <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
-                                <p>Ouvrir</p>
-                            </a>
-                        </div>
-                    {% endif %}
+                    <div class="card">
+                        <h2>{{matiere.nom}}</h2>
+                        <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
+                            <p>Ouvrir</p>
+                        </a>
+                    </div>
                 {% endfor %}
             {% endif %}
                     
