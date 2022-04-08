@@ -31,7 +31,7 @@
             <div class="cards">
                 <div class="card-single">
                     <div>
-                        <h1> {{ users|length }} </h1>
+                        <h1> {{ eleves|length }} </h1>
                         <span>Élèves</span>
                     </div>
                         
@@ -96,7 +96,17 @@
                                                 <td id="userId">{{ user.id }}</td>
                                                 <td id="userEmail">{{ user.email }}</td>
                                                 <td>
-                                                    
+                                                    {% for role in user.roles %}
+                                                        {% if role == "ROLE_USER" %}
+                                                            Utilisateur<span class="status grey"></span>
+                                                        {% elseif role == "ROLE_ADMIN" %}
+                                                            Administrateur <span class="status orange"></span>
+                                                        {% elseif role == "ROLE_TEACHER" %}
+                                                            Professeur <span class="status purple"></span>
+                                                        {% elseif role == "ROLE_ELEVE" %}
+                                                            Élève <span class="status green"></span>
+                                                        {% endif %}
+                                                    {% endfor %}
                                                 </td>
                                             </tr>
                                             {% endfor %}
