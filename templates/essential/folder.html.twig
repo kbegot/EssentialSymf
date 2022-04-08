@@ -16,16 +16,14 @@
             <h3 class="validation">{{message}}</h3>
         {% endfor %}
         <div class="cards">
-        {% for matiere in matieres %}
-            <div class="card">
-                <h2>{{matiere.nom}}</h2>
+            {% for matiere in matieres %}
+                <div class="card">
+                    <h2>{{matiere.nom}}</h2>
                     <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
                         <p>Ouvrir</p>
                     </a>
-            </div>
-        {% endfor %}
-                    
-
+                </div>
+            {% endfor %}
                     
         </div>   
     </section>
