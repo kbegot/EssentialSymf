@@ -10,36 +10,14 @@
 
     <section class="section__card">
         <div class="cards">
-            {% if is_granted('ROLE_ADMIN')%}
-                {% for matiere in matieres %}
-                    <div class="card">
-                        <h2>{{matiere.nom}}</h2>
-                        <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
-                            <p>Ouvrir</p>
-                        </a>
-                    </div>
-                {% endfor %}
-
-            {% elseif is_granted('ROLE_TEACHER')%}
-                {% for matiere in matieres %}
-                    <div class="card">
-                        <h2>{{matiere.nom}}</h2>
-                        <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
-                            <p>Ouvrir</p>
-                        </a>
-                    </div>
-                {% endfor %}
-                    
-            {% else %}
-                {% for matiere in matieres %}
-                    <div class="card">
-                        <h2>{{matiere.nom}}</h2>
-                        <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
-                            <p>Ouvrir</p>
-                        </a>
-                    </div>
-                {% endfor %}
-            {% endif %}
+            {% for matiere in matieres %}
+                <div class="card">
+                    <h2>{{matiere.nom}}</h2>
+                    <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
+                        <p>Ouvrir</p>
+                    </a>
+                </div>
+            {% endfor %}
                     
         </div>   
     </section>
