@@ -27,41 +27,42 @@
             <div class="cards">
                 <div class="card-single">
                     <div>
-                        <h1>54</h1>
-                        <span>custom</span>
+                        <h1> {{ users|length }} </h1>
+                        <span>Élèves</span>
                     </div>
+                        
                     <div>
-                        <span class="uil uil-folder-open"></span>
-                    </div>
-                </div>
-
-                <div class="card-single">
-                    <div>
-                        <h1>54</h1>
-                        <span>custom</span>
-                    </div>
-                    <div>
-                        <span class="uil uil-folder-open"></span>
+                        <span class="uil uil-user"></span>
                     </div>
                 </div>
 
                 <div class="card-single">
                     <div>
-                        <h1>54</h1>
-                        <span>custom</span>
+                        <h1>{{ professeurs|length }}</h1>
+                        <span>Professeurs</span>
                     </div>
                     <div>
-                        <span class="uil uil-folder-open"></span>
+                        <span class="uil uil-user-md"></span>
                     </div>
                 </div>
 
                 <div class="card-single">
                     <div>
-                        <h1>54</h1>
-                        <span>custom</span>
+                        <h1>{{ classes|length }}</h1>
+                        <span>Classes</span>
                     </div>
                     <div>
-                        <span class="uil uil-folder-open"></span>
+                        <span class="uil uil-presentation"></span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h1>{{ ressources|length }}</h1>
+                        <span>Ressources</span>
+                    </div>
+                    <div>
+                        <span class="uil uil-clipboard-alt"></span>
                     </div>
                 </div>
             </div>
@@ -72,7 +73,7 @@
                         <div class="card-header">
                             <h3>Table des utilisateurs</h3>
 
-                            
+                            <a class="button"href="{{path("admin_user list")}}">Voir tout <span class="uil uil-folder-open"></span></a>
                         </div>
 
                         <div class="card-body">
@@ -115,9 +116,9 @@
                 <div class="cutomers">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Recent Proects</h3>
+                            <h3>Table des classes</h3>
 
-                            <button>See all <span class="uil uil-folder-open"></span></button>
+                            <a class="button"href="{{path("admin_classelist")}}">Voir tout <span class="uil uil-folder-open"></span></a>
                         </div>
 
                         <div class="card-body">
@@ -129,81 +130,9 @@
                                         <small>CEO Expert</small>
                                     </div>
                                 </div>
-                                <div class="contact">
-                                    <span class="uil uil-trash-alt"></span>
-                                    <span class="uil uil-edit"></span>
-                                </div>
+                                
                             </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <i class="uil uil-user icone"></i>
-                                    <div>
-                                        <h4>LEwis strauss</h4>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                    <span class="uil uil-folder-open"></span>
-                                </div>
-                            </div>
+                            
                         </div>
 
                     </div>
