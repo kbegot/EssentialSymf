@@ -30,8 +30,24 @@ class TeacherController extends AbstractController
     /**
      * @Route("/teacher/upload",name = "teacher_upload")
      */
-    public function upload(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager)
+    public function upload(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager, RessourceRepository $ressources, ProfesseurRepository $professeurs)
     {
+        $user = $this->getUser();
+        $role = $user->getRoles()[0];
+        dump($role);
+        if ($role != 'ROLE_TEACHER')
+        {
+            dump("sqdjjsqdskjq");
+            //marche pas je sais pas pourquoi
+            $this->addFlash('error','vous devez être connecté en tant que professeur pour mettre en ligne une ressource');
+            return $this->redirectToRoute('folder');
+        }
+        $professeur = $professeurs->findOneByUser($user);
+
+
+        dump($professeur->getMatiere());
+
+
         $ressource = new Ressource();
         $form = $this->createForm(UploadType::class, $ressource);
         $form->handleRequest($request);
@@ -41,10 +57,12 @@ class TeacherController extends AbstractController
 
             if ($ressourcefile){
 
+
+
                 // liste d'extension autorisé (finalement désactivé)
-                $allowed_extension = [
+                /*$allowed_extension = [
                     "pdf","jpg","png","txt","docx","xlsx","ppt","csv","odt","ods","odp","odg","mp3","mp4","zip",
-                ];
+                ];*/
 
                 //nom original du fichier
                 $originalFilename = pathinfo($ressourcefile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -89,7 +107,7 @@ class TeacherController extends AbstractController
             $authorized = true;
         }
         
-        if ($ressources->findOneById($id)->getMatiere() == $professeurs->findOneByUser($user)->getMatiere())
+        else if ($ressources->findOneById($id)->getMatiere() == $professeurs->findOneByUser($user)->getMatiere())
         {
             $authorized = true;
         }
