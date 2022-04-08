@@ -70,6 +70,7 @@ class EssentialController extends AbstractController
         if ($userRole == "ROLE_ADMIN")
         {
             $SelectedRessources = $ressources->findAll();
+
         }
 
         if ($userRole == "ROLE_TEACHER")
@@ -78,7 +79,11 @@ class EssentialController extends AbstractController
             $lesMatieres = $matieres->findByProfesseur($professeur);
             foreach ($lesMatieres as &$matiere)
             {
-                $SelectedRessources[] = $ressources->findOneByMatiere($matiere);
+                $ressource = $ressources->findOneByMatiere($matiere);
+                if (!is_null($ressource))
+                {
+                    $SelectedRessources[] = $ressource;
+                }
             }
         }
 
@@ -92,19 +97,17 @@ class EssentialController extends AbstractController
             $matieres = $classe->getMatiere();
             foreach ($matieres as &$matiere)
             {
-                $SelectedRessources[] = $ressources->findOneByMatiere($matiere);
+                $ressource = $ressources->findOneByMatiere($matiere);
+                if (!is_null($ressource))
+                {
+                    $SelectedRessources[] = $ressource;
+                }
             }
                 
         }
 
 
-                
-            
-            
-
-
         //$SelectedRessources = $ressources->findByMatiere($matieres);
-
         return $this->render('essential/folder.html.twig',['ressources'=>$SelectedRessources]);
         //return $this->render('essential/folder.html.twig');
     }
