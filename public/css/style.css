@@ -79,10 +79,6 @@ body{
   margin-left: -51%;
 }
 
-.SeConnecter {
-  font-size: 1.8rem;
-}
-
 #menu path{
   transition: fill 0.3s;
 }

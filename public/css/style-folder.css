@@ -44,6 +44,7 @@ a{
 
 .button:hover{
     background-color: #475c7e;
+    color: tomato;
 }
 
 .scroll {
