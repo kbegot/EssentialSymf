@@ -76,7 +76,8 @@ class EssentialController extends AbstractController
         if ($userRole == "ROLE_TEACHER")
         {
             $professeur = $professeurs->findOneByUser($user);
-            $selectedMatiere = $matieres->findByProfesseur($professeur);
+            $selectedMatiere = $matieres->findByProfesseur($professeur)[0];
+            dump($SelectedMatiere);
 
         }
 
@@ -124,7 +125,6 @@ class EssentialController extends AbstractController
             $lesMatieres = $matieres->findByProfesseur($professeur);
             if ($lesMatieres[0] != $selectedMatiere)
             {
-                dump("erreur accès");
                 $this->addFlash('error','Vous n\'navez pas accès à cette matière');
                 return $this->redirectToRoute('folder');
             }
@@ -150,7 +150,6 @@ class EssentialController extends AbstractController
             
             if ($lesMatieres[0] != $selectedMatiere)
             {
-                dump("erreur accès");
                 $this->addFlash('error','Vous n\'navez pas accès à cette matière');
                 return $this->redirectToRoute('folder');
             }
@@ -169,7 +168,6 @@ class EssentialController extends AbstractController
         }
 
 
-        dump($SelectedRessources);
         return $this->render('essential/files.html.twig',['ressources'=>$SelectedRessources]);
 
     }

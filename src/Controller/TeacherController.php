@@ -31,23 +31,19 @@ class TeacherController extends AbstractController
     /**
      * @Route("/teacher/upload",name = "teacher_upload")
      */
-    public function upload(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager, RessourceRepository $ressources, ProfesseurRepository $professeurs)
+    public function upload(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager, RessourceRepository $ressources, ProfesseurRepository $professeurs, MatiereRepository $matieres)
     {
         $user = $this->getUser();
         $role = $user->getRoles()[0];
-        dump($role);
         if ($role != 'ROLE_TEACHER')
         {
-            dump("sqdjjsqdskjq");
             //marche pas je sais pas pourquoi
             $this->addFlash('error','vous devez être connecté en tant que professeur pour mettre en ligne une ressource');
             return $this->redirectToRoute('folder');
         }
         $professeur = $professeurs->findOneByUser($user);
 
-        $matiere = $professeur->getMatiere();
-        dump($matiere);
-
+        $matiere = $matieres->findByProfesseur($professeur)[0];
 
         $ressource = new Ressource();
         $form = $this->createForm(UploadType::class, $ressource);
@@ -77,6 +73,7 @@ class TeacherController extends AbstractController
                 $ressource->setPath($fileName);
                 $ressource->setExtension($extension);
                 $ressource->setDate(new \DateTime('now'));
+                $ressource->setMatiere($matiere);
                 
                 $ressourcefile->move($this->getParameter('upload_directory'), $fileName);
 
@@ -123,7 +120,6 @@ class TeacherController extends AbstractController
             
             else if ($ressource->getMatiere() == $matieres->findByProfesseur($professeur)[0])
             {
-                dump("authorised");
                 $authorized = true;
             }
             
