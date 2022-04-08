@@ -12,6 +12,13 @@
 
       <h1>Inscription</h1>
 
+      {% for message in app.flashes('erreur') %}
+        <h3 class="erreur">{{message}}</h3>
+      {% endfor %}
+      {% for message in app.flashes('info') %}
+        <h3 class="validation">{{message}}</h3>
+      {% endfor %}
+
       {{  form_start(registrationForm) }}
 
         <div class="txt_field">

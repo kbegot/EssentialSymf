@@ -13,12 +13,7 @@
         Administrateur
 
       {% elseif is_granted('ROLE_TEACHER') %}
-        Enseignant</h3>
-        <h3>Classes:
-        {% for classe in classes %}
-          {{classe.libelle}}<br>
-        {% endfor %}
-
+        Enseignant
       {% elseif is_granted('ROLE_ELEVE') %}
         Elève</h3>
         <h3>Classe: {{app.user.classe}}

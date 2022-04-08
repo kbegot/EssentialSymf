@@ -40,13 +40,15 @@ a{
     font-weight: var(--font-medium);
     text-decoration: none;
     transition: background-color 0.5s;
+    margin-top: 1vh;
 }
 
 .button:hover{
     background-color: #475c7e;
+    color: tomato;
 }
 
 .scroll {
     overflow-y: scroll;
     overflow-x: hidden;
-  }
+}
