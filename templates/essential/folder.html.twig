@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="{{ asset('css/style-folder.css') }}">
 
     <section class="section__card">
-                {% for message in app.flashes('erreur') %}
+        {% for message in app.flashes('erreur') %}
             <h3 class="erreur">{{message}}</h3>
         {% endfor %}
         {% for message in app.flashes('info') %}
@@ -25,7 +25,7 @@
                 </div>
             {% endfor %}
                     
-        </div>   
+        </div>
     </section>
 
 {% endblock %}

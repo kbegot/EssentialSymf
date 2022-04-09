@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 body{
   overflow: hidden;
 }
@@ -166,7 +168,7 @@ body{
   height: 17vw;
   border-radius: 1vw;
   background-color: #f3f3f7;
-  z-index: 0; 
+  z-index: 0;
 }
 
 
@@ -206,8 +208,8 @@ body{
 }
 
 .CaseDocsRecents {
-  width: 45vw;
-  height: 27.75vw;
+  width: 70vh;
+  height: 62vh;
   border-radius: 1vw;
   background-color: #f3f3f7;
   z-index: 0;
@@ -277,7 +279,8 @@ h3 {
 
 .center {
   text-align: center;
-  margin-top: 5vh;
+  margin-top: 2.5vh;
+  margin-bottom: 2.5vh;
 }
 
 .CaseUser {
@@ -304,4 +307,18 @@ h3 {
   margin-top: -10%;
   margin-left: 115%;
   margin-bottom: 10%;
+}
+
+.cards{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.card{
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 0 10px #88888840;
+  padding: 12px;
+  border-radius: 6px;
 }
