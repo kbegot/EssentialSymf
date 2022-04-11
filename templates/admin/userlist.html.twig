@@ -138,7 +138,7 @@
                                 </div>
                                 <div>
                                     <select name="classe-select" id="classe-select">
-                                    <option value="">--Choisir la classe--</option>
+                                    
                                     {% for classe in classes %}
                                          <option value="{{ classe.id }}">{{ classe.libelle }}</option>
                                     {% endfor %}
@@ -157,7 +157,7 @@
                                 </div>
                                 <div>
                                     <select name="classe-matiere" id="classe-matiere">
-                                        <option value="">--Choisir la matière--</option>
+                                        
                                         {% for matiere in matieres %}
                                          <option value="{{ matiere.id }}">{{ matiere.nom }}</option>
                                         {% endfor %}

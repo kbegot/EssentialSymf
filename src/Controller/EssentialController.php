@@ -2,20 +2,21 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\entity\Ressource;
-use Symfony\Component\Security\Http\Attribute\CurrentUser;
-use App\Repository\RessourceRepository;
-use App\Repository\MatiereRepository;
-use App\Repository\ClasseRepository;
+use App\Repository\UserRepository;
 use App\Repository\EleveRepository;
+use App\Repository\ClasseRepository;
+use App\Repository\MatiereRepository;
+use App\Repository\RessourceRepository;
 use App\Repository\ProfesseurRepository;
-
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Routing\Annotation\Route;
+
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class EssentialController extends AbstractController
@@ -33,9 +34,37 @@ class EssentialController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home()
+    public function home(RessourceRepository $ressources, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, UserRepository $users, MatiereRepository $matieres)
     {
-        return $this->render('essential/home.html.twig');
+        
+        $user = $this->getUser();
+        $selectedRessource = [];
+        $userRole = $user->getRoles()[0];
+
+        $firstRessources = array();
+        
+        $maxRessourceCount = 5;
+        
+
+        if ($userRole == "ROLE_TEACHER")
+        {
+            $professeur = $professeurs->findOneByUser($user);
+            $lesMatieres = $matieres->findByProfesseur($professeur);
+            $selectedRessource = $ressources->findByMatiere($lesMatieres);
+
+            if (count($allRessources) < $maxRessourceCount)
+            {
+                $firstRessources = $selectedRessources;
+            }
+            else
+            {
+                
+            } 
+           
+        }
+
+        return $this->render('essential/home.html.twig',['ressources'=>$selectedRessource]);
+        
     }
 
 
@@ -77,7 +106,7 @@ class EssentialController extends AbstractController
         {
             $professeur = $professeurs->findOneByUser($user);
             $selectedMatiere = $matieres->findByProfesseur($professeur)[0];
-            dump($SelectedMatiere);
+            
 
         }
 
