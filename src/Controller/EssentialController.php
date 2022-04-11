@@ -52,7 +52,7 @@ class EssentialController extends AbstractController
         $firstRessources = array();
 
         $maxRessourceCount = 5;
-        
+
 
         if ($professeurs)
         {
@@ -66,9 +66,10 @@ class EssentialController extends AbstractController
             }
             else
             {
-                for ($x = 0; $x < $maxRessourceCount; $x++)
+                for ($x = count($selectedRessource)-$maxRessourceCount ; $x < count($selectedRessource); $x++)
                 {
                     $firstRessources[] = $selectedRessource[$x];
+                    
                 }
             } 
            
