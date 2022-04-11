@@ -32,13 +32,13 @@ php bin/console server:run
 http://127.0.0.1:8000
 
 
-## Mise en production
+# Mise en production
 ### Dérogation du pare-feu
 Pour mettre en production le projet vous devez ouvrir le port 80 ou autoriser l'executable httpd.exe trouvable dans
 ```
 C:\wamp64\bin\apache\apache2.4.51\bin
 ```
-## Modification de httpd-vhosts.conf
+### Modification de httpd-vhosts.conf
 Vous devrez ouvrir le fichier httpd-vhosts.conf trouvable dans
 ```
 C:\wamp64\bin\apache\apache2.4.51\conf\extra
