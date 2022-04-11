@@ -44,7 +44,7 @@ class EssentialController extends AbstractController
     */
     public function testauth()
     {
-        $user = $this->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         if ($user)
         {
@@ -63,7 +63,7 @@ class EssentialController extends AbstractController
      */
     public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs)
     {
-        $user = $this->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $SelectedMatiere = [];
         $userRole = $user->getRoles()[0];
 
@@ -103,7 +103,7 @@ class EssentialController extends AbstractController
      */
     public function folderMatiere(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, $matiereid)
     {
-        $user = $this->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $SelectedRessources = [];
         $userRole = $user->getRoles()[0];
         $selectedMatiere = $matieres->findOneById($matiereid);
