@@ -358,6 +358,26 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     *@Route("/admin/matieredelete/{id}", name="admin_deletematiere")
+     */
+    public function MatiereDelete(EntityManagerInterface $entityManager, MatiereRepository $matieres, $id)
+    {
+        $matiere = $matieres->find($id);
+
+        if (is_null($matiere))
+        {
+            $this->addFlash('error','La matière n\'existe pas ou plus');
+        }
+
+        else{
+
+            $matieres->remove($matiere, true);
+            $this->addFlash('info','La matière a été supprimé');
+        }
+
+        return $this->redirectToRoute('admin_classelist');
+    }
 
 
 }
