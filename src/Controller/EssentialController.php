@@ -46,7 +46,7 @@ class EssentialController extends AbstractController
 
 
         $selectedRessource = [];
-        $userRole = $user->getRoles()[0];
+        
 
 
         $firstRessources = array();
@@ -54,7 +54,7 @@ class EssentialController extends AbstractController
         $maxRessourceCount = 5;
         
 
-        if ($userRole == "ROLE_TEACHER")
+        if ($professeurs)
         {
             $professeur = $professeurs->findOneByUser($user);
             $lesMatieres = $matieres->findByProfesseur($professeur);
@@ -67,14 +67,14 @@ class EssentialController extends AbstractController
             else
             {
                 for ($x = 0; $x < $maxRessourceCount; $x++)
-            {
-                $firstRessources[] = $selectedRessource[$x];
-            }
+                {
+                    $firstRessources[] = $selectedRessource[$x];
+                }
             } 
            
         }
 
-        return $this->render('essential/home.html.twig',['ressources'=>$selectedRessource]);
+        return $this->render('essential/home.html.twig',['ressources'=>$firstRessources]);
         
     }
 
