@@ -37,7 +37,7 @@ class EssentialController extends AbstractController
     public function home(RessourceRepository $ressources, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, UserRepository $users, MatiereRepository $matieres)
     {
         
-        $user = $this->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $selectedRessource = [];
         $userRole = $user->getRoles()[0];
 
@@ -71,30 +71,11 @@ class EssentialController extends AbstractController
 
 
     /**
-    * @route("/testauth", name = "test")
-    */
-    public function testauth()
-    {
-        $user = $this->getUser();
-
-        if ($user)
-        {
-            return $this->render('essential/test.html.twig',['user'=>$user]);
-        }
-
-        else
-        {
-            return $this->redirectToRoute('app_login');
-        }
-
-    }
-
-    /**
      * @Route("/folder", name = "folder")
      */
     public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs)
     {
-        $user = $this->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $SelectedMatiere = [];
         $userRole = $user->getRoles()[0];
 
@@ -134,7 +115,7 @@ class EssentialController extends AbstractController
      */
     public function folderMatiere(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, $matiereid)
     {
-        $user = $this->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $SelectedRessources = [];
         $userRole = $user->getRoles()[0];
         $selectedMatiere = $matieres->findOneById($matiereid);

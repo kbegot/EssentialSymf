@@ -208,7 +208,8 @@ class AdminController extends AbstractController
         
         if ($role == 'ROLE_ADMIN')
         {
-            
+            $this->addFlash('erreur','Les administrateurs ne peuvent être supprimé que via phpmyadmin');
+            return $this->redirectToRoute('admin_userlist');
         }
         
         if ($role == 'ROLE_TEACHER')
