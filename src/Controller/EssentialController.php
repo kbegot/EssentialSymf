@@ -37,7 +37,14 @@ class EssentialController extends AbstractController
     public function home(RessourceRepository $ressources, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, UserRepository $users, MatiereRepository $matieres)
     {
         
-       /* $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('app_login');
+        }
+
+
         $selectedRessource = [];
         $userRole = $user->getRoles()[0];
 
@@ -65,7 +72,7 @@ class EssentialController extends AbstractController
             }
             } 
            
-        }*/
+        }
 
         return $this->render('essential/home.html.twig',['ressources'=>$selectedRessource]);
         
@@ -77,7 +84,13 @@ class EssentialController extends AbstractController
      */
     public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('app_login');
+        }
+
         $SelectedMatiere = [];
         $userRole = $user->getRoles()[0];
 
@@ -117,7 +130,13 @@ class EssentialController extends AbstractController
      */
     public function folderMatiere(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, $matiereid)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('app_login');
+        }
+        
         $SelectedRessources = [];
         $userRole = $user->getRoles()[0];
         $selectedMatiere = $matieres->findOneById($matiereid);

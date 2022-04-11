@@ -33,7 +33,13 @@ class TeacherController extends AbstractController
      */
     public function upload(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager, RessourceRepository $ressources, ProfesseurRepository $professeurs, MatiereRepository $matieres)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('app_login');
+        }
+
         $role = $user->getRoles()[0];
         if ($role != 'ROLE_TEACHER')
         {
@@ -96,7 +102,13 @@ class TeacherController extends AbstractController
      */
     public function RemoveFile(MatiereRepository $matieres, RessourceRepository $ressources, ProfesseurRepository $professeurs, $id)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('app_login');
+        }
+        
         $role = $user->getRoles()[0];
         $authorized = false;
 
