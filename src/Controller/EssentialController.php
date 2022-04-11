@@ -105,6 +105,7 @@ class EssentialController extends AbstractController
             $professeur = $professeurs->findOneByUser($user);
             $selectedMatiere = $matieres->findByProfesseur($professeur)[0];
             
+            
 
         }
 
@@ -136,7 +137,7 @@ class EssentialController extends AbstractController
         {
             return $this->redirectToRoute('app_login');
         }
-        
+
         $SelectedRessources = [];
         $userRole = $user->getRoles()[0];
         $selectedMatiere = $matieres->findOneById($matiereid);

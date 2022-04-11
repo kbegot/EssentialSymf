@@ -108,7 +108,7 @@ class TeacherController extends AbstractController
         {
             return $this->redirectToRoute('app_login');
         }
-        
+
         $role = $user->getRoles()[0];
         $authorized = false;
 
@@ -123,7 +123,6 @@ class TeacherController extends AbstractController
             $ressource = $ressources->findOneById($id);
 
 
-            //dump($ressource->getMatiere());
             if (is_null($professeur) or is_null($ressource))
             {
                 $authorized = false;
@@ -136,8 +135,6 @@ class TeacherController extends AbstractController
             }
             
         }
-
-        dump($authorized);
 
         if ($authorized)
         {
