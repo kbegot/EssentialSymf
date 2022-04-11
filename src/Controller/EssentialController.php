@@ -103,8 +103,8 @@ class EssentialController extends AbstractController
         if ($userRole == "ROLE_TEACHER")
         {
             $professeur = $professeurs->findOneByUser($user);
-            $selectedMatiere = $matieres->findByProfesseur($professeur)[0];
-            
+            $selectedMatiere = $matieres->findByProfesseur($professeur);
+            dump($selectedMatiere);
             
 
         }
