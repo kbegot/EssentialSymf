@@ -18,7 +18,10 @@
                     
             <h1 class="DocsRecents">Documents récents</h1>
             <div class="CaseDocsRecents">
-
+            {% for ressource in ressources %}
+                {{ ressource.id }}
+                {{ ressource.extension }}
+            {% endfor %}
             </div>
             
         </div>
