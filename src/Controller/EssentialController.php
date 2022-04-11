@@ -41,7 +41,7 @@ class EssentialController extends AbstractController
         $selectedRessource = [];
         $userRole = $user->getRoles()[0];
 
-        $firstRessources = array();
+        /*$firstRessources = array();
         
         $maxRessourceCount = 5;
         
@@ -61,7 +61,7 @@ class EssentialController extends AbstractController
                 
             } 
            
-        }
+        }*/
 
         return $this->render('essential/home.html.twig',['ressources'=>$selectedRessource]);
         
