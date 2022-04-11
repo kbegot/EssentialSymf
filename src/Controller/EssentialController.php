@@ -104,8 +104,6 @@ class EssentialController extends AbstractController
         {
             $professeur = $professeurs->findOneByUser($user);
             $selectedMatiere = $matieres->findByProfesseur($professeur);
-            dump($selectedMatiere);
-            
 
         }
 
