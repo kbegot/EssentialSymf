@@ -69,25 +69,6 @@ class EssentialController extends AbstractController
 
 
     /**
-    * @route("/testauth", name = "test")
-    */
-    public function testauth()
-    {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        if ($user)
-        {
-            return $this->render('essential/test.html.twig',['user'=>$user]);
-        }
-
-        else
-        {
-            return $this->redirectToRoute('app_login');
-        }
-
-    }
-
-    /**
      * @Route("/folder", name = "folder")
      */
     public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs)
