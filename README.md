@@ -67,6 +67,10 @@ et le modifier comme ceci
 ```
 php bin/console server:run
 ```
+### Lancer le serveur de dump (déboguage)
+```
+php bin/console server:dump
+```
 ### Crée un controller
 ```
 php bin/console make:controller
