@@ -37,11 +37,13 @@ class EssentialController extends AbstractController
     public function home(RessourceRepository $ressources, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, UserRepository $users, MatiereRepository $matieres)
     {
         
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+       /* $user = $this->get('security.token_storage')->getToken()->getUser();
         $selectedRessource = [];
         $userRole = $user->getRoles()[0];
 
+
         $firstRessources = array();
+
         $maxRessourceCount = 5;
         
 
@@ -63,7 +65,7 @@ class EssentialController extends AbstractController
             }
             } 
            
-        }
+        }*/
 
         return $this->render('essential/home.html.twig',['ressources'=>$selectedRessource]);
         
