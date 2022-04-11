@@ -37,7 +37,7 @@ class EssentialController extends AbstractController
     public function home(RessourceRepository $ressources, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, UserRepository $users, MatiereRepository $matieres)
     {
         
-        $user = $this->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $selectedRessource = [];
         $userRole = $user->getRoles()[0];
 
