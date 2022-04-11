@@ -38,6 +38,9 @@ Pour mettre en production le projet vous devez ouvrir le port 80 ou autoriser l'
 ```
 C:\wamp64\bin\apache\apache2.4.51\bin
 ```
+voir guide
+https://alcatiz.developpez.com/tutoriel/installer-wamp-windows10/#LIV-A
+
 ### Modification de httpd-vhosts.conf
 Vous devrez ouvrir le fichier httpd-vhosts.conf trouvable dans
 ```
