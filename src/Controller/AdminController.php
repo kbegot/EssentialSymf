@@ -191,7 +191,7 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/userlist/delete/{id}", name = "admin_userdelete")
      */
-    public function userDelete(userRepository $users, EleveRepository $eleves, ProfesseurRepository $professeurs, $id)
+    public function userDelete(userRepository $users, EleveRepository $eleves,MatiereRepository $matieres, ProfesseurRepository $professeurs, $id)
     {
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $user = $users->find($id);
@@ -214,8 +214,18 @@ class AdminController extends AbstractController
         
         if ($role == 'ROLE_TEACHER')
         {
-            $professeur = $professeurs->findOneByUser($user);
-            $entityManager->remove($professeur);
+
+            if ($professeurs->findOneByUser($user))
+            {
+                if ($matieres->findOneByProfesseur($professeurs->findOneByUser($user)))
+                {
+                    $professeur = $professeurs->findOneByUser($user);
+                    $matiere = $matieres->findOneByProfesseur($professeur);
+                    $matiere->RemoveProfesseur();
+                    $entityManager->persist($matiere);
+                }
+                $entityManager->remove($professeurs->findOneByUser($user));
+            }
         }
         
         

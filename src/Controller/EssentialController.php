@@ -52,7 +52,7 @@ class EssentialController extends AbstractController
         $firstRessources = array();
 
         $maxRessourceCount = 5;
-        
+
 
         if ($professeurs)
         {
@@ -66,9 +66,10 @@ class EssentialController extends AbstractController
             }
             else
             {
-                for ($x = 0; $x < $maxRessourceCount; $x++)
+                for ($x = count($selectedRessource)-$maxRessourceCount ; $x < count($selectedRessource); $x++)
                 {
                     $firstRessources[] = $selectedRessource[$x];
+                    
                 }
             } 
            
@@ -118,7 +119,10 @@ class EssentialController extends AbstractController
         
         }
 
-
+        if (empty($selectedMatiere))
+        {
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('essential/folder.html.twig',['matieres'=>$selectedMatiere]);
 
@@ -161,14 +165,6 @@ class EssentialController extends AbstractController
                 return $this->redirectToRoute('folder');
             }
 
-            /*foreach ($lesMatieres as &$matiere)
-            {
-                $ressource = $ressources->findOneByMatiere($matiere);
-                if (!is_null($ressource))
-                {
-                    $SelectedRessources[] = $ressource;
-                }
-            }*/
         }
 
 
@@ -178,28 +174,22 @@ class EssentialController extends AbstractController
  
             $eleve = $eleves->findOneByUser($user);
             $classe = $eleve->getClasse();
-            $lesMatieres = $classe->getMatiere();
+            $lesMatieres = $matieres->findByClasse($classe);
             
-            if ($lesMatieres[0] != $selectedMatiere)
+            if (!in_array($selectedMatiere,$lesMatieres))
             {
                 $this->addFlash('error','Vous n\'navez pas accès à cette matière');
                 return $this->redirectToRoute('folder');
             }
-
-
-
-            /*foreach ($matieres as &$matiere)
-            {
-                $ressource = $ressources->findOneByMatiere($matiere);
-                if (!is_null($ressource))
-                {
-                    $SelectedRessources[] = $ressource;
-                }
-            }*/
                 
         }
 
-
+        /*
+        if (empty($SelectedRessources))
+        {
+            return $this->redirectToRoute('home');
+        }
+        */
         return $this->render('essential/files.html.twig',['ressources'=>$SelectedRessources]);
 
     }

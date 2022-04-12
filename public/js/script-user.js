@@ -137,8 +137,10 @@ valider.addEventListener('click',(event) => {
 
   let id = valider.parentNode.parentNode.parentNode.querySelector('#display-userId-1').textContent.match(regularExpression)[0];
 
-
-  location.href =`userlist/edit/${id}/${role}/${ValueId}`;
+  if (window.confirm(`Vous vous apprêtez à modifier le rôle de l'utilisateur sur ${role}`))
+  {
+    location.href =`userlist/edit/${id}/${role}/${ValueId}`;
+  };
 
 
 
@@ -154,7 +156,11 @@ supprimer.addEventListener('click',(event)=>{
   var regularExpression= /(?<=\[).*?(?=\])/g;
   let id = supprimer.parentNode.parentNode.parentNode.querySelector('#display-userId-2').textContent.match(regularExpression)[0];
 
-  location.href= `userlist/delete/${id}`;
+
+  if (window.confirm(`Vous vous apprêtez à supprimer cet utilisateur`))
+  {
+    location.href= `userlist/delete/${id}`;
+  };
 
 
 });
