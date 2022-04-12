@@ -18,10 +18,18 @@
                     
             <h1 class="DocsRecents">Documents récents</h1>
             <div class="CaseDocsRecents">
-            {% for ressource in ressources %}
-                {{ ressource.id }}
-                {{ ressource.extension }}
-            {% endfor %}
+                <section class="section__card">
+                    <div class="cards">
+                        {% for ressource in ressources %}
+                            <div class="card">
+                                <h2>{{ressource.id}}.{{ressource.extension}}</h2>
+                                <a href="{{ path('fileGet', {id: ressource.id}) }}" class="button">
+                                    <p>Télécharger</p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
             </div>
             
         </div>
