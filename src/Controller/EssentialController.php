@@ -46,7 +46,7 @@ class EssentialController extends AbstractController
 
 
         $selectedRessource = [];
-        
+        $role = $user->getRoles()[0];
 
 
         $firstRessources = array();
@@ -54,7 +54,7 @@ class EssentialController extends AbstractController
         $maxRessourceCount = 5;
 
 
-        if ($professeurs)
+        if ($role == 'ROLE_TEACHER')
         {
             $professeur = $professeurs->findOneByUser($user);
             $lesMatieres = $matieres->findByProfesseur($professeur);
