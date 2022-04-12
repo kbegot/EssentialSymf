@@ -14,8 +14,13 @@
 
       {% elseif is_granted('ROLE_TEACHER') %}
         Enseignant
+
       {% elseif is_granted('ROLE_ELEVE') %}
         Elève
+
+      {% else %}
+        Rôle non défini
+
       {% endif %}
       </h3>
 
