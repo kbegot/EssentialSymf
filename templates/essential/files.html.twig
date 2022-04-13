@@ -2,7 +2,7 @@
 
 {% block body %}
 
-{% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN') %}
+{% if is_granted('ROLE_TEACHER') %}
     <a id="menu" href="{{ path("teacher_upload") }}">Ajouter un fichier</a>
 {% endif %}
 
