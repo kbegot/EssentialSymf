@@ -56,8 +56,8 @@
                                                 </td>
                                                 <td>
                                                     <div class="contact">
-                                                        <span class="uil uil-ruler" id="togg3"></span>
-                                                        <span class="uil uil-user" id="togg4"></span>
+                                                        <span class="uil uil-ruler" id="togg3" idClasse="{{classe.id}}"></span>
+                                                        <span class="uil uil-user" id="togg4" idClasse="{{classe.id}}"></span>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -73,7 +73,7 @@
                         </div>
                 </div>
                     
-                <div class="table-eleve" id="d3">
+                <div class="table-eleve" id="listeEleve">
                     <div class="card">
                         <div class="card-header">
                             <h3>Liste des Élèves</h3>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 
-                <div class="table-matiere" id="d4">
+                <div class="table-matiere" id="listeMatiere">
                     <div class="card">
                         <div class="card-header">
                             <h3>Liste des Matières</h3>
@@ -114,7 +114,8 @@
                                             <i class="uil uil-ruler icone"></i>
                                             <div>
                                                 <h4>{{ matiere.nom }}</h4>
-                                                <small>ID: [{{matiere.id }}]</small>
+                                                <small>ID Matiere : [{{matiere.id }}]</small></br>
+                                                <small>ID CLasse : [{{matiere.classe.id}}]</small>  
                                             </div>
                                         </div>
                                         <div class="contact">
