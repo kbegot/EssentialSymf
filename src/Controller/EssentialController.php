@@ -51,7 +51,7 @@ class EssentialController extends AbstractController
 
         $firstRessources = array();
 
-        $maxRessourceCount = 5;
+        $maxRessourceCount = 8;
 
 
         if ($role == 'ROLE_TEACHER')
