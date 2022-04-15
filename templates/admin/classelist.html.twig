@@ -87,11 +87,11 @@
                                             <i class="uil uil-user icone"></i>
                                             <div>
                                                 <h4>{{eleve.user.nom}} {{eleve.user.prenom}}</h4>
-                                                <small>ID: [{{eleve.classe.id}}] {{eleve.classe.libelle}}</small>
+                                                <small>ID: [{{eleve.id}}] [{{eleve.classe.id}}] </small>
                                             </div>
                                         </div>
                                         <div class="contact">
-                                            <span class="uil uil-trash-alt"></span>
+                                            <span class="uil uil-trash-alt" id ="supprimer_eleve"></span>
                                         </div>
                                     </div>                                
                             {% endfor %}
@@ -118,7 +118,7 @@
                                             </div>
                                         </div>
                                         <div class="contact">
-                                            <span class="uil uil-trash-alt"></span>
+                                            <span class="uil uil-trash-alt" id="supprimer_matiere"></span>
                                         </div>
                                     </div>                                
                             {% endfor %}
@@ -129,9 +129,6 @@
                                     <h4></h4>
                                     <small></small>
                                 </div>
-                            </div>
-                            <div>
-                                <button class="" id="supprimer">Supprimer <span class="uil uil-times"></span></button>
                             </div>
                             <div class="contact">
                             </div>
