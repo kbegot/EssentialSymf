@@ -2,29 +2,70 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Eleve;
+use App\Entity\Classe;
+use App\Entity\Matiere;
+use App\Entity\Professeur;
+use App\Form\CreationClasseType;
+use App\Form\CreationMatiereType;
+use App\Repository\UserRepository;
+use App\Repository\EleveRepository;
+use App\Repository\ClasseRepository;
+use App\Repository\MatiereRepository;
+use App\Repository\RessourceRepository;
+use Doctrine\Persistence\ObjectManager;
+use App\Repository\ProfesseurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\UserRepository;
-use App\Repository\ClasseRepository;
-use App\Repository\MatiereRepository;
-use App\Repository\RessourceRepository;
-use App\Repository\EleveRepository;
-use App\Repository\ProfesseurRepository;
-use App\Entity\Eleve;
-use APP\Entity\Professeur;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin_home")
      */
-    public function index(UserRepository $users): Response
+    public function index(UserRepository $users, EleveRepository $eleves, ClasseRepository $classes, ProfesseurRepository $professeurs, RessourceRepository $ressources): Response
     {
+        $allUsers = $users->findAll();
+        $allClasses = $classes->findAll();
+        $firstUsers = array();
+        $firstClasses = array();
+
+        $maxUserCount = 10;
+        $maxClassesCount = 5;
+
+        if (count($allUsers) < $maxUserCount)
+        {
+            $firstUsers = $allUsers;
+        }
+
+        else{
+
+            for ($i = 0; $i < $maxUserCount; $i++)
+            {
+                $firstUsers[] = $allUsers[$i];
+            }
+        }
+
+
+        if (count($allClasses) < $maxClassesCount)
+        {
+            $firstClasses = $allClasses;
+        }
+
+        else
+        {
+            for ($i = 0; $i < $maxClassesCount ; $i++)
+            {
+                $firstClasses[] = $allClasses[$i];
+            }
+        }
+
+        
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController','users'=>$users->findAll()
+            'controller_name' => 'AdminController','users'=>$firstUsers,'classes'=>$firstClasses,'classesCount'=>count($allClasses),'eleves'=>$eleves->findAll(), 'professeurs'=>$professeurs->findAll(),'ressources'=>$ressources->findAll()
         ]);
     }
 
@@ -75,6 +116,13 @@ class AdminController extends AbstractController
             
             if ($professeurs->findOneByUser($user))
             {
+                if ($matieres->findOneByProfesseur($professeurs->findOneByUser($user)))
+                {
+                    $professeur = $professeurs->findOneByUser($user);
+                    $matiere = $matieres->findOneByProfesseur($professeur);
+                    $matiere->RemoveProfesseur();
+                    $entityManager->persist($matiere);
+                }
                 $entityManager->remove($professeurs->findOneByUser($user));
             }
 
@@ -92,19 +140,22 @@ class AdminController extends AbstractController
         else if ($role == 'ROLE_TEACHER')
         {
             $matiereid = $classeid_matiereid;
-
+            
             if ($professeurs->findOneByUser($userid))
             {
                 $professeur = $professeurs->findOneByUser($user);
+                
             }
-
+            
             else
             {
                 $professeur = new Professeur();
                 $professeur->setUser($user);
                 //$professeur->addMatiere($matieres->find($matiereid));
             }
-
+            
+            $matiere = $matieres->findOneById($matiereid);
+            $matiere->setProfesseur($professeur);
 
             if ($eleves->findOneByUser($user))
             {
@@ -113,6 +164,7 @@ class AdminController extends AbstractController
 
             $user->setRoles([$role]);
             $entityManager->persist($professeur);
+            $entityManager->persist($matiere);
             $entityManager->flush();
 
 
@@ -139,7 +191,7 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/userlist/delete/{id}", name = "admin_userdelete")
      */
-    public function userDelete(userRepository $users, EleveRepository $eleves, ProfesseurRepository $professeurs, $id)
+    public function userDelete(userRepository $users, EleveRepository $eleves,MatiereRepository $matieres, ProfesseurRepository $professeurs, $id)
     {
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $user = $users->find($id);
@@ -156,13 +208,24 @@ class AdminController extends AbstractController
         
         if ($role == 'ROLE_ADMIN')
         {
-            
+            $this->addFlash('erreur','Les administrateurs ne peuvent être supprimé que via phpmyadmin');
+            return $this->redirectToRoute('admin_userlist');
         }
         
         if ($role == 'ROLE_TEACHER')
         {
-            $professeur = $professeurs->findOneByUser($user);
-            $entityManager->remove($professeur);
+
+            if ($professeurs->findOneByUser($user))
+            {
+                if ($matieres->findOneByProfesseur($professeurs->findOneByUser($user)))
+                {
+                    $professeur = $professeurs->findOneByUser($user);
+                    $matiere = $matieres->findOneByProfesseur($professeur);
+                    $matiere->RemoveProfesseur();
+                    $entityManager->persist($matiere);
+                }
+                $entityManager->remove($professeurs->findOneByUser($user));
+            }
         }
         
         
@@ -202,7 +265,10 @@ class AdminController extends AbstractController
         unlink($filename);
         $ressources->remove($ressource, true);
         
+        $this->addFlash('info','La Ressource a bien été supprimée');
+
         return $this->redirectToRoute('admin_filelist');
+        
     
 
     }
@@ -220,11 +286,27 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/classelist", name = "admin_classelist")
      */
-    public function classelist(ClasseRepository $classes)
+    public function classelist(ClasseRepository $classes, EleveRepository $eleves, MatiereRepository $matieres)
     {
-        return $this->render('admin/classelist.html.twig',['ressources'=>$classes->findAll()]);
+        
+        return $this->render('admin/classelist.html.twig',['eleves'=>$eleves->findAll(),'classes'=>$classes->findAll(),'matieres'=>$matieres->findAll()]);
     }
 
+    /**
+     * @Route("admin/classeedit/{id}/{libelle}", name = "admin_classe_edit")
+     */
+    public function classeEdit(ClasseRepository $classes, $id,$libelle)
+    {
+        /*$entityManager = $this->getDoctrine()->getManager();
+        $classe = $classes->find($id);
+        $classe->setLibelle($libelle);
+        $entityManager->persist($classe);
+        $entityManager->flush();
+
+        $this->redirectToRoute('admin_classe_edit');
+        */
+        $this->redirectToRoute('admin_classe_edit');
+    }
 
 
     /**
@@ -235,8 +317,89 @@ class AdminController extends AbstractController
         return $this->render('admin/matiere.html.twig',['ressources'=>$matieres->findAll()]);
     }
 
+    /**
+     *@Route("/admin/classecreate", name="admin_classecreate")
+     */
+    public function creationClasse(Request $request, EntityManagerInterface $entityManager): Response 
+    {
+
+        $classe = new Classe();
+        $form = $this->createForm(CreationClasseType::class, $classe);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
 
 
+            $entityManager->persist($classe);
+            $entityManager->flush();
+            $this->addFlash('info','La Classe a bien été créée');
+        }
+
+
+        return $this->render('admin/classecreate.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     *@Route("/admin/matierecreate", name="admin_matierecreate")
+     */
+    public function creationMatiere(Request $request, EntityManagerInterface $entityManager): Response 
+    {
+
+        $matiere = new Matiere();
+        $form = $this->createForm(CreationMatiereType::class, $matiere);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $entityManager->persist($matiere);
+            $entityManager->flush();
+            $this->addFlash('info','La Matière a bien été créée');
+        }
+
+
+        return $this->render('admin/matierecreate.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     *@Route("/admin/matieredelete/{id}", name="admin_deletematiere")
+     */
+    public function MatiereDelete(EntityManagerInterface $entityManager, RessourceRepository $ressources, MatiereRepository $matieres, $id)
+    {
+        $matiere = $matieres->find($id);
+
+        if (is_null($matiere))
+        {
+            $this->addFlash('error','La matière n\'existe pas ou plus');
+        }
+
+        else{
+            
+            $selectedRessources = $ressources->findByMatiere($matiere);
+
+            if(!empty($selectedRessources))
+            {
+                foreach ($selectedRessources as &$ressource)
+                {
+                    $ressource->setMatiere(null);
+                }
+            }
+
+
+
+            $matieres->remove($matiere, true);
+            $this->addFlash('info','La matière a été supprimé');
+        }
+
+        return $this->redirectToRoute('admin_classelist');
+    }
 
 
 }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 body{
   overflow: hidden;
 }
@@ -36,8 +38,12 @@ body{
   margin-top: 40%;
 }
 
-.estate, .user-circle-menu {
-  margin-top: 320%;
+.estate {
+  margin-top: 360%;
+}
+
+.user-circle-menu {
+  margin-top: 400%;
 }
 
 .search, .folder-open, .setting {
@@ -71,16 +77,12 @@ body{
   height: auto;
   float: right;
   font-family: Arial;
-  font-size: 1.8rem;
+  font-size: 3vh;
   font-weight: 900;
   font-stretch: normal;
   font-style: normal;
   color: #213350;
   margin-left: -51%;
-}
-
-.SeConnecter {
-  font-size: 1.8rem;
 }
 
 #menu path{
@@ -141,6 +143,7 @@ body{
   border-radius: 2.5%;
   background-color: #f3f3f7;
   z-index: 0;
+  overflow-y: scroll;
 }
 
 .Actus, .CaseActus {
@@ -156,9 +159,9 @@ body{
   font-style: normal;
   line-height: 1.13;
   letter-spacing: normal;
-  text-align: left;
   color: #213350;
   z-index: 0;
+  margin-top: 10%;
 }
 
 .CaseActus {
@@ -190,7 +193,7 @@ body{
 }
 
 
-.CreateRecents {
+.DocsRecents {
   font-family: Arial;
   font-size: 40px;
   font-weight: bold;
@@ -201,172 +204,121 @@ body{
   text-align: left;
   color: #213350;
   z-index: 0;
+  margin-left: 10%;
 }
 
-.CaseCreateRecents {
-  border-radius: 21px;
+.CaseDocsRecents {
+  width: 70vh;
+  height: 62vh;
+  border-radius: 1vw;
   background-color: #f3f3f7;
   z-index: 0;
+  margin-left: 10%;
 }
 
+/* Partie Emploi du temps */
 
-
-.OpenRecents {
-  font-family: Arial;
-  font-size: 40px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.13;
-  letter-spacing: normal;
-  text-align: left;
-  color: #213350;
-  z-index: 0;
-}
-
-.CaseOpenRecents {
-  border-radius: 21px;
-  background-color: #f3f3f7;
-  z-index: 0;
-}
-
-
-
-/* Page de Login */
-
-.connect, .txt_field, .signup_link, .agree {
-  font-family: Arial;
-  color: #213350;
-}
-
-.connect, .txt_field, .signup_link {
-  font-weight: 900;
-}
-
-.connect, .signup_link, .agree {
+table {
+  border-spacing: 10px;
   text-align: center;
-}
-
-.connect {
-  font-size: 2rem;
-  border-bottom: 1px solid silver;
-  padding: 0 0 20px 0;
-}
-
-.agree {
-  font-weight: 700;
-}
-
-#inputEmail, #inputPassword {
-  font-size: 20px;
+  border-collapse: separate;
   font-family: Arial;
+}
+
+td {
+  width: 10%;
   font-weight: 800;
+}
+
+td:first-child {
+  width: 2%;
+}
+
+th {
+  font-weight: 800;
+  border-top: 1vh solid transparent;
+}
+
+.card{
+  height: 100%;
+  text-align: center;
+  background-color: #fff;
+  padding: 0.55vh;
+  border-radius: 6px;
+}
+
+/* Page User */
+
+h3 {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin-left: 2%;
+}
+
+.User, .CaseUser {
+  margin-left: 40%;
+}
+
+.User {
+  height: auto;
+  font-family: Arial;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
   color: #213350;
+  z-index: 0;
 }
 
-.txt_field {
-  font-size: 1.8rem;
-}
-
-form .txt_field {
-	position: relative;
-	border-bottom: 2px solid #adadad;
-	margin: 30px 0;
-}
-
-.txt_field input {
-	width: 100%;
-	padding: 0 5px;
-	height: 40px;
-	font-size: 16px;
-	border: none;
-	background: none;
-	outline: none;
-}
-
-.txt_field label {
-	position: absolute;
-	top: 50%;
-	left: 5px;
-	color: #adadad;
-	transform: translateY(-50%);
-	font-size: 16px;
-	pointer-events: none;
-	transition: 0.3s;
-}
-
-.txt_field span::before {
-	content: '';
-	position: absolute;
-	top: 40px;
-	left: 0;
-	width: 0%;
-	height: 2px;
-	background: #2691d9;
-	transition: 1s;
-}
-
-.txt_field input:focus ~ label, .txt_field input:valid ~ label {
-	top: -15px;
-	color: #2691d9;
-}
-
-.txt_field input:focus ~ span::before, .txt_field input:valid ~ span::before {
-	width: 100%;
-}
-
-.pass {
-	margin: -5px 0 20px 5px;
-	color: #a6a6a6;
-	cursor: pointer;
-}
-
-.pass:hover {
-	text-decoration: underline;
-}
-
-.btn_login, .btn_register {
-	position: relative;
-	transform: translate(-50%);
+.textcenter {
+  margin-left: 32.5%;
 }
 
 .center {
-  vertical-align: middle;
   text-align: center;
+  margin-top: 2.5vh;
+  margin-bottom: 2.5vh;
 }
 
-.btn_login {
-  left: 92.5%;
-}
-
-.btn_register {
-  left: 93.75%;
-}
-
-.signup_link #login {
-  text-decoration: none;
-  color: #a6a6a6;
-  transition: color 0.3s;
-}
-
-.signup_link #login:hover {
-  color: tomato;
-}
-
-/* Page folder */
-
-.scroll {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.CaseCours {
-  display: block;
-  width: 100%;
+.CaseUser {
+  width: 125%;
+  margin-top: -1%;
   height: auto;
-  border-radius: 2.5%;
+  border-radius: 1vw;
   background-color: #f3f3f7;
-  font-size: 20px;
   z-index: 0;
-  margin-bottom: -2%;
+}
+
+.img-news {
+  width: 70%;
+  height: auto;
+  margin-left: 15%;
+  border: 10px solid #213350;
+  border-radius: 20px;
+}
+
+.img-stdenis {
+  width: 20%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: -10%;
+  margin-left: 115%;
+  margin-bottom: 10%;
+}
+
+.cards{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.card{
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 0 10px #88888840;
+  padding: 12px;
+  border-radius: 6px;
 }

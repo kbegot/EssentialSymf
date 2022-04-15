@@ -2,15 +2,31 @@
 
 {% block body %}
 
-<link rel="stylesheet" href="{{ asset('css/folder-style.css') }}">
+{% if is_granted('ROLE_TEACHER') %}
+    <a id="menu" href="{{ path("teacher_upload") }}">Ajouter un fichier</a>
+{% endif %}
+
+<br>
+
+<a id="menu" href="{{path('folder')}}">Retour</a>
+
+<link rel="stylesheet" href="{{ asset('css/style-folder.css') }}">
+
     <section class="section__card">
         <div class="cards">
             {% for ressource in ressources %}
                 <div class="card">
                     <h2>{{ressource.name}}.{{ressource.extension}}</h2>
-                    <a href={{ressource.id}} class="button">
+                    <a href="{{ path('fileGet', {id: ressource.id}) }}" class="button">
                         <p>Télécharger</p>
                     </a>
+                    
+                {# Affiche un bouton Supprimer si vous avez le rôle Professeur ou Admin #}
+                    {% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN')%}
+                        <a href ="{{ path("teacher_removeFile", {id: ressource.id}) }}" class="button">
+                            <p>Supprimer</p>
+                        </a>
+                    {% endif %}
                 </div>
             {% endfor %}
             

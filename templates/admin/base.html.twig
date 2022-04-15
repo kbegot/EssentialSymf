@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Essential Admin</title>
+    <link rel="icon" href="{{ asset('img/favicon2.ico') }}">
+
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
 </head>
@@ -11,7 +13,7 @@
     <input type="checkbox" id="nav-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
-            <h2><span class="uil uil-graduation-cap"></span> <span>EssentialSup</span></h2>
+            <h2><span href="{{path("home")}}"class="uil uil-graduation-cap"></span> <span>EssentialSup</span></h2>
         </div>
 
         {% block menu %}
@@ -26,20 +28,16 @@
                         <span>Utilisateurs</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="uil uil-books"></span>
+                    <a href="{{path("admin_classelist")}}"><span class="uil uil-books"></span>
                         <span>Classe</span></a>
                 </li>
                 <li>
-                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder"></span>
-                        <span>Ressource</span></a>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-clipboard-alt"></span>
+                        <span>Ressources</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="uil uil-home"></span>
-                        <span>test1</span></a>
-                </li>
-                <li>
-                    <a href=""><span class="uil uil-home"></span>
-                    <span>test2</span></a>
+                    <a href="{{path ("home")}}"><span class="il uil-arrow-left"></span>
+                        <span>Retour EssentialSup</span></a>
                 </li>
             </ul>
         </div>
@@ -55,10 +53,7 @@
 
                 Dashboard
             </h2>
-            <div class="search-wrapper">
-                <span class="uil uil-search"></span>
-                <input type="search" placeholder="Rechercher">
-            </div>
+           
 
             <div class="user-wrapper">
                 <i class="uil uil-user icone"></i>
@@ -76,5 +71,8 @@
         {% block body %}{% endblock %}
     </div>
 </body>
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script-user.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script-classe.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script-mcreate.js') }}"></script>
+
 </html>

@@ -7,6 +7,14 @@
 {{ form_start(form) }}
 
     <div class="center">
+
+        {% for message in app.flashes('erreur') %}
+            <h3 class="erreur">{{message}}</h3>
+        {% endfor %}
+        {% for message in app.flashes('info') %}
+            <h3 class="validation">{{message}}</h3>
+        {% endfor %}
+        
         <h1>Ajoutez un fichier:</h1>
         
         <div class="txt_field">

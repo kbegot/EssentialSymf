@@ -5,34 +5,31 @@
     <div class="d-flex justify-content-around">
         
         <div class="w-50">
-            <h1 class="EdT">Emploi du temps</h1>
+            <h1 class="EdT">Nos actualités</h1>
             <div class="CaseEdT">
-
+                <img class="img-news center" src="{{ asset('img/photoUkraine') }}" />
+                <img class="img-news center" src="{{ asset('img/photoStDenis.jfif') }}" />
             </div>
         </div>
 
         <div class="w-50">
-            <h1 class="Actus">Nos actualités</h1>
-            <div class="CaseActus">
-                
-        </div>
-
-            <div>
-                <div class="d-flex justify-content-around">
-                    <div class="w-50">
-                        <h1 class="CreateRecents">Déposés récemment</h1>
-                        <div class="CaseCreateRecents">
-                            
-                        </div>
+            <h1 class="Actus">Institut Supérieur Saint Denis</h1>
+            <img class="img-stdenis" src="{{ asset('img/logoStDenis.htm') }}" />
+                    
+            <h1 class="DocsRecents">Documents récents</h1>
+            <div class="CaseDocsRecents">
+                <section class="section__card">
+                    <div class="cards">
+                        {% for ressource in ressources %}
+                            <div class="card">
+                                <h2>{{ressource.id}}.{{ressource.extension}}</h2>
+                                <a href="{{ path('fileGet', {id: ressource.id}) }}" class="button">
+                                    <p>Télécharger</p>
+                                </a>
+                            </div>
+                        {% endfor %}
                     </div>
-
-                    <div class="w-50">
-                        <h1 class="OpenRecents">Ouverts récemment</h1>
-                        <div class="CaseOpenRecents">
-                            
-                        </div>
-                    </div>
-                </div>
+                </section>
             </div>
             
         </div>

@@ -1,0 +1,55 @@
+{% extends '/admin/base.html.twig' %}
+{% block menu %}
+<div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="{{path("admin_home")}}" ><span class="uil uil-home"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="{{path("admin_userlist")}}" ><span class="uil uil-user"></span>
+                        <span>Utilisateurs</span></a>
+                </li>
+                <li>
+                    <a href="{{path("admin_classelist")}}" class="active"><span class="uil uil-books"></span>
+                        <span>Classe</span></a>
+                </li>
+                <li>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-clipboard-alt"></span>
+                        <span>Ressources</span></a>
+                </li>
+                <li>
+                    <a href="{{path ("home")}}"><span class="il uil-arrow-left"></span>
+                        <span>Retour EssentialSup</span></a>
+                </li>
+            </ul>
+        </div>
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="recent-grid3">
+                <div class="projects">
+                    {% for message in app.flashes('info') %}
+                        <h3 class="validation">{{message}}</h3>
+                    {% endfor %}
+                    <div class="card">
+                        <div class="card-header2">
+                            <h3>Création d'une Classe</h3>
+                        </div>
+                        <div class="formm">
+                            {{ form_start(form) }}
+                            <p>{{ form_row (form.libelle,{'label': 'Libelle Classe: ','attr':{'placeholder':'Nom de la Classe'
+                            }}) }}</p>
+                            <button type="submit" class="button-form">Valider</button>
+                            {{form_end(form)}}
+                        </div>
+                    </div>
+                </div>
+
+
+        
+
+
+
+{% endblock %}

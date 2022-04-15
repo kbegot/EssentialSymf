@@ -3,7 +3,7 @@
 <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="{{path("admin_home")}}" class=""><span class="uil uil-home"></span>
+                    <a href="{{path("admin_home")}}" ><span class="uil uil-home"></span>
                         <span>Dashboard</span></a>
                 </li>
                 <li>
@@ -11,21 +11,131 @@
                         <span>Utilisateurs</span></a>
                 </li>
                 <li>
-                    <a href="" class="active"><span class="uil uil-books"></span>
+                    <a href="{{path("admin_classelist")}}" class="active"><span class="uil uil-books"></span>
                         <span>Classe</span></a>
                 </li>
                 <li>
-                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-folder-open"></span>
-                        <span>Ressource</span></a>
+                    <a href="{{path ("admin_filelist")}}"><span class="uil uil-clipboard-alt"></span>
+                        <span>Ressources</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="uil uil-home"></span>
-                        <span>test1</span></a>
-                </li>
-                <li>
-                    <a href=""><span class="uil uil-home"></span>
-                    <span>test2</span></a>
+                    <a href="{{path ("home")}}"><span class="il uil-arrow-left"></span>
+                        <span>Retour EssentialSup</span></a>
                 </li>
             </ul>
         </div>
+{% endblock %}
+
+{% block body %}
+<main>
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Table des classes</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Libellé</td>
+                                            <td>Statut</td>
+                                            <td>Afficher</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                           
+                                            {% for classe in classes %}
+                                            <tr>
+                                                <td id="userId">{{ classe.id }}</td>
+                                                <td id="userEmail">{{ classe.libelle }}</td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    <div class="contact">
+                                                        <span class="uil uil-ruler" id="togg3" idClasse="{{classe.id}}"></span>
+                                                        <span class="uil uil-user" id="togg4" idClasse="{{classe.id}}"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="rangement-button">
+                            <a href="{{path ("admin_classecreate")}}"class=" button">Ajouter une Classe</a>
+                            <a href="{{path ("admin_matierecreate")}}"class=" button">Ajouter une Matière</a>
+                        </div>
+                </div>
+                    
+                <div class="table-eleve" id="listeEleve">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Liste des Élèves</h3>
+
+                        </div>
+
+                        <div class="card-body">
+                            {% for eleve in eleves %}
+                                    <div class="customer">
+                                        <div class="info">
+                                            <i class="uil uil-user icone"></i>
+                                            <div>
+                                                <h4>{{eleve.user.nom}} {{eleve.user.prenom}}</h4>
+                                                <small>ID: [{{eleve.id}}] [{{eleve.classe.id}}] </small>
+                                            </div>
+                                        </div>
+                                        <div class="contact">
+                                            <span class="uil uil-trash-alt" id ="supprimer_eleve"></span>
+                                        </div>
+                                    </div>                                
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div class="table-matiere" id="listeMatiere">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Liste des Matières</h3>
+
+                        </div>
+
+                        <div class="card-body">
+                            {% for matiere in matieres %}
+                                    <div class="customer">
+                                        <div class="info">
+                                            <i class="uil uil-ruler icone"></i>
+                                            <div>
+                                                <h4>{{ matiere.nom }}</h4>
+                                                <small>ID Matiere : [{{matiere.id }}] [{{matiere.classe.id}}]</small>
+                                            </div>
+                                        </div>
+                                        <div class="contact">
+                                            <span class="uil uil-trash-alt" id="supprimer_matiere"></span>
+                                        </div>
+                                    </div>                                
+                            {% endfor %}
+                        </div>
+                        <div class="customer">
+                            <div class="info">
+                                <div>
+                                    <h4></h4>
+                                    <small></small>
+                                </div>
+                            </div>
+                            <div class="contact">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 {% endblock %}

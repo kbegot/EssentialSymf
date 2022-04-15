@@ -210,6 +210,7 @@ main{
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: 65% auto;
+    
 }
 
 .recent-grid2 {
@@ -217,6 +218,14 @@ main{
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: 90% auto;
+}
+
+.recent-grid3 {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 100% auto;
+    text-align: center;
 }
 
 .card {
@@ -244,7 +253,18 @@ main{
     border: 1px solid var(--main-color);
 }
 
-button {
+.card-header2{
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1rem;
+}
+
+.formm{
+    padding: 1rem;
+}
+
+button,
+.button{
     background: var(--main-color);
     border-radius: 10px;
     color: #fff;
@@ -253,6 +273,14 @@ button {
     border: 1px solid var(--main-color);
 }
 
+.rangement-button{
+    margin-top: .8rem;
+}
+
+.button-form{
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+}
 
 table {
     border-collapse: collapse;
@@ -380,7 +408,15 @@ tr td:last-child {
 }
 
 .validation{
-    background-color: rgba(255, 0, 0, 0.1);;
+    background-color: rgba(0, 128, 0, 0.1);;
     border-radius: 5px;
     color: green;
+}
+
+.table-eleve{
+    display: none;
+}
+
+.table-matiere{
+    display: none;
 }

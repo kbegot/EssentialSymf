@@ -12,7 +12,18 @@
 
       <h1>Connexion</h1>
 
+      {% for message in app.flashes('erreur') %}
+        <h3 class="erreur">{{message}}</h3>
+      {% endfor %}
+      {% for message in app.flashes('info') %}
+        <h3 class="validation">{{message}}</h3>
+      {% endfor %}
+
       <form method="post">
+
+        {% if error %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
         <div class="txt_field">
 

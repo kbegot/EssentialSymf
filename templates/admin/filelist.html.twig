@@ -11,20 +11,16 @@
                         <span>Utilisateurs</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="uil uil-books" ></span>
+                    <a href="{{path("admin_classelist")}}"><span class="uil uil-books" ></span>
                         <span>Classe</span></a>
                 </li>
                 <li>
-                    <a href="{{path ("admin_filelist")}}" class="active"><span class="uil uil-folder"></span>
+                    <a href="{{path ("admin_filelist")}}" class="active"><span class="uil uil-clipboard-alt"></span>
                         <span>Ressource</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="uil uil-home"></span>
-                        <span>test1</span></a>
-                </li>
-                <li>
-                    <a href=""><span class="uil uil-home"></span>
-                    <span>test2</span></a>
+                    <a href="{{path ("home")}}"><span class="il uil-arrow-left"></span>
+                        <span>Retour EssentialSup</span></a>
                 </li>
             </ul>
         </div>
@@ -34,6 +30,9 @@
 <main>
     <div class="recent-grid2">
     <div class="projects">
+        {% for message in app.flashes('info') %}
+            <h3 class="validation">{{message}}</h3>
+        {% endfor %}
         <div class="card">
             <div class="card-header">
                 <h3>Table des utilisateurs</h3>
@@ -61,7 +60,7 @@
                                 <td>{{ ressource.extension }}</td>
                                 <td>{{ ressource.path }}</td>
                                 {% if ressource.matiere %}
-                                    <td>{{ ressource.matiere }}</td>
+                                    <td>{{ ressource.matiere.nom }}</td>
                                 {% else %}
                                     <td>non défini</td>
                                 {% endif %}

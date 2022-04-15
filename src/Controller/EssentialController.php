@@ -2,18 +2,21 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\entity\Ressource;
-use Symfony\Component\Security\Http\Attribute\CurrentUser;
-use App\Repository\RessourceRepository;
-use App\Repository\MatiereRepository;
+use App\Repository\UserRepository;
+use App\Repository\EleveRepository;
 use App\Repository\ClasseRepository;
-
+use App\Repository\MatiereRepository;
+use App\Repository\RessourceRepository;
+use App\Repository\ProfesseurRepository;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Routing\Annotation\Route;
+
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class EssentialController extends AbstractController
@@ -31,42 +34,172 @@ class EssentialController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home()
+    public function home(RessourceRepository $ressources, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, UserRepository $users, MatiereRepository $matieres)
     {
-        return $this->render('essential/home.html.twig');
-    }
-
-
-    /**
-    * @route("/testauth", name = "test")
-    */
-    public function testauth()
-    {
+        
         $user = $this->getUser();
 
-        if ($user)
-        {
-            return $this->render('essential/test.html.twig',['user'=>$user]);
-        }
-
-        else
+        if (is_null($user))
         {
             return $this->redirectToRoute('app_login');
         }
 
+
+        $selectedRessource = [];
+        $role = $user->getRoles()[0];
+
+
+        $firstRessources = array();
+
+        $maxRessourceCount = 8;
+
+
+        if ($role == 'ROLE_TEACHER')
+        {
+            $professeur = $professeurs->findOneByUser($user);
+            $lesMatieres = $matieres->findByProfesseur($professeur);
+            $selectedRessource = $ressources->findByMatiere($lesMatieres);
+
+            if (count($selectedRessource) < $maxRessourceCount)
+            {
+                $firstRessources = $selectedRessource;
+            }
+            else
+            {
+                for ($x = count($selectedRessource)-$maxRessourceCount ; $x < count($selectedRessource); $x++)
+                {
+                    $firstRessources[] = $selectedRessource[$x];
+                    
+                }
+            } 
+           
+        }
+
+        return $this->render('essential/home.html.twig',['ressources'=>$firstRessources]);
+        
     }
+
 
     /**
      * @Route("/folder", name = "folder")
      */
-    public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes)
+    public function folder(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs)
     {
-        return $this->render('essential/folder.html.twig',['classes'=>$classes->findAll(), 'ressources'=>$ressources->findAll()]);
+        $user = $this->getUser();
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $SelectedMatiere = [];
+        $userRole = $user->getRoles()[0];
+
+        if ($userRole == "ROLE_ADMIN")
+        {
+            $selectedMatiere = $matieres->findAll();
+
+        }
+
+        if ($userRole == "ROLE_TEACHER")
+        {
+            $professeur = $professeurs->findOneByUser($user);
+            $selectedMatiere = $matieres->findByProfesseur($professeur);
+
+        }
+
+
+
+        if ($userRole == "ROLE_ELEVE")
+        {
+ 
+            $eleve = $eleves->findOneByUser($user);
+            $classe = $eleve->getClasse();
+            $selectedMatiere = $classe->getMatiere();
+        
+        }
+
+        if (empty($selectedMatiere))
+        {
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('essential/folder.html.twig',['matieres'=>$selectedMatiere]);
+
+    }
+
+    /**
+     * @Route("/folder/{matiereid}", name = "folder_matiere")
+     */
+    public function folderMatiere(RessourceRepository $ressources, MatiereRepository $matieres, ClasseRepository $classes, EleveRepository $eleves, ProfesseurRepository $professeurs, $matiereid)
+    {
+        $user = $this->getUser();
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $SelectedRessources = [];
+        $userRole = $user->getRoles()[0];
+        $selectedMatiere = $matieres->findOneById($matiereid);
+        $SelectedRessources=  $ressources->findByMatiere($selectedMatiere); 
+
+        if ($userRole == "ROLE_ADMIN")
+        {
+
+
+
+        }
+
+        if ($userRole == "ROLE_TEACHER")
+        {
+
+            $SelectedRessources=  $ressources->findByMatiere($selectedMatiere);
+
+            $professeur = $professeurs->findOneByUser($user);
+            $lesMatieres = $matieres->findByProfesseur($professeur);
+            if ($lesMatieres[0] != $selectedMatiere)
+            {
+                $this->addFlash('error','Vous n\'navez pas accès à cette matière');
+                return $this->redirectToRoute('folder');
+            }
+
+        }
+
+
+
+        if ($userRole == "ROLE_ELEVE")
+        {
+ 
+            $eleve = $eleves->findOneByUser($user);
+            $classe = $eleve->getClasse();
+            $lesMatieres = $matieres->findByClasse($classe);
+            
+            if (!in_array($selectedMatiere,$lesMatieres))
+            {
+                $this->addFlash('error','Vous n\'navez pas accès à cette matière');
+                return $this->redirectToRoute('folder');
+            }
+                
+        }
+
+        /*
+        if (empty($SelectedRessources))
+        {
+            return $this->redirectToRoute('home');
+        }
+        */
+        return $this->render('essential/files.html.twig',['ressources'=>$SelectedRessources]);
+
     }
 
 
+
+
+
     /**
-     * @Route("/folder/{id}", name = "fileGet")
+     * @Route("/folderGet/{id}", name = "fileGet")
      */
     public function fileGet(RessourceRepository $ressources, $id)
     {

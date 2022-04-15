@@ -2,25 +2,26 @@
 
 {% block body %}
 
-{% if is_granted('ROLE_TEACHER') or is_granted('ROLE_ADMIN') %}
-    <a id="menu" href="{{ path("teacher_upload") }}">Ajoutez un fichier</a>
-{% endif %}
-
 <link rel="stylesheet" href="{{ asset('css/style-folder.css') }}">
 
     <section class="section__card">
+        {% for message in app.flashes('erreur') %}
+            <h3 class="erreur">{{message}}</h3>
+        {% endfor %}
+        {% for message in app.flashes('info') %}
+            <h3 class="validation">{{message}}</h3>
+        {% endfor %}
         <div class="cards">
-            {% for ressource in ressources %}
+            {% for matiere in matieres %}
                 <div class="card">
-                    <h2>{{ressource.name}}.{{ressource.extension}}</h2>
-                    <a href="{{ path('fileGet', {id: ressource.id}) }}" class="button">
-                        <p>Télécharger</p>
+                    <h2>{{matiere.nom}}</h2>
+                    <a href="{{ path('folder_matiere', {matiereid: matiere.id}) }}" class="button">
+                        <p>Ouvrir</p>
                     </a>
                 </div>
             {% endfor %}
-            
+                    
         </div>
-        
     </section>
 
 {% endblock %}
