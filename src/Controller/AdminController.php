@@ -371,7 +371,7 @@ class AdminController extends AbstractController
     /**
      *@Route("/admin/matieredelete/{id}", name="admin_deletematiere")
      */
-    public function MatiereDelete(EntityManagerInterface $entityManager, MatiereRepository $matieres, $id)
+    public function MatiereDelete(EntityManagerInterface $entityManager, RessourceRepository $ressources, MatiereRepository $matieres, $id)
     {
         $matiere = $matieres->find($id);
 
@@ -381,6 +381,18 @@ class AdminController extends AbstractController
         }
 
         else{
+            
+            $selectedRessources = $ressources->findByMatiere($matiere);
+
+            if(!empty($selectedRessources))
+            {
+                foreach ($selectedRessources as &$ressource)
+                {
+                    $ressource->setMatiere(null);
+                }
+            }
+
+
 
             $matieres->remove($matiere, true);
             $this->addFlash('info','La matière a été supprimé');
