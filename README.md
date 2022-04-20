@@ -8,7 +8,7 @@ Version PHP: 7.2.34
 ### Installer composer
 https://getcomposer.org/download
 ## Dans un invite de commande (cmd ou powershell)
-### Mettre à jours les dépendances avec composer
+### Mettre à jour les dépendances avec composer
 ```
 composer update
 ```
@@ -16,7 +16,7 @@ composer update
 ```
 composer require orm-fixtures --dev
 ```
-### Crée la base de donnée en local
+### Créer la base de données en local
 ```
 php bin/console doctrine:database:create
 ```
@@ -28,13 +28,13 @@ php bin/console doctrine:migrations:migrate
 ```
 php bin/console server:run
 ```
-### Accéder à l'adresse local sur le port 8000
+### Accéder à l'adresse locale sur le port 8000
 http://127.0.0.1:8000
 
 
 # Mise en production
 ### Dérogation du pare-feu
-Pour mettre en production le projet vous devez ouvrir le port 80 ou autoriser l'executable httpd.exe trouvable dans
+Pour mettre en production le projet vous devez ouvrir le port 80 ou autoriser l'éxecutable httpd.exe trouvable dans
 ```
 C:\wamp64\bin\apache\apache2.4.51\bin
 ```
@@ -62,25 +62,25 @@ et le modifier comme ceci
 </VirtualHost>
 ```
 
-# Commande utiles au développement
+# Commandes utiles au développement
 ### Lancer le serveur de développement
 ```
 php bin/console server:run
 ```
-### Lancer le serveur de dump (déboguage)
+### Lancer le serveur de dump (débogage)
 ```
 php bin/console server:dump
 ```
-### Crée un controller
+### Créer un controller
 ```
 php bin/console make:controller
 ```
 (puis rentrer le nom du controller)
-### Crée une nouvelle entité
+### Créer une nouvelle entité
 ```
 php bin/console make:entity
 ```
-### Crée une migration
+### Créer une migration
 ```
 php bin/console make:migration
 ```
@@ -88,19 +88,19 @@ php bin/console make:migration
 ```
 php bin/console doctrine:migrations:migrate
 ```
-### Crée une nouvelle fixture
+### Créer une nouvelle fixture
 ```
 php bin/console make:fixtures
 ```
-### Charger les fixtures existante
+### Charger les fixtures existantes
 ```
 php bin/console doctrine:fixtures:load
 ```
-### Crée un nouveau formulaire (Register)
+### Créer un nouveau formulaire (Register)
 ```
 php bin/console make:registration-form
 ```
-### Crée l'authentification
+### Créer l'authentification
 ```
 php bin/console make:auth
 ```
