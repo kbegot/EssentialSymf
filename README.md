@@ -7,6 +7,14 @@ https://www.wampserver.com
 Version PHP: 7.2.34
 ### Installer composer
 https://getcomposer.org/download
+## Dans un éditeur de text / code
+### Configurer l'accès au serveur de base de données
+Vous devrez ouvrir le fichier .env et modifier la ligne 30 qui par défaut est
+```DATABASE_URL="mysql://ukfh0518_admin:PqQD-UcpWsq{@127.0.0.1:3306/ukfh0518_essentialsup?serverVersion=mariadb-10.3.28"```
+et la modifier selon le serveur de base de données utilisés, dans le cas ou on utilise wampserver on mettra
+```
+DATABASE_URL="mysql://root:@127.0.0.1:3306/essentialsup?serverVersion=5.7"
+```
 ## Dans un invite de commande (cmd ou powershell)
 ### Mettre à jour les dépendances avec composer
 ```
