@@ -71,6 +71,13 @@ et le modifier comme ceci
   </Directory>
 </VirtualHost>
 ```
+# Démarche pour initialiser le premier compte administrateur
+Pour Instancier le premier administrateur vous devez avoir un accès direct au serveur de base de données et vous devez modifier (à l'aide de PhpMyAdmin ou tout autre outils) le champs " rôles " de l'utilisateur concerné en
+```
+["ROLE_ADMIN"]
+```
+Une fois fait il vous sera possible via cet utilisateur de modifier tout les autres via le pannel administrateur
+
 
 # Commandes utiles au développement
 ### Lancer le serveur de développement
@@ -81,23 +88,6 @@ php bin/console server:run
 ```
 php bin/console server:dump
 ```
-### Créer un controller
-```
-php bin/console make:controller
-```
-(puis rentrer le nom du controller)
-### Créer une nouvelle entité
-```
-php bin/console make:entity
-```
-### Créer une migration
-```
-php bin/console make:migration
-```
-### Effectuer les migrations
-```
-php bin/console doctrine:migrations:migrate
-```
 ### Créer une nouvelle fixture
 ```
 php bin/console make:fixtures
@@ -105,12 +95,4 @@ php bin/console make:fixtures
 ### Charger les fixtures existantes
 ```
 php bin/console doctrine:fixtures:load
-```
-### Créer un nouveau formulaire (Register)
-```
-php bin/console make:registration-form
-```
-### Créer l'authentification
-```
-php bin/console make:auth
 ```
