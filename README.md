@@ -7,6 +7,16 @@ https://www.wampserver.com
 Version PHP: 7.2.34
 ### Installer composer
 https://getcomposer.org/download
+## Dans un éditeur de text / code
+### Configurer l'accès au serveur de base de données
+Vous devrez ouvrir le fichier .env et modifier la ligne 30 qui par défaut est
+```
+DATABASE_URL="mysql://ukfh0518_admin:PqQD-UcpWsq{@127.0.0.1:3306/ukfh0518_essentialsup?serverVersion=mariadb-10.3.28"
+```
+et la modifier selon le serveur de base de données utilisés, dans le cas ou on utilise wampserver on mettra
+```
+DATABASE_URL="mysql://root:@127.0.0.1:3306/essentialsup?serverVersion=5.7"
+```
 ## Dans un invite de commande (cmd ou powershell)
 ### Mettre à jour les dépendances avec composer
 ```
@@ -61,6 +71,13 @@ et le modifier comme ceci
   </Directory>
 </VirtualHost>
 ```
+# Démarche pour initialiser le premier compte administrateur
+Pour Instancier le premier administrateur vous devez avoir un accès direct au serveur de base de données et vous devez modifier (à l'aide de PhpMyAdmin ou tout autre outils) le champs " rôles " de l'utilisateur concerné en
+```
+["ROLE_ADMIN"]
+```
+Une fois fait il vous sera possible via cet utilisateur de modifier tout les autres via le pannel administrateur
+
 
 # Commandes utiles au développement
 ### Lancer le serveur de développement
@@ -71,23 +88,6 @@ php bin/console server:run
 ```
 php bin/console server:dump
 ```
-### Créer un controller
-```
-php bin/console make:controller
-```
-(puis rentrer le nom du controller)
-### Créer une nouvelle entité
-```
-php bin/console make:entity
-```
-### Créer une migration
-```
-php bin/console make:migration
-```
-### Effectuer les migrations
-```
-php bin/console doctrine:migrations:migrate
-```
 ### Créer une nouvelle fixture
 ```
 php bin/console make:fixtures
@@ -95,12 +95,4 @@ php bin/console make:fixtures
 ### Charger les fixtures existantes
 ```
 php bin/console doctrine:fixtures:load
-```
-### Créer un nouveau formulaire (Register)
-```
-php bin/console make:registration-form
-```
-### Créer l'authentification
-```
-php bin/console make:auth
 ```
