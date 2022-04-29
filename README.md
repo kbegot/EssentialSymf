@@ -64,6 +64,15 @@ et le modifier comme ceci
   </Directory>
 </VirtualHost>
 ```
+### Définir le projet en mode production
+Dans le fichier .env modifier la ligne
+```
+APP_ENV=dev
+```
+en
+```
+APP_ENV=prod
+```
 # Démarche pour initialiser le premier compte administrateur
 Pour Instancier le premier administrateur vous devez avoir un accès direct au serveur de base de données et vous devez modifier (à l'aide de PhpMyAdmin ou tout autre outils) le champs " rôles " de l'utilisateur concerné en
 ```
