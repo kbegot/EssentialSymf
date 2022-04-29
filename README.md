@@ -19,10 +19,6 @@ et la modifier selon le serveur de base de données utilisés
 ```
 composer update
 ```
-### (Optionnel) Installer le module de fixture
-```
-composer require orm-fixtures --dev
-```
 ### Créer la base de données en local
 ```
 php bin/console doctrine:database:create
@@ -84,12 +80,4 @@ php bin/console server:run
 ### Lancer le serveur de dump (débogage)
 ```
 php bin/console server:dump
-```
-### Créer une nouvelle fixture
-```
-php bin/console make:fixtures
-```
-### Charger les fixtures existantes
-```
-php bin/console doctrine:fixtures:load
 ```
